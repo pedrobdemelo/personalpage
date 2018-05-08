@@ -235,7 +235,14 @@ function toggleevents() {
     vertical-align:top;
 }
 .PDF_icons:hover{
-    background-color:rgba(255, 0, 0, 0.2);
+/*
+    background-color:rgba(255, 0, 0, 0.2);*/
+    background:linear-gradient(to top right, rgba(255, 0, 0, 0.6), rgba(255, 0, 0, 0.2), rgba(255, 0, 0, 0.1),rgba(255, 0, 0, 0));
+    border-color:rgba(255, 0, 0, 0.5);
+/*
+    border-style: solid;
+    border-width: 1px;
+*/
     border-radius: 5px;
 }
 </style>
@@ -254,6 +261,27 @@ function open_PDF(PDF_number) {
    }
 }
 </script>
+
+<style>
+.gallery_frame {
+   display:inline-block;
+   overflow:hidden;
+}
+.gallery_item {
+   width:400px;
+   height:225px;
+   -webkit-transition: all 0.5s ease-in-out;
+   -moz-transition: all 0.5s ease-in-out;
+   -ms-transition: all 0.5s ease-in-out;
+   -o-transition: all 0.5s ease-in-out;
+   transition: all 0.5s ease-in-out;
+}
+.gallery_item:hover {
+   transform: scale(1.3);
+   filter: alpha(opacity=50);
+   opacity: 0.5;
+}
+</style>
 
 </head>
 
@@ -316,12 +344,24 @@ function open_PDF(PDF_number) {
       <div style="background-color: rgba(230, 230, 230, 0.9);">
          <div class="roboto"><center>Gallery</center></div>
          <div style="text-align:center;">
-            <img src="https://pedrobdemelo.github.io/personalpage/images/8CB_second_render.png" width="400px" alt="">
-            <img src="https://pedrobdemelo.github.io/personalpage/images/chiral_dopant1(modified).png" width="400px" alt="">
-            <img src="https://pedrobdemelo.github.io/personalpage/images/8CB_second_render.png" width="400px" alt="">
-             <video src="https://pedrobdemelo.github.io/personalpage/videos/trefoil.mp4" width="400px" autoplay muted loop></video>
-             <video src="https://pedrobdemelo.github.io/personalpage/videos/5,2knot_anim.mp4" width="400px" autoplay muted loop></video>
-             <video src="https://pedrobdemelo.github.io/personalpage/videos/5,3knot_anim.mp4" width="400px" autoplay muted loop></video>
+            <span class="gallery_frame">
+               <img src="https://pedrobdemelo.github.io/personalpage/images/8CB_second_render.png" class="gallery_item" alt="Rendered 8CB molecule. UFF + Steepest descents. Atoms scale = 0.5, bond radius scale = 0.5.">
+            </span>
+            <span class="gallery_frame">
+               <img src="https://pedrobdemelo.github.io/personalpage/images/chiral_dopant1(modified).png" class="gallery_item" alt="">
+            </span>
+            <span class="gallery_frame">
+               <img src="https://pedrobdemelo.github.io/personalpage/images/8CB_second_render.png" class="gallery_item" alt="">
+            </span>
+            <span class="gallery_frame">
+               <video src="https://pedrobdemelo.github.io/personalpage/videos/trefoil.mp4" class="gallery_item" autoplay muted loop></video>
+            </span>
+            <span class="gallery_frame">
+               <video src="https://pedrobdemelo.github.io/personalpage/videos/5,2knot_anim.mp4" class="gallery_item" autoplay muted loop></video>
+            </span>
+            <span class="gallery_frame">
+               <video src="https://pedrobdemelo.github.io/personalpage/videos/5,3knot_anim.mp4" class="gallery_item" autoplay muted loop></video>
+            </span>
          </div>
          <div style="height:20px;"></div>
       </div>
@@ -357,30 +397,9 @@ function open_PDF(PDF_number) {
          <div class="roboto"><center>Off-work (coming soon)</center></div>
          <!--<div style="height:1000px;font-family:'Roboto',sans-serif;font-size:24px;">
             <center>Literature</center>
-            <img src="https://pedrobdemelo.github.io/personalpage/margarida.jpg" width="200px" alt="">
-            <img src="https://pedrobdemelo.github.io/personalpage/margarida.jpg" width="200px" alt="">
-            <img src="https://pedrobdemelo.github.io/personalpage/margarida.jpg" width="200px" alt="">
-            <img src="https://pedrobdemelo.github.io/personalpage/margarida.jpg" width="200px" alt="">
-            <img src="https://pedrobdemelo.github.io/personalpage/margarida.jpg" width="200px" alt="">
-            <img src="https://pedrobdemelo.github.io/personalpage/margarida.jpg" width="200px" alt="">
             <center>Music</center>
-            <img src="https://pedrobdemelo.github.io/personalpage/margarida.jpg" width="200px" alt="">
-            <img src="https://pedrobdemelo.github.io/personalpage/margarida.jpg" width="200px" alt="">
-            <img src="https://pedrobdemelo.github.io/personalpage/margarida.jpg" width="200px" alt="">
-            <img src="https://pedrobdemelo.github.io/personalpage/margarida.jpg" width="200px" alt="">
-            <img src="https://pedrobdemelo.github.io/personalpage/margarida.jpg" width="200px" alt="">
-            <img src="https://pedrobdemelo.github.io/personalpage/margarida.jpg" width="200px" alt="">
             <center>TV Shows and Movies</center>
-            <img src="https://pedrobdemelo.github.io/personalpage/margarida.jpg" width="200px" alt="">
-            <img src="https://pedrobdemelo.github.io/personalpage/margarida.jpg" width="200px" alt="">
-            <img src="https://pedrobdemelo.github.io/personalpage/margarida.jpg" width="200px" alt="">
-            <img src="https://pedrobdemelo.github.io/personalpage/margarida.jpg" width="200px" alt="">
-            <img src="https://pedrobdemelo.github.io/personalpage/margarida.jpg" width="200px" alt="">
-            <img src="https://pedrobdemelo.github.io/personalpage/margarida.jpg" width="200px" alt="">
             <center>Photography</center>
-            <img src="https://pedrobdemelo.github.io/personalpage/margarida.jpg" width="400px" alt="">
-            <img src="https://pedrobdemelo.github.io/personalpage/floresroxas1.jpg" width="400px" alt="">
-            <img src="https://pedrobdemelo.github.io/personalpage/julia1.jpg" width="400px" alt="">
             <center>Electronics</center>
          </div>-->
       </div>
@@ -411,12 +430,6 @@ function open_PDF(PDF_number) {
       </div>
    </div>
 -->
-<!--   <div class="myfooter">
-      <center style="font-size:26px;">Don't hesitate to leave me a message. Contact at pedrobdemelo@gmail.com.</center>
-      <div style="text-align:right;font-size:22px;">
-         <p>2018.</p>
-      </div>
-   </div>-->
 
 </body>
 
