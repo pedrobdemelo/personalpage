@@ -225,7 +225,26 @@ function toggleevents() {
     font-size:18px;
     margin-left:2cm;
 }
+.PDF_icons{
+    display: inline-block;
+    display: -moz-inline-box;
+    *display: inline; /* For IE7 */
+    zoom: 1; /* Trigger hasLayout */
+    width: 10%;
+    text-align: center;
+    padding:10px;
+}
+.PDF_icons:hover{
+    background-color:rgba(255, 0, 0, 0.2);
+    border-radius: 5px;
+}
 </style>
+
+<script>
+function open_PDF() {
+   window.open("/home/pedro/Desktop/personalpage/PDFs/propriedades_delta.pdf")
+}
+</script>
 
 </head>
 
@@ -287,18 +306,12 @@ function toggleevents() {
             <img src="https://pedrobdemelo.github.io/personalpage/5,2knot_anim-opt.gif" width="400px" alt="">
             <img src="https://pedrobdemelo.github.io/personalpage/5,3knot_anim-opt.gif" width="400px" alt="">
 -->
-             <video width="400px">
-                <source src="videos/trefoil.mp4" type="video/mp4" controls autoplay>
-                Your browser does not support the video tag.
-             </video>
-             <video width="400px">
-                <source src="videos/trefoil.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-             </video>
-             <video width="400px">
-                <source src="videos/trefoil.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-             </video>
+             <video src="videos/trefoil.mp4" width="400px" autoplay muted loop></video>
+             <video src="videos/5,2knot_anim.mp4" width="400px" autoplay muted loop></video>
+             <video src="videos/5,3knot_anim.mp4" width="400px" autoplay muted loop></video>
+             <script>
+                document.getElementById('myvideos').play();
+             </script>
          </div>
          <div style="height:20px;"></div>
       </div>
@@ -310,11 +323,12 @@ function toggleevents() {
             <center>PDFs (coming soon)</center>
             <center style="font-size:22px;text-align:center;">(mainly in portuguese)</center>
             <center style="font-size:12px;">(Don't take these too seriously)</center>
-         </div>
-         <div style="height:300px;text-align:center;">
-            <img src="trefoil-opt.gif" width="400px" alt="">
-            <img src="5,2knot_anim-opt.gif" width="400px" alt="">
-            <img src="5,3knot_anim-opt.gif" width="400px" alt="">
+            <center>
+               <img src="images/PDF_icon.png" class="PDF_icons" alt="" onclick="open_PDF(1)">
+               <img src="images/PDF_icon.png" class="PDF_icons" alt="" onclick="open_PDF(1)">
+               <img src="images/PDF_icon.png" class="PDF_icons" alt="" onclick="open_PDF(1)">
+            </center>
+            <div style="height:20px;"></div>
          </div>
       </div>
    </div>
