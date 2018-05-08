@@ -264,7 +264,10 @@ function open_PDF(PDF_number) {
 
 <style>
 .gallery_frame {
-   display:inline-block;
+   display: -moz-inline-stack;
+   display: inline-block;
+   zoom: 1;
+   *display: inline;
    overflow:hidden;
 }
 .gallery_item {
@@ -354,7 +357,10 @@ function open_PDF(PDF_number) {
                <img src="https://pedrobdemelo.github.io/personalpage/images/8CB_second_render.png" class="gallery_item" alt="">
             </span>
             <span class="gallery_frame">
-               <video src="https://pedrobdemelo.github.io/personalpage/videos/trefoil.mp4" class="gallery_item" autoplay muted loop></video>
+               <video class="gallery_item" autoplay muted loop>
+                  <source src="https://pedrobdemelo.github.io/personalpage/videos/trefoil.mp4" type="video/mp4">
+                  <source src="videos/trefoil.ogg" type="video/ogg">
+               </video>
             </span>
             <span class="gallery_frame">
                <video src="https://pedrobdemelo.github.io/personalpage/videos/5,2knot_anim.mp4" class="gallery_item" autoplay muted loop></video>
