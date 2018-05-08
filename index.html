@@ -227,7 +227,6 @@ function toggleevents() {
 }
 .PDF_icons{
     display: inline-block;
-    display: -moz-inline-box;
     *display: inline; /* For IE7 */
     zoom: 1; /* Trigger hasLayout */
     width: 10%;
@@ -313,17 +312,9 @@ function open_PDF(PDF_number) {
             <img src="https://pedrobdemelo.github.io/personalpage/images/8CB_second_render.png" width="400px" alt="">
             <img src="https://pedrobdemelo.github.io/personalpage/images/chiral_dopant1(modified).png" width="400px" alt="">
             <img src="https://pedrobdemelo.github.io/personalpage/images/8CB_second_render.png" width="400px" alt="">
-<!--
-            <img src="https://pedrobdemelo.github.io/personalpage/trefoil-opt.gif" width="400px" alt="">
-            <img src="https://pedrobdemelo.github.io/personalpage/5,2knot_anim-opt.gif" width="400px" alt="">
-            <img src="https://pedrobdemelo.github.io/personalpage/5,3knot_anim-opt.gif" width="400px" alt="">
--->
              <video src="https://pedrobdemelo.github.io/personalpage/videos/trefoil.mp4" width="400px" autoplay muted loop></video>
              <video src="https://pedrobdemelo.github.io/personalpage/videos/5,2knot_anim.mp4" width="400px" autoplay muted loop></video>
              <video src="https://pedrobdemelo.github.io/personalpage/videos/5,3knot_anim.mp4" width="400px" autoplay muted loop></video>
-             <script>
-                document.getElementById('myvideos').play();
-             </script>
          </div>
          <div style="height:20px;"></div>
       </div>
@@ -337,15 +328,15 @@ function open_PDF(PDF_number) {
             <center style="font-size:12px;">(Don't take these too seriously)</center>
             <center>
                <div class="PDF_icons">
-                  <img src="images/PDF_icon.png"  alt="" width="100%" onclick="open_PDF(1)">
+                  <img src="images/PDF_icon.png" style="margin:0 auto;" alt="" width="100%" onclick="open_PDF(1)">
                   <center style="font-size:22px;text-align:center;"><b>Dirac delta properties</b></center>
                </div>
                <div class="PDF_icons">
-                  <img src="images/PDF_icon.png"  alt="" width="100%" onclick="open_PDF(2)">
+                  <img src="images/PDF_icon.png" style="margin:0 auto;" alt="" width="100%" onclick="open_PDF(2)">
                   <center style="font-size:22px;text-align:center;"><b>L'Hospital rule</b></center>
                </div>
                <div class="PDF_icons">
-                  <img src="images/PDF_icon.png"  alt="" width="100%" onclick="open_PDF(1)">
+                  <img src="images/PDF_icon.png" style="margin:0 auto;" alt="" width="100%" onclick="open_PDF(1)">
                   <center style="font-size:22px;text-align:center;"><b>2D Fermi energy</b></center>
                </div>
             </center>
