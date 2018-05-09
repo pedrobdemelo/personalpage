@@ -252,16 +252,12 @@ function toggleevents() {
 
 <script>
 function open_PDF(PDF_number) {
-   if (PDF_number == 1)
-   {
-      window.open("https://pedrobdemelo.github.io/personalpage/PDFs/propriedades_delta.pdf");
-   } else if (PDF_number == 2)
-   {
-      window.open("https://pedrobdemelo.github.io/personalpage/PDFs/regra_de_lhopital.pdf");
-   } else if (PDF_number == 3)
-   {
-      window.open("https://pedrobdemelo.github.io/personalpage/PDFs/fermi-2D.pdf");
-   }
+   var pdf_names = [
+      "https://pedrobdemelo.github.io/personalpage/PDFs/propriedades_delta.pdf",
+      "https://pedrobdemelo.github.io/personalpage/PDFs/regra_de_lhopital.pdf",
+      "https://pedrobdemelo.github.io/personalpage/PDFs/fermi-2D.pdf"
+   ];
+   window.open(pdf_names[PDF_number]);
 }
 </script>
 
@@ -569,15 +565,15 @@ function changeLBUrl(file_index) {
             <center style="font-size:12px;">(Don't take these too seriously)</center>
             <center>
                <div class="PDF_icons">
-                  <img src="images/PDF_icon.png" style="margin:0 auto;" alt="" width="100%" onclick="open_PDF(1)">
+                  <img src="images/PDF_icon.png" style="margin:0 auto;" alt="" width="100%" onclick="open_PDF(0)">
                   <center style="font-size:22px;text-align:center;"><b>Dirac delta properties</b></center>
                </div>
                <div class="PDF_icons">
-                  <img src="images/PDF_icon.png" style="margin:0 auto;" alt="" width="100%" onclick="open_PDF(2)">
+                  <img src="images/PDF_icon.png" style="margin:0 auto;" alt="" width="100%" onclick="open_PDF(1)">
                   <center style="font-size:22px;text-align:center;"><b>L'Hospital rule</b></center>
                </div>
                <div class="PDF_icons">
-                  <img src="images/PDF_icon.png" style="margin:0 auto;" alt="" width="100%" onclick="open_PDF(1)">
+                  <img src="images/PDF_icon.png" style="margin:0 auto;" alt="" width="100%" onclick="open_PDF(2)">
                   <center style="font-size:22px;text-align:center;"><b>2D Fermi energy</b></center>
                </div>
             </center>
