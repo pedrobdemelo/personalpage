@@ -259,7 +259,8 @@ function open_PDF(PDF_number) {
       "https://pedrobdemelo.github.io/personalpage/PDFs/sum_of_l+spin_1.pdf",
       "https://pedrobdemelo.github.io/personalpage/PDFs/landau_diamagnetism.pdf",
       "https://pedrobdemelo.github.io/personalpage/PDFs/jackson1.pdf",
-      "https://pedrobdemelo.github.io/personalpage/PDFs/jackson2.pdf"
+      "https://pedrobdemelo.github.io/personalpage/PDFs/jackson2.pdf",
+      "https://pedrobdemelo.github.io/personalpage/PDFs/topological_defects.pdf"
    ];
    window.open(pdf_names[PDF_number]);
 }
@@ -291,6 +292,14 @@ function open_PDF(PDF_number) {
 
 <script>
 var index = 0;
+var file_name = [
+   "https://pedrobdemelo.github.io/personalpage/images/8CB_second_render.png",
+   "https://pedrobdemelo.github.io/personalpage/images/chiral_dopant1(modified).png",
+   "https://pedrobdemelo.github.io/personalpage/images/nanotube.png"/*,
+   "https://pedrobdemelo.github.io/personalpage/videos/5,3knot_anim.mp4"*/
+];
+var min_ind = 0;
+var max_ind = file_name.length-1;
 function openModal(file_index) {
    var file_index;
    document.getElementById('myModal').style.display = "block";
@@ -304,8 +313,6 @@ function closeModal() {
 
 //index eh global
 function increaseIndex() {
-   var min_ind = 0;
-   var max_ind = 2;
    index = index + 1;
    if (index > max_ind)
    {
@@ -318,8 +325,6 @@ function increaseIndex() {
 }
 
 function decreaseIndex() {
-   var min_ind = 0;
-   var max_ind = 2;
    index = index - 1;
    if (index < min_ind)
    {
@@ -332,11 +337,6 @@ function decreaseIndex() {
 }
 
 function changeLBUrl(file_index) {
-   var file_name = [
-      "https://pedrobdemelo.github.io/personalpage/images/8CB_second_render.png",
-      "https://pedrobdemelo.github.io/personalpage/images/chiral_dopant1(modified).png",
-      "https://pedrobdemelo.github.io/personalpage/images/nanotube.png"
-   ];
    document.getElementById('lbimage').style.background = "url(\"" + file_name[file_index] + "\") no-repeat";
    document.getElementById('lbimage').style.backgroundSize = "contain";
    document.getElementById('lbimage').style.backgroundPosition = "center";
@@ -436,7 +436,6 @@ function changeLBUrl(file_index) {
    background:linear-gradient(to left, rgba(255, 255, 255, 0.6),rgba(255, 0, 0, 0));
 }
 .lightboxtop:hover{
-/*   background-color: rgba(255,255,0,0.1);*/
    background:linear-gradient(to bottom, rgba(255, 0, 0, 0.4),rgba(255, 0, 0, 0));
 }
 .lightboxminiature{
@@ -526,18 +525,10 @@ function changeLBUrl(file_index) {
       <div style="background-color: rgba(230, 230, 230, 0.9);">
          <div class="roboto"><center>Gallery</center></div>
          <div id="myModal" class="modal">
-<!--               <div onclick="closeModal();" class="lightboxtop"></div>-->
-<!--               <span onclick="closeModal();" class="lightboxleft"></span>-->
-<!--               <span id="lightboxmiddle">
-                  <span class="previousimage" onclick="decreaseIndex();"></span>
-                  <span class="nextimage" onclick="increaseIndex();"></span>
-               </span>-->
-<!--               <span onclick="closeModal();" class="lightboxright"></span>-->
-<!--            <image src="https://pedrobdemelo.github.io/personalpage/images/8CB_second_render.png" class="lbimage">-->
             <div onclick="closeModal();" class="lightboxtop"></div>
             <div id="lbimage">
-                  <span class="previousimage" onclick="decreaseIndex();"></span>
-                  <span class="nextimage" onclick="increaseIndex();"></span>
+               <span class="previousimage" onclick="decreaseIndex();"></span>
+               <span class="nextimage" onclick="increaseIndex();"></span>
             </div>
             <div class="miniatures">
                <image src="https://pedrobdemelo.github.io/personalpage/images/8CB_second_render.png" onclick="changeLBUrl(0);" class="lightboxminiature">
@@ -630,6 +621,10 @@ function changeLBUrl(file_index) {
                <div class="PDF_icons">
                   <img src="images/PDF_icon.png" style="margin:0 auto;" alt="" width="100%" onclick="open_PDF(6)">
                   <center style="font-size:22px;text-align:center;"><b>More Jackson problems (nsfw)</b></center>
+               </div>
+               <div class="PDF_icons">
+                  <img src="images/PDF_icon.png" style="margin:0 auto;" alt="" width="100%" onclick="open_PDF(7)">
+                  <center style="font-size:22px;text-align:center;"><b>Topological defects</b></center>
                </div>
             </center>
             <div style="height:20px;"></div>
