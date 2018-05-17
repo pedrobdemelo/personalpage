@@ -337,8 +337,9 @@ function changeLBUrl(file_index) {
       "https://pedrobdemelo.github.io/personalpage/images/chiral_dopant1(modified).png",
       "https://pedrobdemelo.github.io/personalpage/images/nanotube.png"
    ];
-   document.getElementById('lightboxmiddle').style.background = "url(\"" + file_name[file_index] + "\") no-repeat";
-   document.getElementById('lightboxmiddle').style.backgroundSize = "100%";
+   document.getElementById('lbimage').style.background = "url(\"" + file_name[file_index] + "\") no-repeat";
+   document.getElementById('lbimage').style.backgroundSize = "contain";
+   document.getElementById('lbimage').style.backgroundPosition = "center";
 }
 </script>
 
@@ -348,13 +349,13 @@ function changeLBUrl(file_index) {
    position:fixed;
    top:0;
    width:100%;
-   z-index:1;
    display: none;
    height: 100%;
    text-align:center;
   /* background-color:gray;*/
+   z-index:3;
 }
-.lightboxleft{
+/*.lightboxleft{
    float:left;
    position:relative;
    height:70%;
@@ -362,16 +363,18 @@ function changeLBUrl(file_index) {
    width:10%;
    background-size: 70%;
    z-index:3;
-}
+}*/
 #lightboxmiddle{
-   float:left;
+   /*float:left;*/
+   display: -moz-box;
    position:relative;
-   height:70%;
-   width:80%;
+   height:60%;
    background:url("https://pedrobdemelo.github.io/personalpage/images/8CB_second_render.png") no-repeat;
+/*   background-color:blue;*/
    background-size: 100%;
    z-index:3;
 }
+/*
 .lightboxright{
    float:right;
    position:relative;
@@ -381,8 +384,10 @@ function changeLBUrl(file_index) {
    background-size: 70%;
    z-index:3;
 }
+*/
 #lightboximage{
    float:center;
+   width:100%;
    z-index:3;
 }
 .lightboxtop{
@@ -398,7 +403,7 @@ function changeLBUrl(file_index) {
 .previousimage{
    float:left;
    height:100%;
-   width:30%;
+   width:50%;
    background-color:none;
 /*
    -webkit-transition: all 0.5s ease-in-out;
@@ -407,11 +412,12 @@ function changeLBUrl(file_index) {
    -o-transition: all 0.5s ease-in-out;
    transition: all 0.5s ease-in-out;
 */
+   z-index: 4;
 }
 .nextimage{
    float:right;
    height:100%;
-   width:30%;
+   width:50%;
    background-color:none;
 /*
    -webkit-transition: all 0.5s ease-in-out;
@@ -420,6 +426,7 @@ function changeLBUrl(file_index) {
    -o-transition: all 0.5s ease-in-out;
    transition: all 0.5s ease-in-out;
 */
+   z-index: 4;
 }
 .previousimage:hover{
    background:linear-gradient(to right, rgba(255, 255, 255, 0.6),rgba(255, 0, 0, 0));
@@ -428,9 +435,31 @@ function changeLBUrl(file_index) {
 /*   background-color: rgba(255,255,0,0.1);*/
    background:linear-gradient(to left, rgba(255, 255, 255, 0.6),rgba(255, 0, 0, 0));
 }
+.lightboxtop:hover{
+/*   background-color: rgba(255,255,0,0.1);*/
+   background:linear-gradient(to bottom, rgba(255, 0, 0, 0.4),rgba(255, 0, 0, 0));
+}
 .lightboxminiature{
    margin-top:3%;
    width:10%;
+}
+.miniatures
+{
+   position: relative;
+   bottom: 0
+   text-align:center;
+}
+#lbimage
+{
+/*   background-color:blue;*/
+   background-image: url("https://pedrobdemelo.github.io/personalpage/images/8CB_second_render.png");
+   background-repeat: no-repeat;
+   background-position: center;
+   background-size: 70%;
+   margin: 0;
+   padding: 0;
+   width:auto;
+   height:70%;
 }
 </style>
 </head>
@@ -497,14 +526,20 @@ function changeLBUrl(file_index) {
       <div style="background-color: rgba(230, 230, 230, 0.9);">
          <div class="roboto"><center>Gallery</center></div>
          <div id="myModal" class="modal">
-               <div onclick="closeModal();" class="lightboxtop"></div>
-               <span onclick="closeModal();" class="lightboxleft"></span>
-               <span id="lightboxmiddle">
+<!--               <div onclick="closeModal();" class="lightboxtop"></div>-->
+<!--               <span onclick="closeModal();" class="lightboxleft"></span>-->
+<!--               <span id="lightboxmiddle">
                   <span class="previousimage" onclick="decreaseIndex();"></span>
                   <span class="nextimage" onclick="increaseIndex();"></span>
-               </span>
-               <span onclick="closeModal();" class="lightboxright"></span>
-            <div style="text-align:center;height:100%;">
+               </span>-->
+<!--               <span onclick="closeModal();" class="lightboxright"></span>-->
+<!--            <image src="https://pedrobdemelo.github.io/personalpage/images/8CB_second_render.png" class="lbimage">-->
+            <div onclick="closeModal();" class="lightboxtop"></div>
+            <div id="lbimage">
+                  <span class="previousimage" onclick="decreaseIndex();"></span>
+                  <span class="nextimage" onclick="increaseIndex();"></span>
+            </div>
+            <div class="miniatures">
                <image src="https://pedrobdemelo.github.io/personalpage/images/8CB_second_render.png" onclick="changeLBUrl(0);" class="lightboxminiature">
                <image src="https://pedrobdemelo.github.io/personalpage/images/chiral_dopant1(modified).png" onclick="changeLBUrl(1);" class="lightboxminiature">
                <image src="https://pedrobdemelo.github.io/personalpage/images/nanotube.png" onclick="changeLBUrl(2);" class="lightboxminiature">
