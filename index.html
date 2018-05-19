@@ -295,8 +295,7 @@ var index = 0;
 var file_name = [
    "https://pedrobdemelo.github.io/personalpage/images/8CB_second_render.png",
    "https://pedrobdemelo.github.io/personalpage/images/chiral_dopant1(modified).png",
-   "https://pedrobdemelo.github.io/personalpage/images/nanotube.png"/*,
-   "https://pedrobdemelo.github.io/personalpage/videos/5,3knot_anim.mp4"*/
+   "https://pedrobdemelo.github.io/personalpage/images/nanotube.png"
 ];
 var min_ind = 0;
 var max_ind = file_name.length-1;
@@ -336,10 +335,22 @@ function decreaseIndex() {
    }
 }
 
+function openVideo(video_index) {
+   var video_index;
+   var file_name = [
+      "https://pedrobdemelo.github.io/personalpage/videos/trefoil.mp4",
+      "https://pedrobdemelo.github.io/personalpage/videos/5,2knot_anim.mp4",
+      "https://pedrobdemelo.github.io/personalpage/videos/5,3knot_anim.mp4",
+   ];
+   document.getElementById('lbvideo').style.display = "block";
+   document.getElementById('lbimage').style.background = "none";
+}
+
 function changeLBUrl(file_index) {
    document.getElementById('lbimage').style.background = "url(\"" + file_name[file_index] + "\") no-repeat";
    document.getElementById('lbimage').style.backgroundSize = "contain";
    document.getElementById('lbimage').style.backgroundPosition = "center";
+   document.getElementById('lbvideo').style.display = "none";
 }
 </script>
 
@@ -419,6 +430,7 @@ function changeLBUrl(file_index) {
    height:100%;
    width:50%;
    background-color:none;
+   z-index: 4;
 /*
    -webkit-transition: all 0.5s ease-in-out;
    -moz-transition: all 0.5s ease-in-out;
@@ -426,7 +438,6 @@ function changeLBUrl(file_index) {
    -o-transition: all 0.5s ease-in-out;
    transition: all 0.5s ease-in-out;
 */
-   z-index: 4;
 }
 .previousimage:hover{
    background:linear-gradient(to right, rgba(255, 255, 255, 0.6),rgba(255, 0, 0, 0));
@@ -459,6 +470,19 @@ function changeLBUrl(file_index) {
    padding: 0;
    width:auto;
    height:70%;
+}
+#lbvideo
+{
+   display:none;
+   background-color:none;
+   vertical-align:center;
+   margin: 0;
+   padding: 0;
+   width:auto;
+   height:70%;
+}
+.videobg
+{
 }
 </style>
 </head>
@@ -530,21 +554,26 @@ function changeLBUrl(file_index) {
                <span class="previousimage" onclick="decreaseIndex();"></span>
                <span class="nextimage" onclick="increaseIndex();"></span>
             </div>
+            <div id="lbvideo">
+               <video style="height:100%;"autoplay muted loop>
+                  <source class="videobg" type="video/webm">
+               </video>
+            </div>
             <div class="miniatures">
                <image src="https://pedrobdemelo.github.io/personalpage/images/8CB_second_render.png" onclick="changeLBUrl(0);" class="lightboxminiature">
                <image src="https://pedrobdemelo.github.io/personalpage/images/chiral_dopant1(modified).png" onclick="changeLBUrl(1);" class="lightboxminiature">
                <image src="https://pedrobdemelo.github.io/personalpage/images/nanotube.png" onclick="changeLBUrl(2);" class="lightboxminiature">
-               <video class="lightboxminiature" autoplay muted loop>
+               <video class="lightboxminiature" onclick="openVideo();" autoplay muted loop>
                   <source src="https://pedrobdemelo.github.io/personalpage/videos/trefoil.mp4" type="video/mp4">
                   <source src="https://pedrobdemelo.github.io/personalpage/videos/trefoil.webm" type="video/webm">
                   <source src="https://pedrobdemelo.github.io/personalpage/videos/trefoil.ogg" type="video/ogg">
                </video>
-               <video class="lightboxminiature" autoplay muted loop>
+               <video class="lightboxminiature" onclick="openVideo();" autoplay muted loop>
                   <source src="https://pedrobdemelo.github.io/personalpage/videos/5,2knot_anim.mp4" type="video/mp4">
                   <source src="https://pedrobdemelo.github.io/personalpage/videos/5,2knot_anim.webm" type="video/webm">
                   <source src="https://pedrobdemelo.github.io/personalpage/videos/5,2knot_anim.ogg" type="video/ogg">
                </video>
-               <video class="lightboxminiature" autoplay muted loop>
+               <video class="lightboxminiature" onclick="openVideo();" autoplay muted loop>
                   <source src="https://pedrobdemelo.github.io/personalpage/videos/5,3knot_anim.mp4" type="video/mp4">
                   <source src="https://pedrobdemelo.github.io/personalpage/videos/5,3knot_anim.webm" type="video/webm">
                   <source src="https://pedrobdemelo.github.io/personalpage/videos/5,3knot_anim.ogg" type="video/ogg">
@@ -610,6 +639,7 @@ function changeLBUrl(file_index) {
                   <img src="images/PDF_icon.png" style="margin:0 auto;" alt="" width="100%" onclick="open_PDF(3)">
                   <center style="font-size:22px;text-align:center;"><b>Sum of L=l + S=1</b></center>
                </div>
+<br>
                <div class="PDF_icons">
                   <img src="images/PDF_icon.png" style="margin:0 auto;" alt="" width="100%" onclick="open_PDF(4)">
                   <center style="font-size:22px;text-align:center;"><b>Landau diamagnetism</b></center>
@@ -624,7 +654,7 @@ function changeLBUrl(file_index) {
                </div>
                <div class="PDF_icons">
                   <img src="images/PDF_icon.png" style="margin:0 auto;" alt="" width="100%" onclick="open_PDF(7)">
-                  <center style="font-size:22px;text-align:center;"><b>Topological defects</b></center>
+                  <center style="font-size:22px;text-align:center;"><b>Topological defects (english)</b></center>
                </div>
             </center>
             <div style="height:20px;"></div>
