@@ -1,0 +1,532 @@
+\documentclass{article}
+
+\usepackage{geometry}
+\geometry{
+a4paper,
+top = 20mm,
+left = 20mm,
+right= 20mm,
+bottom = 20mm
+}
+
+\usepackage[portuguese]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{indentfirst}
+\usepackage{amsmath}
+\usepackage{color}
+\usepackage{soul}
+\usepackage{cancel}
+
+\newcommand{\ket}[1]{\mid\!\! #1 \rangle}
+\newcommand{\braket}[2]{\langle #1 \!\mid\! #2 \rangle}
+\newcommand{\abraket}[2]{\left\langle #1 \middle| #2 \right\rangle}
+\newcommand{\rpm}{\raisebox{.2ex}{$\scriptstyle\pm$}}
+\newcommand{\commut}[2]{\left[ #1 , #2 \right]}
+
+\begin{document}
+\section{Rotação de estados no $R^3$}
+Uma das possíveis maneiras de atingir o estado desejado é fazer uma rotação de $\pi \slash 2$ em torno de $y$ e outra de $\phi$ em torno de $z$.
+
+A matriz de rotação pode ser escrita como:
+\begin{equation}
+ \mathcal{D}(\vec{R},\phi) = e^{-\frac{i \vec{J}\cdot \hat{n} \phi}{\hbar}} = e^{-\frac{i \vec{\sigma}\cdot \hat{n} \phi}{2}}\mathrm{.}
+\end{equation}
+Para nosso problema, podemos fazer
+\begin{equation}
+ \ket{\alpha}_R = \mathcal{D}(\vec{z},\phi) \mathcal{D}(\vec{y},\pi \slash 2) \ket{\alpha} =
+ e^{-\frac{i \sigma_z \phi}{2}} e^{-\frac{i \sigma_y \pi}{4}} \ket{+} \mathrm{.}
+\end{equation}
+Vamos avaliar quem é a exponencial das matrizes de Pauli. Sabemos que
+\begin{equation}
+ \sigma_i^2 = I\mathrm{.}
+\end{equation}
+Desta forma, todas as potências pares na expansão em série da exponencial serão múltiplos da matriz identidade.
+\begin{alignat}{1}
+\nonumber
+ e^{i\sigma_i \xi} &= \cos{(\sigma_i \xi)} + i \sin{(\sigma_i \xi)} \\ \nonumber
+ &= I + \frac{\sigma_i^2 \xi^2}{2!} + \frac{\sigma_i^4 \xi^4}{4!} + \cdots + i\left( \sigma_i \xi + \frac{\sigma_i^3 \xi^3}{3!} +
+ \frac{\sigma_i^5 \xi^5}{5!} \cdots\right) \\ \nonumber
+ &= I + \frac{\xi^2}{2!} + \frac{\xi^4}{4!} + \cdots + i\sigma_i \left(\xi + \frac{\sigma_i^2 \xi^3}{3!} +
+ \frac{\sigma_i^4 \xi^5}{5!} \cdots\right) \\ \nonumber
+ &= I + \frac{\xi^2}{2!} + \frac{\xi^4}{4!} + \cdots + i\sigma_i \left(\xi + \frac{\xi^3}{3!} +
+ \frac{\xi^5}{5!} \cdots\right) \\
+ &= I \cos{\xi} + i \sigma_i \sin{\xi}\mathrm{,}
+\end{alignat}
+e
+\begin{equation}
+ e^{-i\sigma_i \xi} = I \cos{\xi} - i \sigma_i \sin{\xi}\mathrm{.}
+\end{equation}
+Assim,
+\begin{equation}
+ e^{-\frac{i \sigma_y \pi}{4}} \ket{+} = \left( I \cos{\frac{\pi}{4}} - i \sigma_y \sin{\frac{\pi}{4}} \right) \ket{+} =
+ \frac{\sqrt{2}}{2}\left( I - i \sigma_y \right)\ket{+} = \frac{\sqrt{2}}{2}\left( \ket{+} \ + \ket{-} \right) \mathrm{.}
+\end{equation}
+Agora, fazendo a rotação em $\phi$ em torno do eixo $z$:
+\begin{alignat}{1}
+ e^{-\frac{i \sigma_z \phi}{2}} \frac{\sqrt{2}}{2}\left( \ket{+} \ + \ket{-} \right) &=
+ \frac{\sqrt{2}}{2} \left(I \cos{\frac{\phi}{2}} - i \sigma_z \sin{\frac{\phi}{2}}\right) \left( \ket{+} \ + \ket{-} \right) \\
+ &= \frac{\sqrt{2}}{2} \left( \left(\cos{\frac{\phi}{2}} - i \sin{\frac{\phi}{2}}\right)\ket{+} \ +
+ \left(\cos{\frac{\phi}{2}} + i \sin{\frac{\phi}{2}}\right)\ket{-} \right) \\
+ &= \frac{\sqrt{2}}{2} \left( e^{-i\frac{\phi}{2}}\ket{+} + e^{i\frac{\phi}{2}}\ket{-} \right)\mathrm{.}
+\end{alignat}
+
+\section{Alterando as representações dos harmônicos esféricos}
+Seja $\psi_{\alpha}(x,y,z) = A (x + y + 2z)e^{-\alpha r}$ nossa função de onda, podemos utilizar a separação de variáveis para escrever
+$\psi_{\alpha}(x,y,z) = \psi_{\alpha}(r)\psi_{\alpha}(\theta,\phi)$, podemos escrever a parte angular como
+\begin{equation}
+ \psi_{\alpha}(\theta,\phi) = A_{\Omega}(\cos{\phi}\sin{\theta}+\sin{\phi}\sin{\theta}+2\cos{\theta})\mathrm{.}
+\end{equation}
+Levando em conta que $\psi_{\alpha}(\theta,\phi) = \braket{\hat{n}}{\alpha}$, e sabendo que
+\begin{equation}
+ Y_0^0 = \sqrt{\frac{1}{4\pi}}\mathrm{,}\qquad Y^{\pm1}_1 = \mp\sqrt{\frac{3}{8\pi}}\sin{\theta} e^{\pm i \phi}\mathrm{,} \qquad
+ Y^0_1 = \sqrt{\frac{3}{4\pi}} \cos{\theta}\mathrm{,}
+\end{equation}
+podemos combinar os harmônicos esféricos da seguinte maneira:
+\begin{alignat}{1}
+\nonumber
+ Y^{-1}_{1} - Y^{+1}_{1} &= \sqrt{\frac{3}{8\pi}}\sin{\theta} e^{- i \phi} + \sqrt{\frac{3}{8\pi}}\sin{\theta} e^{ i \phi}\\ \nonumber
+ &= \sqrt{\frac{3}{8\pi}}\sin{\theta} \left( e^{- i \phi} +  e^{ i \phi} \right) \\ \nonumber
+ &= \sqrt{\frac{3}{8\pi}}\sin{\theta} \left( 2\cos{\phi} \right) \\
+ &= \sqrt{\frac{3}{2\pi}} \sin{\theta}\cos{\phi}\mathrm{,}
+\end{alignat}
+onde chegamos em
+\begin{equation}
+ \sin{\theta}\cos{\phi} = \sqrt{\frac{2 \pi}{3}} \left( Y^{-1}_{1} - Y^{+1}_{1} \right)\mathrm{,}
+\end{equation}
+e também é válido analisar
+\begin{alignat}{1}
+\nonumber
+ Y^{-1}_{1} + Y^{+1}_{1} &= \sqrt{\frac{3}{8\pi}}\sin{\theta} e^{- i \phi} - \sqrt{\frac{3}{8\pi}}\sin{\theta} e^{ i \phi}\\ \nonumber
+ &= \sqrt{\frac{3}{8\pi}}\sin{\theta} \left( e^{- i \phi} - e^{ i \phi} \right) \\ \nonumber
+ &= \sqrt{\frac{3}{8\pi}}\sin{\theta} \left( - 2 i \sin{\phi} \right) \\
+ &= - i \sqrt{\frac{3}{2\pi}} \sin{\theta}\sin{\phi} \mathrm{,}
+\end{alignat}
+ou seja,
+\begin{equation}
+ \sin{\theta}\sin{\phi} = i \sqrt{\frac{2 \pi}{3}} \left( Y^{-1}_{1} + Y^{+1}_{1} \right) \mathrm{.}
+\end{equation}
+Substituindo na expressão para a função de onda, teremos
+\begin{alignat}{1}
+ \psi_{\alpha}(\theta,\phi) &= A_{\Omega}\left(\sqrt{\frac{2 \pi}{3}} \left( Y^{-1}_{1} - Y^{+1}_{1} \right) +
+ i \sqrt{\frac{2 \pi}{3}} \left( Y^{-1}_{1} + Y^{+1}_{1} \right) + 2\sqrt{\frac{4 \pi}{3}} Y^0_1\right) \\ \nonumber
+ &= A_{\Omega}\sqrt{\frac{2 \pi}{3}}\left( Y^{-1}_{1} - Y^{+1}_{1} + i Y^{-1}_{1} + i Y^{+1}_{1} + 2\sqrt{2} Y^0_1\right) \\
+ &= A_{\Omega}\sqrt{\frac{2 \pi}{3}}\left((1 + i) Y^{-1}_{1} + (i - 1) Y^{+1}_{1} + 2\sqrt{2} Y^0_1\right) \mathrm{,}
+\end{alignat}
+ou, em outra representação:
+\begin{equation}
+ \braket{\hat{n}}{\alpha}= A_{\Omega}\sqrt{\frac{2 \pi}{3}}\left((1 + i) \braket{\hat{n}}{1,-1} + (i - 1) \braket{\hat{n}}{1,1} +
+ 2\sqrt{2} \braket{\hat{n}}{1,0}\right)\mathrm{,}
+\end{equation}
+que nos leva a
+\begin{equation}
+ \ket{\alpha} = A_{\Omega}\sqrt{\frac{2 \pi}{3}}\left((1 + i) \ket{1,-1} + (i - 1) \ket{1,1} +
+ 2\sqrt{2} \ket{1,0}\right)\mathrm{.}
+\end{equation}
+Vamos agora calcular quanto vale a constante de normalização $A_{\Omega}$:
+\begin{alignat}{1}
+ \nonumber
+ \braket{\alpha}{\alpha} &= (A_{\Omega})^2\frac{2 \pi}{3}\left((1 + i)(1 - i) \braket{1,-1}{1,-1} + (i - 1)(-i - 1) \braket{1,1}{1,1} +
+ 8 \braket{1,0}{1,0}\right) \\ \nonumber
+ 1 &= (A_{\Omega})^2\frac{2 \pi}{3}\left((1 + i)(1 - i) + (i - 1)(-i - 1) + 8 \right) \\ \nonumber
+ 1 &= (A_{\Omega})^2\frac{2 \pi}{3} 12\mathrm{,}
+\end{alignat}
+chegando em
+\begin{equation}
+ A_{\Omega} = \sqrt{\frac{1}{8 \pi}}\mathrm{.}
+\end{equation}
+
+Vamos agora calcular as probabilidades de obtermos cada um dos autovalores de $L_z$, assim como seu valor esperado.
+
+Incorporando a constante de normalização ao nosso estado, teremos que
+\begin{equation}
+ \ket{\alpha} = \sqrt{\frac{1}{12}}\left((1 + i) \ket{1,-1} + (i - 1) \ket{1,1} +
+ 2\sqrt{2} \ket{1,0}\right)\mathrm{.}
+\end{equation}
+A probabilidade de se obter cada autovalor é obtida simplesmente tomando o quadrado do coeficiente que acompanha cada autoestado correspondente. Logo:
+\begin{alignat}{1}
+ +\hbar &\to \frac{1}{6} \mathrm{,}\\
+ 0 &\to \frac{2}{3} = \frac{4}{6} \mathrm{,}\\
+ -\hbar &\to \frac{1}{6} \mathrm{.}
+\end{alignat}
+Destes resultados, é observado de cara que o valor esperado de $L_z$ será nulo:
+\begin{equation}
+ \langle L_z \rangle = +\hbar \cdot \frac{1}{6} + 0 \cdot \frac{2}{3} -\hbar \cdot \frac{1}{6} = 0\mathrm{.}
+\end{equation}
+
+\section{Relação de comutação entre as componentes do momento angular}
+Calculemos então as relações de comutação para as componentes do momento angular, utilizando a definição de momento angular e as relações de comutação
+entre momentos e coordenadas.
+
+A definição de momento angular a ser utilizada será $L_i = \epsilon_{ijk}x_j p_k$. Desta forma, a comutação entre a componente $i$ e a componente $j$ será:
+\begin{alignat}{1}
+\nonumber
+ \commut{L_i}{L_j} &= \commut{\epsilon_{ilm}x_l p_m}{\epsilon_{jrs}x_r p_s}\\ \nonumber
+ &= \epsilon_{ilm}\epsilon_{jrs}\commut{x_l p_m}{x_r p_s} \\ \nonumber
+ &= \epsilon_{ilm}\epsilon_{jrs} \left( x_l \commut{p_m}{x_r} p_s + x_l x_r \commut{p_m}{p_s} + \commut{x_l}{x_r}p_s p_m + x_r \commut{x_l}{p_s} p_m \right)\mathrm{.}
+\end{alignat}
+Vamos relembrar as relações de comutação entre os $x$ e $p$:
+\begin{alignat}{1}
+ \commut{x_i}{p_j} &= i\hbar\delta_{ij}\mathrm{,}\\
+ \commut{x_i}{x_j} &= 0\mathrm{,}\\
+ \commut{p_i}{p_j} &= 0\mathrm{.}
+\end{alignat}
+Assim, nosso comutador original ficará como
+\begin{alignat}{1}
+ \nonumber
+ \commut{L_i}{L_j} &= \epsilon_{ilm}\epsilon_{jrs} \left( x_l \commut{p_m}{x_r} p_s + x_r \commut{x_l}{p_s} p_m \right) \\ \nonumber
+ &= i \hbar\ \epsilon_{ilm}\epsilon_{jrs} \left( x_l p_s (-\delta_{mr}) + x_r p_m \delta_{ls} \right) \\ \nonumber
+ &= i \hbar \left(-\epsilon_{ilm}\epsilon_{jrs} \delta_{mr} x_l p_s +\epsilon_{ilm}\epsilon_{jrs} \delta_{ls} x_r p_m \right) \mathrm{.}
+\end{alignat}
+Vamos fazer uso das propriedades dos deltas, filtrando suas componentes:
+\begin{alignat}{1}
+ \nonumber
+ \commut{L_i}{L_j} &= i \hbar \left(-\epsilon_{ilm}\epsilon_{jrs} \delta_{mr} x_l p_s +\epsilon_{ilm}\epsilon_{jrs} \delta_{ls} x_r p_m \right) \\
+ &= i \hbar \left(-\epsilon_{ilr}\epsilon_{jrs} x_l p_s +\epsilon_{ism}\epsilon_{jrs} x_r p_m \right)
+\end{alignat}
+Fazendo uso da identidade para o produto de tensores Levi-Civita,
+\begin{equation}
+ \epsilon_{ijk}\epsilon_{imn} = \delta_{jm}\delta_{kn} - \delta_{jn}\delta_{km}\mathrm{,}
+\end{equation}
+teremos que nossos produtos de tensores Levi-Civita serão
+\begin{alignat}{2}
+ \epsilon_{ilr}\epsilon_{jrs} &= -\epsilon_{ril}\epsilon_{rjs} &=& -\left( \delta_{ij}\delta_{ls} - \delta_{is}\delta_{lj} \right) \mathrm{,}\\
+ \epsilon_{ism}\epsilon_{jrs} &= -\epsilon_{sim}\epsilon_{sjr} &=& -\left( \delta_{ij}\delta_{mr} - \delta_{ir}\delta_{mj} \right) \mathrm{.}
+\end{alignat}
+Retornando à comutação:
+\begin{alignat}{1}
+ \nonumber
+ \commut{L_i}{L_j} &= i \hbar \left(-\epsilon_{ilr}\epsilon_{jrs} x_l p_s +\epsilon_{ism}\epsilon_{jrs} x_r p_m \right) \\ \nonumber
+ &= -i \hbar \left(-\left( \delta_{ij}\delta_{ls} - \delta_{is}\delta_{lj} \right) x_l p_s +
+ \left( \delta_{ij}\delta_{mr} - \delta_{ir}\delta_{mj} \right) x_r p_m \right) \\
+ &= -i \hbar \left(\delta_{is}\delta_{lj} x_l p_s - \delta_{ij}\delta_{ls} x_l p_s + \delta_{ij}\delta_{mr} x_r p_m - \delta_{ir}\delta_{mj} x_r p_m \right) \mathrm{.}
+\end{alignat}
+Reorganizando os termos:
+\begin{alignat}{1}
+\nonumber
+ \commut{L_i}{L_j} &=
+ -i \hbar \left(\delta_{is}\delta_{lj} x_l p_s - \delta_{ir}\delta_{mj} x_r p_m + \delta_{ij}\delta_{mr} x_r p_m - \delta_{ij}\delta_{ls} x_l p_s \right) \\ \nonumber
+ &= -i \hbar \left(x_j p_i - x_i p_j + \delta_{ij} x_r p_r - \delta_{ij} x_s p_s \right) \\
+ &= -i \hbar \left(x_j p_i - x_i p_j \right)\mathrm{.}
+\end{alignat}
+Voltemos à definição de momento angular:
+\begin{alignat}{1}
+ L_i = \epsilon_{ijk}x_j p_k = x_j p_k - x_k p_j \mathrm{.}
+\end{alignat}
+Ora, então
+\begin{equation}
+ x_j p_i - x_i p_j = - \left( x_i p_j - x_j p_i \right) = - \left( \epsilon_{ijk} x_i p_j \right) = - L_k \mathrm{,}
+\end{equation}
+o que nos leva a
+\begin{equation}
+ \commut{L_i}{L_j} = i \hbar \epsilon_{ijk} L_k\mathrm{.}
+\end{equation}
+
+\section{Adição de momento angular orbital $l$ e spin}
+\subsection{Spin $1 \slash 2$}
+Primeiro de tudo, sabemos que a relação de recorrência é:
+\begin{alignat}{1}
+\nonumber
+ &\sqrt{(j \mp m)(j \pm m + 1)} \braket{j_1 j_2;m_1m_2}{j_1j_2;j,m\pm1} = \\ \nonumber
+ &\qquad \sqrt{(j_1 \mp m_1 + 1)(j_1 \pm m_1)} \braket{j_1 j_2;m_1\mp1,m_2}{j_1j_2;j,m} + \\
+ &\qquad \qquad \sqrt{(j_2 \mp m_2 + 1)(j_2 \pm m_2)} \braket{j_1 j_2;m_1m_2\mp1}{j_1j_2;j,m} \mathrm{,}
+\end{alignat}
+onde a regra de seleção para o $m$ agora é outra. Como os operadores escada $J_-$ e $J_+$ foram utilizados para deduzir a relação de recorrência,
+os valores de $m$ subiram ou desceram de uma unidade, de tal forma que agora temos $m_1 + m_2 = m\pm1$.
+
+Não vou me extender explicando, pois é desnecessário aqui, mas sabemos que os valores possíveis para cada uma das variáveis de nosso problema são:
+\begin{alignat}{1}
+ |m_1| \leq j_1 \mathrm{,} \qquad |m_2| \leq j_2 \mathrm{,} \qquad -j \leq m_1 + m_2 \leq j\mathrm{.}
+\end{alignat}
+% %
+% \noindent%
+% \begin{minipage}{0.25\textwidth}
+%  \begin{equation}
+%   |m_1| \leq j_1 \mathrm{,}
+%  \end{equation}
+% \end{minipage}%
+% \begin{minipage}{0.25\textwidth}
+%  \begin{equation}
+%   |m_2| \leq j_2 \mathrm{,}
+%  \end{equation}
+% \end{minipage}%
+% \begin{minipage}{0.4\textwidth}
+%  \begin{equation}
+%   -j \leq m_1 + m_2 \leq j\mathrm{;}
+%  \end{equation}
+% \end{minipage}%
+% \newline
+Em nosso problema, temos
+\begin{alignat}{2}
+ \nonumber
+ &j_1 = l \mathrm{,} \qquad &&m_1 = m_l\mathrm{,} \\
+ &j_2 = s = \frac{1}{2} \mathrm{,} \qquad &&m_2 = m_s = \pm \frac{1}{2}\mathrm{,}
+\end{alignat}
+além do limite para o $j$ total, que nos leva a
+\begin{equation}
+ |j_1 - j_2| \leq j \leq j_1 + j_2\mathrm{,}
+\end{equation}
+ou, neste caso,
+\begin{equation}
+ j = l - \frac{1}{2} \mathrm{,\ } l + \frac{1}{2}\mathrm{,}
+\end{equation}
+visto que $l$ é inteiro.
+
+Vamos seguir a sugestão do {\color{magenta} \Large{\uppercase{\textit{\textbf{S a k u r a i}}}}} e considerar primeiramente \st{bom dia} o caso $j = l + 1 \slash 2$.
+Começando com os valores dos $m$ como $m_1 = m - 1 \slash 2$ e $m_2 = 1 \slash 2$, a relação de recorrência fica:
+\begin{alignat}{1}
+\nonumber
+ &\sqrt{\left(l + \frac{1}{2} \mp m\right)\left(l + \frac{1}{2} \pm m + 1\right)} \abraket{l,\frac{1}{2};m -
+ \frac{1}{2},\frac{1}{2}}{l,\frac{1}{2};l + \frac{1}{2},m\pm1} = \\ \nonumber
+ &\qquad \sqrt{\left(l \mp \left(m - \frac{1}{2}\right) + 1\right)\left(l \pm \left(m - \frac{1}{2}\right)\right)}
+ \abraket{l,\frac{1}{2};m - \frac{1}{2}\mp1,\frac{1}{2}}{l,\frac{1}{2};j,m} + \\
+ &\qquad \qquad \sqrt{\left(\frac{1}{2} \mp \frac{1}{2} + 1\right)\left(\frac{1}{2} \pm \frac{1}{2}\right)}
+ \abraket{l,\frac{1}{2};m - \frac{1}{2},\frac{1}{2}\mp1}{l,\frac{1}{2};j,m} \mathrm{.}
+\end{alignat}
+Pegando o sinal de baixo, o último termo já zera de cara. Sakurai também omite os valores de $j_1$ e $j_2$ nos \textit{brakets}, nos deixando com
+\begin{alignat}{1}
+\nonumber
+ &\sqrt{\left(l + \frac{1}{2} + m\right)\left(l + \frac{1}{2} - m + 1\right)} \abraket{m -
+ \frac{1}{2},\frac{1}{2}}{l + \frac{1}{2},m - 1} = \\
+ &\qquad \sqrt{\left(l + \left(m - \frac{1}{2}\right) + 1\right)\left(l - \left(m - \frac{1}{2}\right)\right)}
+ \abraket{m - \frac{1}{2} + 1,\frac{1}{2}}{l + \frac{1}{2},m}\mathrm{,}
+\end{alignat}
+ou,
+\begin{alignat}{1}
+\nonumber
+ &\sqrt{\left(l + \frac{1}{2} + m\right)\left(l + \frac{1}{2} - m + 1\right)} \abraket{m -
+ \frac{1}{2},\frac{1}{2}}{l + \frac{1}{2},m - 1} = \\
+ &\qquad \sqrt{\left(l + m + \frac{1}{2}\right)\left(l - m + \frac{1}{2}\right)}
+ \abraket{m + \frac{1}{2},\frac{1}{2}}{l + \frac{1}{2},m}\mathrm{.}
+\end{alignat}
+Sakurai, porém, não apresenta este resultado. Ao invés disto, nos é apresentado
+\begin{alignat}{1}
+\nonumber
+ &\sqrt{\left(l + \frac{1}{2} + m\right)\left(l + \frac{1}{2} - m + 1\right)} \abraket{m -
+ \frac{1}{2},\frac{1}{2}}{l + \frac{1}{2},m - 1} = \\
+ &\qquad \sqrt{\left(l + m + \frac{1}{2}\right)\left(l - m + \frac{1}{2}\right)}
+ \abraket{m + \frac{1}{2},\frac{1}{2}}{l + \frac{1}{2},m}\mathrm{.}
+\end{alignat}
+Se fizermos a transformação no \textit{ket} (e na raiz quadrada do lado esquerdo) $m \to m + 1$, o resultado sairá igual ao do Sakurai:
+\begin{alignat}{1}
+\nonumber
+ &\sqrt{\left(l + \frac{1}{2} + (m+1)\right)\left(l + \frac{1}{2} - (m+1) + 1\right)} \abraket{m -
+ \frac{1}{2},\frac{1}{2}}{l + \frac{1}{2},(m+1) - 1} = \\
+ &\qquad \sqrt{\left(l + (m+1) + \frac{1}{2}\right)\left(l - (m+1) + \frac{1}{2}\right)}
+ \abraket{m + \frac{1}{2},\frac{1}{2}}{l + \frac{1}{2},(m+1)}\mathrm{,}
+\end{alignat}
+ou,
+\begin{alignat}{1}
+\nonumber
+ &\sqrt{\left(l + \frac{1}{2} + m + 1\right)\left(l + \frac{1}{2} - m\right)} \abraket{m -
+ \frac{1}{2},\frac{1}{2}}{l + \frac{1}{2},m} = \\
+ &\qquad \sqrt{\left(l + m + \frac{1}{2}\right)\left(l - m + \frac{1}{2}\right)}
+ \abraket{m + \frac{1}{2},\frac{1}{2}}{l + \frac{1}{2},m + 1}\mathrm{,}
+\end{alignat}
+O porquê, eu não sei. Talvez com a operação do operador escada $J_-$ o valor de $m$ total cresça em 1, visto que agora a regra de seleção é $m_1 + m_2 = m \pm 1$.
+Sakurai menciona algo com ``\textit{move horizontally by one unit}'', mas ao meu ver isto teria algo a ver com a recursão, e não com esta alteração.
+Enfim, se alguém souber, por favor, me explique.
+
+Bola pra frente. Conseguimos então relacionar os dois produtos internos:
+\begin{equation}
+ \abraket{m - \frac{1}{2},\frac{1}{2}}{l + \frac{1}{2},m} =
+ \sqrt{\frac{\left(l + m + \frac{1}{2}\right)}{\left(l + m + \frac{3}{2}\right)}}
+ \abraket{m + \frac{1}{2},\frac{1}{2}}{l + \frac{1}{2},m + 1}\mathrm{,}
+\end{equation}
+onde agora sim iremos utilizar o ``\textit{move horizontally by one unit}''.
+Fazendo a mesma substituição anterior ($m \to m + 1$) \textbf{em toda a expressão}, teremos
+\begin{equation}
+ \abraket{m + \frac{1}{2},\frac{1}{2}}{l + \frac{1}{2},m + 1} =
+ \sqrt{\frac{\left(l + m + \frac{3}{2}\right)}{\left(l + m + \frac{5}{2}\right)}}
+ \abraket{m + \frac{3}{2},\frac{1}{2}}{l + \frac{1}{2},m + 2}\mathrm{.}
+\end{equation}
+Perceba que o produto interno no lado esquerdo desta equação aparece no lado direito da outra. Como $m$ vai crescer de um em um, e iremos multiplicar raízes quadradas
+análogas à apresentada, teremos:
+\begin{equation}
+ \abraket{m - \frac{1}{2},\frac{1}{2}}{l + \frac{1}{2},m} =
+ \sqrt{\frac{\left(l + m + \frac{1}{2}\right)}{\left(2l + 1\right)}}
+ \abraket{l,\frac{1}{2}}{l + \frac{1}{2},l + \frac{1}{2}}\mathrm{,}
+\end{equation}
+onde levamos $m$ até seu valor máximo.
+
+Bom, os \textit{kets} correspondentes a $\ket{m_1 = l,m_2 = 1 \slash 2}$ e $\ket{j = l + 1 \slash 2, m = l + 1 \slash 2}$ devem representar o mesmo estado, pois ambos
+correspondem ao máximo valor de $m_1$ e $m_2$ somados, não havendo nenhuma outra possibilidade para qualquer outra representação deste estado. Logo, iremos tomar o
+produto interno como
+\begin{equation}
+ \braket{m_1 = l,m_2 = 1 \slash 2}{j = l + 1 \slash 2, m = l + 1 \slash 2} = 1\mathrm{.}
+\end{equation}
+Desta forma, obtemos nosso primeiro coeficiente de Clebsch-Gordan:
+\begin{equation}
+ \abraket{m - \frac{1}{2},\frac{1}{2}}{l + \frac{1}{2},m} =
+ \sqrt{\frac{\left(l + m + \frac{1}{2}\right)}{\left(2l + 1\right)}}\mathrm{.}
+\end{equation}
+
+Agora vamos calcular como seria nosso resultado caso utilizássemos outro valor de $m_2$, numa tentativa de obter o valor do outro coeficiente. Testando
+agora o mesmo valor de $j$, $j = l + 1 \slash 2$, $m_2 = - 1 \slash 2$ e $m_1$ como $m_1 = m - 1 \slash 2$, a relação de recorrência fica:
+\begin{alignat}{1}
+\nonumber
+ &\sqrt{\left(\left(l + \frac{1}{2}\right) \mp m\right)\left(\left(l + \frac{1}{2}\right) \pm m + 1\right)}
+ \abraket{l,\frac{1}{2};\left( m - \frac{1}{2}\right),\left(-\frac{1}{2}\right)}{l,\frac{1}{2};\left(l + \frac{1}{2}\right),m\pm1} = \\ \nonumber
+ &\qquad \sqrt{\left(l \mp \left( m - \frac{1}{2}\right) + 1\right)\left(l \pm \left( m - \frac{1}{2}\right)\right)}
+ \abraket{l,\frac{1}{2};\left( m - \frac{1}{2}\right)\mp1,\left(-\frac{1}{2}\right)}{l,\frac{1}{2};\left(l + \frac{1}{2}\right),m} + \\
+ &\qquad \qquad \sqrt{\left(\frac{1}{2} \mp \left(-\frac{1}{2}\right) + 1\right)\left(\frac{1}{2} \pm \left(-\frac{1}{2}\right)\right)}
+ \abraket{l,\frac{1}{2};\left( m - \frac{1}{2}\right),\left(-\frac{1}{2}\right)\mp1}{l,\frac{1}{2};\left(l + \frac{1}{2}\right),m} \mathrm{,}
+\end{alignat}
+Com $m \to m - 1$ e tomando o sinal de cima:
+\begin{alignat}{1}
+\nonumber
+ &\sqrt{\left(\left(l + \frac{1}{2}\right) - (m - 1)\right)\left(\left(l + \frac{1}{2}\right) + (m - 1) + 1\right)}
+ \abraket{l,\frac{1}{2};\left( m - \frac{1}{2}\right),\left(-\frac{1}{2}\right)}{l,\frac{1}{2};\left(l + \frac{1}{2}\right),(m - 1) + 1} = \\
+ &\qquad \sqrt{\left(l - \left( m - \frac{1}{2}\right) + 1\right)\left(l + \left( m - \frac{1}{2}\right)\right)}
+ \abraket{l,\frac{1}{2};\left( m - \frac{1}{2}\right) - 1,\left(-\frac{1}{2}\right)}{l,\frac{1}{2};\left(l + \frac{1}{2}\right),(m - 1)}\mathrm{,}
+\end{alignat}
+ou,
+\begin{alignat}{1}
+\nonumber
+ &\sqrt{\left(l + \frac{1}{2} - m + 1\right)\left(l + \frac{1}{2} + m - 1 + 1\right)}
+ \abraket{l,\frac{1}{2};m - \frac{1}{2},-\frac{1}{2}}{l,\frac{1}{2};l + \frac{1}{2},m} = \\
+ &\qquad \sqrt{\left(l - m + \frac{1}{2} + 1\right)\left(l + m - \frac{1}{2}\right)}
+ \abraket{l,\frac{1}{2};m - \frac{3}{2},-\frac{1}{2}}{l,\frac{1}{2};l + \frac{1}{2},m - 1}\mathrm{.}
+\end{alignat}
+% Sem usar $m \to m - 1$:
+% \begin{alignat}{1}
+% \nonumber
+%  &\sqrt{\left(\left(l + \frac{1}{2}\right) - m\right)\left(\left(l + \frac{1}{2}\right) + m + 1\right)}
+%  \abraket{l,\frac{1}{2};\left( m - \frac{1}{2}\right),\left(-\frac{1}{2}\right)}{l,\frac{1}{2};\left(l + \frac{1}{2}\right),m + 1} = \\
+%  &\qquad \sqrt{\left(l - \left( m - \frac{1}{2}\right) + 1\right)\left(l + \left( m - \frac{1}{2}\right)\right)}
+%  \abraket{l,\frac{1}{2};\left( m - \frac{1}{2}\right) - 1,\left(-\frac{1}{2}\right)}{l,\frac{1}{2};\left(l + \frac{1}{2}\right),m}\mathrm{,}
+% \end{alignat}
+
+Bom, vamos organizar a expressão e tentar novamente uma recursão
+\begin{equation}
+ \abraket{l,\frac{1}{2};m - \frac{1}{2},-\frac{1}{2}}{l,\frac{1}{2};l + \frac{1}{2},m} =
+ \sqrt{\frac{\left(l + m - \frac{1}{2}\right)}{\left(l + m + \frac{1}{2}\right)}}
+ \abraket{l,\frac{1}{2};m - \frac{3}{2},-\frac{1}{2}}{l,\frac{1}{2};l + \frac{1}{2},m - 1}\mathrm{.}
+\end{equation}
+Baixando novamente o valor de $m$, de um em um, teremos:
+\begin{equation}
+ \abraket{l,\frac{1}{2};m - \frac{3}{2},-\frac{1}{2}}{l,\frac{1}{2};l + \frac{1}{2},m-1} =
+ \sqrt{\frac{\left(l + m - \frac{3}{2}\right)}{\left(l + m - \frac{1}{2}\right)}}
+ \abraket{l,\frac{1}{2};m - \frac{5}{2},-\frac{1}{2}}{l,\frac{1}{2};l + \frac{1}{2},m - 2}\mathrm{,}
+\end{equation}
+ou seja,
+\begin{equation}
+ \abraket{l,\frac{1}{2};m - \frac{1}{2},-\frac{1}{2}}{l,\frac{1}{2};l + \frac{1}{2},m} =
+ \sqrt{\frac{\left(l + m - \frac{1}{2}\right)}{\left(l + m + \frac{1}{2}\right)}}
+ \sqrt{\frac{\left(l + m - \frac{3}{2}\right)}{\left(l + m - \frac{1}{2}\right)}}
+ \abraket{l,\frac{1}{2};m - \frac{5}{2},-\frac{1}{2}}{l,\frac{1}{2};l + \frac{1}{2},m - 2}\mathrm{.}
+\end{equation}
+Iterando até $m$ atingir seu valor mínimo, teremos
+\subsection{Spin $1$}
+Vamos com calma que agora o bicho pega.
+
+Relembrando a relação de recorrência,
+\begin{alignat}{1}
+\nonumber
+ &\sqrt{(j \mp m)(j \pm m + 1)} \braket{j_1 j_2;m_1m_2}{j_1j_2;j,m\pm1} = \\ \nonumber
+ &\qquad \sqrt{(j_1 \mp m_1 + 1)(j_1 \pm m_1)} \braket{j_1 j_2;m_1\mp1,m_2}{j_1j_2;j,m} + \\
+ &\qquad \qquad \sqrt{(j_2 \mp m_2 + 1)(j_2 \pm m_2)} \braket{j_1 j_2;m_1m_2\mp1}{j_1j_2;j,m} \mathrm{,}
+\end{alignat}
+vamos tentar proceder de forma análoga ao exemplo anterior.
+Considerando o caso $j = l + 1$, vamos começar com os valores dos $m$ como $m_1 = m - 1$ e $m_2 = 1$, além dos $j$ como $j_1 = l$ e $j_2 = 1$.
+A relação de recorrência fica então:
+\begin{alignat}{1}
+\nonumber
+ &\sqrt{(l + 1 \mp m)(l + 1 \pm m + 1)} \braket{l, 1;m - 1,1}{l,1;l + 1,m\pm1} = \\ \nonumber
+ &\qquad \sqrt{(l \mp m - 1 + 1)(l \pm m - 1)} \braket{l, 1;m - 1\mp1,1}{l,1;l + 1,m} + \\
+ &\qquad \qquad \sqrt{(1 \mp 1 + 1)(1 \pm 1)} \braket{l, 1;m - 1,1\mp1}{l,1;l + 1,m} \mathrm{,}
+\end{alignat}
+e, fazendo a mesma substituição anterior:
+\begin{alignat}{1}
+\nonumber
+ &\sqrt{(l + 1 \mp (m + 1))(l + 1 \pm (m + 1) + 1)} \braket{l, 1;m - 1,1}{l,1;l + 1,(m + 1)\pm1} = \\ \nonumber
+ &\qquad \sqrt{(l \mp m - 1 + 1)(l \pm m - 1)} \braket{l, 1;m - 1\mp1,1}{l,1;l + 1,(m + 1)} + \\
+ &\qquad \qquad \sqrt{(1 \mp 1 + 1)(1 \pm 1)} \braket{l, 1;m - 1,1\mp1}{l,1;l + 1,(m + 1)} \mathrm{.}
+\end{alignat}
+Vamos repetir o mesmo esquema e considerar o sinal inferior, talvez seja inclusive por esta razão que peguemos o sinal inferior. Depois vale a pena tentar usar o sinal
+superior e/ou utilizar uma substituição diferente para ver no que dá. Bom,
+\begin{alignat}{1}
+\nonumber
+ &\sqrt{(l + 1 + (m + 1))(l + 1 - (m + 1) + 1)} \braket{l, 1;m - 1,1}{l,1;l + 1,(m + 1)-1} = \\ \nonumber
+ &\qquad \sqrt{(l + m - 1 + 1)(l - ( m - 1 ) )} \braket{l, 1;m - 1 + 1,1}{l,1;l + 1,(m + 1)} + \\
+ &\qquad \qquad \sqrt{(1 + 1 + 1)(1 - 1)} \braket{l, 1;m - 1,1 + 1}{l,1;l + 1,(m + 1)} \mathrm{,}
+\end{alignat}
+ou,
+\begin{alignat}{1}
+\nonumber
+ &\sqrt{(l + m + 2)(l + 1 - m)} \braket{l, 1;m - 1,1}{l,1;l + 1,m} = \\
+ &\qquad \sqrt{(l + m)(l - m + 1 )} \braket{l, 1;m,1}{l,1;l + 1,m + 1} \mathrm{,}
+\end{alignat}
+o que nos leva a
+\begin{equation}
+ \braket{m - 1,1}{l + 1,m} = \sqrt{\frac{(l + m)}{(l + m + 2)}} \braket{m,1}{l + 1,m + 1} \mathrm{.}
+\end{equation}
+\textit{Moving horizontally by one unit} ($m \to m + 1$):
+\begin{equation}
+ \braket{m,1}{l + 1,m+1} = \sqrt{\frac{(l + m + 1)}{(l + m + 3)}} \braket{m+1,1}{l + 1,m + 2} \mathrm{.}
+\end{equation}
+Incrivelmente, o produto interno no lado esquerdo da equação anterior está também presente na relação original.
+\begin{equation}
+ \braket{m - 1,1}{l + 1,m} = \sqrt{\frac{(l + m)}{(l + m + 2)}} \sqrt{\frac{(l + m + 1)}{(l + m + 3)}} \braket{m+1,1}{l + 1,m + 2} \mathrm{.}
+\end{equation}
+Iterando até chegarmos em $m = l$:
+\begin{alignat}{1}
+ \nonumber
+ \braket{m - 1,1}{l + 1,m} &= \sqrt{\frac{(l + m)}{(l + m + 2)}} \sqrt{\frac{(l + m + 1)}{(l + m + 3)}} \ldots \sqrt{\frac{2l}{(2l + 1 + 1)}}
+ \braket{l,1}{l + 1,l + 1} \mathrm{,}\\ \nonumber
+ &= \sqrt{\frac{(l + m)}{(l + m + 2)}\frac{(l + m + 1)}{(l + m + 3)} \ldots \frac{2l}{(2l + 2)}}
+ \braket{l,1}{l + 1,l + 1} \mathrm{,}\\ \nonumber
+ &= \sqrt{\frac{(l + m)}{\cancel{(l + m + 2)}}\frac{(l + m + 1)}{\cancel{(l + m + 3)}} \ldots \frac{\cancel{(2l-1)}}{(2l + 1)}\frac{\cancel{2l}}{(2l + 2)}}
+ \braket{l,1}{l + 1,l + 1} \mathrm{,}\\
+ &= \sqrt{\frac{(l + m)(l + m + 1)}{(2l + 1)(2l + 2)}}
+ \braket{l,1}{l + 1,l + 1} \mathrm{.}
+\end{alignat}
+Com um argumento análogo ao anterior, $\braket{l,1}{l + 1,l + 1} = 1$, e temos assim que o primeiro coeficiente, correspondente a $j = l + 1$ e $m_1 = 1$, é
+\begin{equation}
+ \braket{m - 1,1}{l + 1,m} = \sqrt{\frac{(l + m)(l + m + 1)}{(2l + 1)(2l + 2)}} \mathrm{.}
+\end{equation}
+Falta agora resolver para $m_1 = 0$ e $m_1 = -1$. Para $m_1 = 0$, iremos utilizar a mesma relação de recorrência, porém, ao invés de utilizarmos a recorrência com
+o $J_-$, iremos utilizar com o $J_+$:
+\begin{alignat}{1}
+\nonumber
+ &\sqrt{(l + 1 \mp (m - 1))(l + 1 \pm (m - 1) + 1)} \braket{l, 1;m - 1,1}{l,1;l + 1,(m - 1)\pm1} = \\ \nonumber
+ &\qquad \sqrt{(l \mp m - 1 + 1)(l \pm m - 1)} \braket{l, 1;m - 1\mp1,1}{l,1;l + 1,(m - 1)} + \\
+ &\qquad \qquad \sqrt{(1 \mp 1 + 1)(1 \pm 1)} \braket{l, 1;m - 1,1\mp1}{l,1;l + 1,(m - 1)} \mathrm{.}
+\end{alignat}
+Vamos considerar o sinal superior desta vez:
+\begin{alignat}{1}
+\nonumber
+ &\sqrt{(l + 1 - (m - 1))(l + 1 + (m - 1) + 1)} \braket{l, 1;m - 1,1}{l,1;l + 1,(m - 1) + 1} = \\ \nonumber
+ &\qquad \sqrt{(l - m - 1 + 1)(l + m - 1)} \braket{l, 1;m - 1-1,1}{l,1;l + 1,(m - 1)} + \\
+ &\qquad \qquad \sqrt{(1 - 1 + 1)(1 + 1)} \braket{l, 1;m - 1,1-1}{l,1;l + 1,(m - 1)} \mathrm{,}
+\end{alignat}
+o que ficará como
+\begin{alignat}{1}
+\nonumber
+ &\sqrt{(l + 2 - m)(l + 1 + m)} \braket{m - 1,1}{l + 1,m} = \\ \nonumber
+ &\qquad \sqrt{(l - m)(l + m - 1)} \braket{m - 2,1}{l + 1,m - 1} + \\
+ &\qquad \qquad \sqrt{2} \braket{m - 1,0}{l + 1,m - 1} \mathrm{.}
+\end{alignat}
+Mas lembremos que
+\begin{equation}
+ \braket{m - 1,1}{l + 1,m} = \sqrt{\frac{(l + m)(l + m + 1)}{(2l + 1)(2l + 2)}} \mathrm{,}
+\end{equation}
+então
+\begin{alignat}{1}
+\nonumber
+ &\sqrt{(l + 2 - m)(l + 1 + m)} \sqrt{\frac{(l + m)(l + m + 1)}{(2l + 1)(2l + 2)}} = \\
+ &\qquad \sqrt{(l - m)(l + m - 1)} \braket{m - 2,1}{l + 1,m - 1} + \sqrt{2} \braket{m - 1,0}{l + 1,m - 1} \mathrm{.}
+\end{alignat}
+Com a substituição $m \to m + 1$:
+\begin{alignat}{1}
+\nonumber
+ &\sqrt{(l + 1 - m)(l + 2 + m)} \sqrt{\frac{(l + m + 1)(l + m + 2)}{(2l + 1)(2l + 2)}} = \\
+ &\qquad \sqrt{(l - m - 1)(l + m)} \braket{m - 1,1}{l + 1,m} + \sqrt{2} \braket{m,0}{l + 1,m} \mathrm{,}
+\end{alignat}
+substituindo novamente:
+\begin{alignat}{1}
+\nonumber
+ &\sqrt{(l + 1 - m)(l + 2 + m)} \sqrt{\frac{(l + m + 1)(l + m + 2)}{(2l + 1)(2l + 2)}} = \\
+ &\qquad \sqrt{(l - m - 1)(l + m)} \braket{m - 1,1}{l + 1,m} + \sqrt{2} \braket{m,0}{l + 1,m} \mathrm{,}
+\end{alignat}
+
+\end{document}

@@ -1,0 +1,664 @@
+\documentclass{article}
+
+\usepackage{geometry}
+\geometry{
+a4paper,
+top=20mm,
+bottom=20mm,
+left=20mm,
+right=20mm
+}
+
+\usepackage[utf8x]{inputenc}
+\usepackage[portuguese]{babel}
+\usepackage{indentfirst}
+\usepackage{lipsum}
+\usepackage{tikz}
+\usepackage{wrapfig}
+\usepackage{amsmath}
+\usepackage{cancel}
+\usepackage{contour}
+\contourlength{1pt}
+\usepackage{tikz-3dplot}
+
+\newcommand{\rcaligrafico}{r}
+
+\author{}
+\title{\vspace{-2cm}Magnetismo\vspace{-1cm}}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Campo magnético de um fio infinito}
+\begin{wrapfigure}[8]{l}{0.3\textwidth}
+\begin{tikzpicture}[>=latex]
+ \draw[] (-1,0) -- (3,0);
+%  \draw[very thick,->] (1.5,0) -- (2.5,0);
+ \coordinate (P) at (1,2);
+ \coordinate (Q) at (1,2-0.5);
+%  ir ateh o acos(1,118033989)
+ \draw (Q) arc (-90:-63:0.5) node[pos=0.6,below]{$\theta$};
+ \draw (2+0.5,0) arc(0:117:0.5) node[pos=0.3,right] {$\alpha$};
+ \node[above] at (P) {$P$};
+ \draw[dashed] (1,0) -- (P) node[midway,left] {$s$};
+ \draw[->] (2,0) -- (P) node[midway,right] {$\vec{r}$};
+%  \draw[thick] (1.9,-0.05) -- (1.9,0.05);
+%  \draw[thick] (2.1,-0.05) -- (2.1,0.05);
+ \draw[very thick] (1.9,0) -- (2.1,0) node[midway,below] {$d\vec{l}^{\prime}$};
+ \draw[thick,->] (2,0) -- (2.5,0);
+ \draw[->] (-1,-0.3) -- (0.6,-0.3) node[midway,below] {$I$};
+\end{tikzpicture}
+\end{wrapfigure}
+Vamos considerar um fio infinito, percorrido por uma corrente estacionária $I$, onde queremos encontrar o campo magnético a uma distância $s$ do fio.
+
+A Lei de Biot-Savart é descrita por
+\begin{equation}
+ \vec{B}(\vec{r}) = \frac{\mu_0}{4\pi} \int \frac{\vec{I} \times \hat{\rcaligrafico}}{\rcaligrafico^2} dl^{\prime} = \frac{\mu_0}{4\pi} I \int \frac{d\vec{l}^{\prime}
+ \times \hat{\rcaligrafico}}{\rcaligrafico^2}.
+\end{equation}
+
+O ponto $s$ é fixo, e $l^{\prime}$ será nossa variável de integração, que irá varrer toda a reta, indo de $-\infty$ até $\infty$. A distância entre o elemento de
+integração e o ponto de análise é
+\begin{equation}
+ \rcaligrafico^2 = l^{\prime 2} + s^2.
+\end{equation}
+$d\vec{l}^{\prime} \times \hat{\rcaligrafico}$, por sua vez, será, pela definição do produto vetorial,
+\begin{equation}
+ d\vec{l}^{\prime} \times \hat{\rcaligrafico} = dl^{\prime} \sin{\alpha} \hat{\phi}.
+\end{equation}
+$\theta$, por sua vez, é igual a $\alpha - \pi\slash 2$. Logo,
+\begin{equation}
+ \alpha = \theta + \frac{\pi}{2}.
+\end{equation}
+O seno de $\alpha$ será então
+\begin{alignat}{1}
+\nonumber
+ \sin{\alpha} &= \sin{\left( \theta + \frac{\pi}{2}\right) }\\ \nonumber
+ &= \sin{\left( \theta \right) } \cancel{\cos{\left(\frac{\pi}{2}\right)}} + \cos{\left( \theta \right) } \sin{\left(\frac{\pi}{2}\right)}\\
+ &= \cos{\theta}.
+\end{alignat}
+Logo, teremos que
+\begin{equation}
+ d\vec{l}^{\prime} \times \hat{\rcaligrafico} = dl^{\prime} \cos{\theta} \hat{\phi}.
+\end{equation}
+O cosseno de $\theta$, por sua vez, será
+\begin{equation}
+ \cos{\theta} = \frac{s}{\rcaligrafico}.
+\end{equation}
+Então
+\begin{equation}
+ d\vec{l}^{\prime} \times \hat{\rcaligrafico} = dl^{\prime} \frac{s}{\rcaligrafico} \hat{\phi}.
+\end{equation}
+Nossa integral será então
+\begin{alignat}{1}
+ \vec{B}(\vec{r}) &= \frac{\mu_0}{4\pi} I \int \frac{dl^{\prime} s \hat{\phi}}{(l^{\prime 2} + s^2)^{3\slash 2}} \\
+ &= \frac{\mu_0}{4\pi} I \int_{-L}^{L} \frac{dl^{\prime} s \hat{\phi}}{(l^{\prime 2} + s^2)^{3\slash 2}} \\ 
+ &= \frac{\mu_0}{4\pi} I\ 2s\int_{0}^{L} \frac{dl^{\prime}}{(l^{\prime 2} + s^2)^{3 \slash 2}} \hat{\phi} \\
+ &= \frac{\mu_0}{2\pi} I\ s \left[ \frac{l^{\prime}}{s^2\sqrt{l^{\prime 2} + s^2}}\right]_{l^{\prime} = 0}^{l^{\prime} = L} \hat{\phi}\\
+ &= \frac{\mu_0}{2\pi} \frac{I}{s}\frac{L}{\sqrt{L^2 + s^2}} \hat{\phi}.
+\end{alignat}
+
+Não sei se isto está correto, mas creio que sim, pois no limite em que $L \to \infty$, recuperamos o resultado original.
+
+\section{Campo magnético acima do centro de um loop de corrente}
+\begin{wrapfigure}[13]{l}{0.6\textwidth}
+\begin{tikzpicture}[>=latex]
+ \draw (0,0) ellipse (2 and 1);
+ \draw[dashed] (0,0) -- (2,0);
+%  \draw (0,1) ellipse (1 and 0.5);
+ \coordinate (P) at (0,3);
+ \node[above,left] at (P) {$P$};
+ \draw[dashed] (0,0) -- (P) node[midway,left] {$s$};
+ \path (2,0) arc (0:30:2 and 1) coordinate (B);
+ \draw[ultra thick] (B) arc (30:40:2 and 1);
+ \path (B) arc (30:35:2 and 1) coordinate (C);
+ \draw[dashed] (C) -- (0,0) node[midway,above] {$R$};
+ \path (2,0) arc (0:30:2 and 1) coordinate (A);
+ \draw (1,0) arc (0:35:1 and 0.5) node[pos = 0.65,right] {$\phi$};
+ \draw (A) -- (P) node[midway,right] {$\rcaligrafico$};
+ \draw[->,thick] (P) -- (0,3.5) node[above] {$d\vec{B}_z$};
+ \path (0.5,3) arc (0:35:0.5 and 0.25) coordinate (D);
+ \draw[<-,thick] (D) -- (P) node[pos=-1] {$d\vec{B}_{xy}$};
+ \path (3,0) arc (0:110:3 and 1.5) coordinate (E);
+ \draw[->] (E) arc (110:150:3 and 1.5) node[midway,above] {$I$};
+\end{tikzpicture}
+\begin{tikzpicture}[>=latex]
+ \draw[thick,->] (0,0) -- (2,0) node[pos=1.15] {$d\vec{B}_z$};
+ \draw[thick,->] (0,0) -- (0,2) node[pos=1.15] {$d\vec{B}_{xy}$};
+ \draw[thick,->] (0,0) -- (2,2) node[pos=1.15] {$d\vec{B}$};
+ \draw[dashed] (2,0) -- (2,2);
+ \draw[dashed] (0,2) -- (2,2);
+ \draw (0,-3) -- (0,0) node[midway,left] {$s$};
+ \draw (2,-3) -- (0,0) node[pos=0.4,right] {$\rcaligrafico$};
+ \draw (0,-2) arc (-90:-23:1) node[pos=0.5,below] {$\theta$};
+ \draw (1,0) arc (0:45:1) node[pos=0.5,right] {$\theta$};
+\end{tikzpicture}
+\end{wrapfigure}
+No ponto em que vamos calcular o campo, haverá uma influência do campo no plano $xy$ e em $z$ para cada elemento infinitesimal do loop de corrente, devido à assimetria
+provocada por tomar um elemento de corrente fora do eixo $z$, enquanto o ponto de análise está diretamente acima do eixo $z$. Porém, ao integrarmos em todo o loop, a
+assimetria deve desaparecer, nos deixando somente a componente no eixo $z$.
+
+A lei de Biot-Savart é
+\begin{equation}
+ \vec{B}(\vec{r}) = \frac{\mu_0}{4\pi} \int \frac{\vec{I} \times \hat{\rcaligrafico}}{\rcaligrafico^2} dl^{\prime} = \frac{\mu_0}{4\pi} I \int \frac{d\vec{l}^{\prime}
+ \times \hat{\rcaligrafico}}{\rcaligrafico^2}.
+\end{equation}
+
+Nossa discussão anterior sugere começarmos a calcular nosso campo pela componente $z$. Pois esperamos que
+\begin{equation}
+ \vec{B}(P) = \vec{B}_z(P).
+\end{equation}
+Avaliando os elementos infinitesimais:
+\begin{equation}
+ d\vec{B}_z = d\vec{B} \sin{\theta},
+\end{equation}
+onde
+\begin{equation}
+ \sin{\theta} = \frac{R}{\rcaligrafico} = \frac{R}{\sqrt{s^2 + R^2}}.
+\end{equation}
+
+A integral se reduz a (depois retorno aqui e explico melhor)
+\begin{alignat}{1}
+ \vec{B} &= \frac{\mu_0}{4\pi} I \int \frac{d\vec{l}^{\prime} \times \hat{\rcaligrafico}}{\rcaligrafico^2}\\
+ &= \frac{\mu_0}{4\pi} I \int \frac{d\vec{l}^{\prime}}{\rcaligrafico^2} \sin{\theta}\\
+ &= \frac{\mu_0}{4\pi} I \int \frac{R d\vec{l}^{\prime}}{\rcaligrafico^3}\\
+ &= \frac{\mu_0}{4\pi} I \frac{R 2\pi R}{(s^2 + R^2)^{3\slash 2}}\\
+ &= \frac{\mu_0 I}{2} \frac{R^2}{(s^2 + R^2)^{3\slash 2}}.
+\end{alignat}
+Creio que esteja certo.
+
+\section{Campo magnético gerado por loops de corrente}
+Vamos calcular o campo magnético no centro de vários loops de corrente.
+\subsection{Loop quadrado, de lado $2R$}
+Como estamos no centro do loop, o campo total será quatro vezes aquele causado por um dos fios. Além disto, o campo estará na direção $\hat{z}$, pois pegará contribuições
+radiais dos 4 ``fios'', dos 4 lados do loop. O campo de um fio finito já foi calculado, então esta tarefa é bem fácil.
+
+O campo do fio, já calculado anteriormente, é
+\begin{equation}
+ \vec{B} = \frac{\mu_0}{2\pi} \frac{I}{s}\frac{L}{\sqrt{L^2 + s^2}} \hat{\phi}.
+\end{equation}
+Só que, neste caso, temos $s = R$ e $L = R$ (perceba que $L$ é o meio comprimento de cada fio), além de 4 fios formando o loop. Logo,
+\begin{alignat}{1}
+ \vec{B} &= 4 \frac{\mu_0}{2\pi} \frac{I}{R}\frac{R}{\sqrt{R^2 + R^2}} \hat{z}\\
+ &= 2 \frac{\mu_0}{\pi} I\frac{1}{R\sqrt{1 + 1}} \hat{z}\\
+ &= \frac{2\mu_0}{\sqrt{2}\pi} \frac{I}{R} \hat{z}
+\end{alignat}
+
+\subsection{Polígono de $n$ lados, com o centro a uma distância $R$ de cada lado}
+A distância é $R$ de cada lado. Sabemos que o ângulo de cada triângulo é $2\pi \slash n$. Logo, o lado de cada polígono (comprimento de cada fio) será
+\begin{alignat}{1}
+ \tan{\frac{\theta}{2}} &= \frac{L}{R},\\
+ L &= R \tan{\left( \frac{\pi}{n} \right)}.
+\end{alignat}
+
+Assim,
+\begin{alignat}{1}
+ \vec{B}_{\mathrm{fio}} &= \frac{\mu_0}{2\pi} \frac{I}{s}\frac{L}{\sqrt{L^2 + s^2}} \hat{\phi}\\
+ \vec{B} &= n \cdot B_{\mathrm{fio}} \hat{z}\\
+ &= n \frac{\mu_0}{2\pi} \frac{I}{s}\frac{L}{\sqrt{L^2 + s^2}} \hat{z} \\
+ &= n \frac{\mu_0}{2\pi} \frac{I}{R}\frac{R \tan{\left( \frac{\pi}{n} \right)}}{\sqrt{\left( R \tan{\left( \frac{\pi}{n} \right)} \right)^2 + R^2}} \hat{z} \\
+ &= n \frac{\mu_0}{2\pi} \frac{I}{R}\frac{\tan{\left( \frac{\pi}{n} \right)}}{\sqrt{\tan^2{\left( \frac{\pi}{n} \right)} + 1}} \hat{z} \\
+ &= n \frac{\mu_0}{2\pi} \frac{I}{R}\frac{\tan{\left( \frac{\pi}{n} \right)}}{\sec{\left( \frac{\pi}{n} \right)}} \hat{z} \\
+ &= n \frac{\mu_0}{2\pi} \frac{I}{R} \sin{\left( \frac{\pi}{n} \right)} \hat{z}.
+\end{alignat}
+
+Para $n = 4$, vemos que, de fato, recupera-se o resultado anterior:
+\begin{equation}
+ \vec{B} = 4 \frac{\mu_0}{2\pi} \frac{I}{R} \sin{\left( \frac{\pi}{4} \right)} \hat{z} = \frac{2\mu_0}{\sqrt{2}\pi} \frac{I}{R} \hat{z}.
+\end{equation}
+
+No limite em que $n \to \infty$,
+\begin{alignat}{1}
+ \vec{B} &= \lim_{n \to \infty} n \frac{\mu_0}{2\pi} \frac{I}{R} \sin{\left( \frac{\pi}{n} \right)} \hat{z}\\
+ &= \lim_{u \to 0} \frac{\mu_0}{2\pi} \frac{I}{R} \frac{1}{u}\sin{\left( \pi u \right)} \hat{z}\\
+ &= \lim_{u \to 0} \frac{\mu_0}{2\pi} \frac{I}{R} \pi \cos{\left( \pi u \right)} \hat{z}\\
+ &= \frac{\mu_0 I}{2R} \hat{z},\\
+\end{alignat}
+que é justamente o campo obtido anteriormente, para o loop circular, com $s=0$.
+
+\section{Outros loops com formato alternativo}
+\subsection{Borda de pizza}
+\begin{wrapfigure}[8]{l}{0.2\textwidth}
+\begin{tikzpicture}[>=latex]
+ \draw (1,0) arc (0:90:1) -- (0,1.5) arc (90:0:1.5) -- cycle;
+ \draw[dashed] (0,0) -- (1,0);
+ \draw[dashed] (0,0) -- (0,1);
+ \path (1.8,0) arc (0:20:1.8) coordinate (A);
+ \draw[->] (A) arc (20:60:2) node[midway] {\contour{white}{$I$}};
+ \draw[<->] (0,-0.25) -- (1,-0.25) node[midway] {\contour{white}{$a$}};
+ \draw[<->] (0,-0.5) -- (1.5,-0.5) node[midway] {\contour{white}{$b$}};
+ \draw[fill] (0,0) circle(1pt) node[left] {$P$};
+\end{tikzpicture}
+\end{wrapfigure}
+Vamos aqui aplicar a lei de Biot-Savart para cada pedaço do loop em questão. Neste exemplo, teremos uma contribuição positiva da curva exterior, do ``fio'' que desce
+do fio de raio $b$ até o fio de raio $a$, e então uma contribuição negativa da curva interior e do ``fio'' que vai do fim da curva de raio $a$ até o começo da curva
+de raio $b$. Todas estas análises foram feitas utilizando a regra da mão direita.
+
+Bom, na lei de Biot-Savart, teremos
+\begin{equation}
+ \vec{B}(\vec{r}) = \frac{\mu_0}{4\pi} \int \frac{\vec{I} \times \hat{\rcaligrafico}}{\rcaligrafico^2} dl^{\prime} = \frac{\mu_0}{4\pi} I \int \frac{d\vec{l}^{\prime}
+ \times \hat{\rcaligrafico}}{\rcaligrafico^2}.
+\end{equation}
+Vamos dividir o problema em 4 partes:
+
+Caminho da curva exterior:
+\begin{alignat}{1}
+ \vec{B}(P) &= \frac{\mu_0}{4\pi} I \int_{0}^{\pi b\slash 2} \frac{dl^{\prime}}{b^2}\hat{z}\\
+ &= \frac{\mu_0}{4\pi} I \frac{\pi b}{2b^2}\hat{z}\\
+ &= \frac{\mu_0 I}{8 b}\hat{z}.
+\end{alignat}
+
+Para a curva interior, teremos quase a mesma coisa. A diferença será o sinal da contribuição do campo e o raio:
+\begin{equation}
+ \vec{B}(P) = - \frac{\mu_0 I}{8 a}\hat{z}.
+\end{equation}
+
+Nos outros dois caminhos, a corrente é paralela ao vetor que liga o elemento de área ao ponto avaliado, então não teremos contribuição. Neste caso,
+\begin{equation}
+ \vec{B}_{\mathrm{tot}} = \vec{B}_1 + \vec{B}_2 = \frac{\mu_0 I}{8}\left( \frac{1}{b} - \frac{1}{a} \right) \hat{z}
+\end{equation}
+
+\subsection{Loop em forma de U infinito}
+\begin{wrapfigure}[7]{l}{0.3\textwidth}
+\begin{tikzpicture}[>=latex]
+ \draw (3,-1) -- (0,-1) arc(270:90:1) -- (3,1);
+ \draw[fill] (0,0) circle(1pt) node[right] {$P$};
+ \draw[dashed] (0,-1) -- (0,1);
+ \path (0,1) arc(90:120:1) coordinate (A);
+ \draw[<-] (A) -- (0,0) node[midway] {\contour{white}{$r$}};
+ \node[right] at (3,1) {\ldots};
+ \node[right] at (3,-1) {\ldots};
+ \draw[->] (2.5,1.2) -- (1.0,1.2) node[midway,above] {$I$};
+\end{tikzpicture}
+\end{wrapfigure}
+Neste caso, iremos fazer a mesma coisa do problema anterior: considerar a lei de Biot-Savart por partes no fio. Perceba que aqui todas as componentes irão somar
+positivamente em $\vec{B}$.
+
+Para a semi circunferência de corrente, teremos que, pela lei de Biot-Savart,
+\begin{alignat}{1}
+ \vec{B}(P) &= \frac{\mu_0}{4\pi} I \int \frac{d\vec{l}^{\prime} \times \hat{\rcaligrafico}}{\rcaligrafico^2}\\
+ &= \frac{\mu_0}{4\pi} I \int_{0}^{\pi R} \frac{dl^{\prime}}{R^2} \hat{z}\\
+ &= \frac{\mu_0 I}{4R}\hat{z}.
+\end{alignat}
+
+Por simetria, cada um dos outros fios dará a mesma contribuição para o campo no ponto. Aplicando a lei de Biot-Savart para um fio semi-finito
+(tá meio errado, mas vai funcionar):
+\begin{alignat}{1}
+ \vec{B}_z(P) &= \frac{\mu_0}{4\pi} I \int \frac{d\vec{l}^{\prime} \times \hat{\rcaligrafico}}{\rcaligrafico^2}\\
+ &= \frac{\mu_0}{4\pi} I \int_{\infty}^{0} \frac{dl^{\prime} \sin{\theta}}{R^2 + l^{\prime 2}} \hat{z}\\
+ &= \frac{\mu_0}{4\pi} I \int_{\infty}^{0} \frac{dl^{\prime} R}{\left(R^2 + l^{\prime 2}\right)^{3 \slash 2}} \hat{z}\\
+ &= \frac{\mu_0 I R}{4\pi} \int_{\infty}^{R^2} \frac{l^{\prime}dl^{\prime}}{l^{\prime 3}} \hat{z}\\
+ &= \frac{\mu_0 I R}{4\pi} \left[- \frac{1}{l^{\prime}} \right]_{\infty}^{R^2}\hat{z}\\
+ &= \frac{\mu_0 I}{4\pi R}\hat{z}.
+\end{alignat}
+
+Teremos $2$ destas contribuições, logo, o resultado final será
+\begin{equation}
+ \vec{B}_{\mathrm{tot}}(P) = \frac{\mu_0 I}{4R}\hat{z} + 2\frac{\mu_0 I}{4\pi R}\hat{z}
+ = \frac{\mu_0 I}{4R} \left( 1 + \frac{2}{\pi} \right) \hat{z}.
+\end{equation}
+
+\section{Campo provocado por um fio infinito}
+Vamos agora resolver um problema já conhecido, mas utilizando a lei de Ampère, a qual é escrita na sua forma integral como
+\begin{equation}
+ \oint \vec{B}\cdot d\vec{l} = \mu_0 I_{\mathrm{enc}}.
+\end{equation}
+Num fio infinito, qualquer que seja o ponto analisado, o campo magnético estará circulando o fio. A superfície amperiana será então uma circunferência com centro no
+eixo do fio. A corrente enclausurada será também a corrente estacionária do loop. Logo,
+\begin{alignat}{1}
+ \oint B dl &= \mu_0 I\\
+ B 2\pi s &= \mu_0 I\\
+ B &= \frac{\mu_0 I}{2 \pi s}.
+\end{alignat}
+Como sabemos a direção do $\vec{B}$,
+\begin{equation}
+ \vec{B} = \frac{\mu_0 I}{2 \pi s} \hat{\phi},
+\end{equation}
+em coordenadas cilíndricas.
+
+\section{Campo magnético causado por um solenoide longo}
+Vamos considerar um solenoide longo, com $n$ voltas por unidade de comprimento, de raio $R$ e carregando uma corrente $I$. As $n$ voltas estão muito próximas umas das
+outras, de maneira que cada volta será circular. Como o solenoide é longo, o campo magnético só pode existir
+em sua componente longitudinal, digamos, $\hat{z}$. Isto ocorre porque não há campo magnético na direção da corrente ($\hat{\phi}$) e também há a simetria radial.
+Existem outras explicações, talvez melhores, para isto, mas creio que esta baste.
+
+A estratégia será utilizar uma curva amperiana retangular, com dois dos lados paralelos ao eixo longitudinal, e primeiramente do lado de fora do solenoide.
+A lei de Ampère diz que
+\begin{equation}
+ \oint \vec{B}\cdot d\vec{l} = \mu_0 I_{\mathrm{enc}}.
+\end{equation}
+Como não temos campo na direção radial nem corrente enclausurada\footnote{Lembre-se de que o campo só pode variar radialmente, pois é a única direção em que a
+simetria é quebrada.},
+\begin{equation}
+ B(r = s_1) L - B(r = s_2) L = 0,
+\end{equation}
+o que nos diz que
+\begin{equation}
+ B(r = s_1) = B(r = s_2),
+\end{equation}
+o que só é possível caso $B$ seja zero fora do solenoide, pois não podemos esperar que uma distribuição do tipo cause um campo constante fora do solenoide. Sua magnitude
+deve no mínimo diminuir quando aumentamos a distância do ponto de análise (porém, vemos que um campo carregado eletricamente provoca um campo uniforme no espaço inteiro,
+\textit{oh, the irony!}).
+
+Vamos agora avaliar uma amperiana retangular, também com dois lados paralelos ao eixo longitudinal do solenoide, mas desta vez um destes lados estará dentro do cilindro
+e outro lado fora. Pela lei de Ampère:
+\begin{alignat}{1}
+ \oint \vec{B}\cdot d\vec{l} &= \mu_0 I_{\mathrm{enc}}\\
+ \int_{0}^{L} B(r=s)dl - \int_{}B(r=s^{\prime} > R)dl &= \mu_0 K L\\
+ B(r=s)L &= \mu_0 K L.
+\end{alignat}
+Logo, para pontos dentro do solenoide, teremos que
+\begin{equation}
+ \vec{B} = \mu_0 n I \hat{z},
+\end{equation}
+independente de qual seja o valor do raio.
+
+\section{Campo magnético de uma bobina toroidal}
+Vamos considerar (estou usando demais esta expressão, mas, quer saber? \textbf{{\color{pink}f o d a s e}}) um toroide de secção transversal quadrada, onde nele há um
+fio enrolado com $N$ voltas, carregando uma corrente $I$.
+
+Neste caso, teremos um campo angular, pois cada volta da bobina irá produzir um campo magnético normal à superfície delimitada pela volta. A curva amperiana em questão
+será então uma circunferência concêntrica com a bobina, a uma determinada altura. O campo será constante em $\phi$ pela simetria azimutal.
+
+A lei de Ampère fica como
+\begin{alignat}{1}
+ \oint \vec{B} \cdot d\vec{l} &= \mu_0 I_{\mathrm{enc}}\\
+ B_{\phi} 2\pi s &= \mu_0 N I\\
+ \vec{B}_{\phi} &= \frac{\mu_0 N I}{2\pi s}\hat{\phi}.
+\end{alignat}
+Perceba que, independente da altura onde é posta a amperiana, a corrente que irá cruzar a superfície será a mesma. $\vec{B}_{\phi}$ não depende então da altura em que
+estamos, basta estar dentro do loop. Caso um loop de raio maior do que o toroide seja considerado, a corrente líquida será zero na lei de Ampère, fazendo com que
+não haja campo magnético angular nesta região.
+
+Bom, para determinar completamente o campo, basta provar que o mesmo só tem componente radial. Infelizmente não vou fazer isso agora. Talvez depois.
+
+\section{Potencial vetor de uma casca esférica rotacionando}
+Uma casca esférica de raio $R$, carregando uma densidade superficial de cargas $\sigma$ está rotacionando com uma velocidade angular $\omega$.
+Encontrar o potencial vetor.
+
+O potencial vetor é dado por
+\begin{equation}
+ \vec{A} = \frac{\mu_0}{4 \pi} \int \frac{\vec{K}}{\rcaligrafico} da^{\prime}.
+\end{equation}
+
+A corrente superficial irá surgir devido ao movimento da densidade de cargas ao rotacionar. Iremos considerar que o eixo de rotação é o eixo $\hat{z}$, e o ponto
+de análise estará em uma posição arbitrária, fora da esfera, $\vec{r}$. A definição de corrente superficial, creio eu, é
+\begin{equation}
+ \vec{K} \equiv \sigma \vec{v},
+\end{equation}
+onde $\vec{v}$ é a velocidade da linha de corrente. A velocidade de cada ponto terá como módulo sua distância do eixo de rotação multiplicado por $\omega$, e como direção
+terá a componente angular $\hat{\phi}$ em coordenadas cilíndricas. Isto é justamente o produto vetorial entre $\omega$ e $\vec{r}^{\prime}$:
+\begin{equation}
+ \vec{v} = \vec{\omega} \times \vec{r}^{\prime}.
+\end{equation}
+
+Em coordenadas esféricas, teremos
+\begin{equation}
+ v = \omega r^{\prime} \sin{\theta},
+\end{equation}
+logo,
+\begin{equation}
+ K = \sigma \omega r^{\prime} \sin{\theta^{\prime}}.
+\end{equation}
+Iremos omitir as direções aqui, pois já sabemos que no final $\vec{A}$ terá a mesma direção que $\hat{\phi}$ (direção da corrente). Bom, voltando à integral:
+\begin{alignat}{1}
+ A &= \frac{\mu_0}{4 \pi} \int \frac{K}{\rcaligrafico} da^{\prime}\\
+ &= \frac{\mu_0}{4 \pi} \int \frac{\sigma \omega r^{\prime} \sin{\theta^{\prime}}}{\rcaligrafico} da^{\prime}.
+\end{alignat}
+
+$\rcaligrafico$, por sua vez, será a distância entre o elemento de integração e nosso ponto arbitrário no espaço. A este ponto, daremos uma posição $r,\phi,\theta$.
+Iremos considerar, sem perda de generalidade, $\phi = 0$. A simetria esférica fará com que esta seja uma decisão equivalente a tomar qualquer valor de $\phi$.
+Logo, precisamos somente nos preocupar com as distâncias a seguir:
+\begin{alignat}{1}
+ (x - x^{\prime}) &= r\sin{\theta}\cos{\phi} - r^{\prime}\sin{\theta^{\prime}}\cos{\phi^{\prime}}\\
+ (y - y^{\prime}) &= r\sin{\theta}\sin{\phi} - r^{\prime}\sin{\theta^{\prime}}\sin{\phi^{\prime}}\\
+ (z - z^{\prime}) &= r\cos{\theta} - r^{\prime}\cos{\theta^{\prime}}.
+\end{alignat}
+Em nosso caso,
+\begin{equation}
+ (x - x^{\prime})^2 + (y - y^{\prime})^2 + (z - z^{\prime})^2 = r\sin{\theta}\cos{\phi} - r^{\prime}\sin{\theta^{\prime}}\cos{\phi^{\prime}}
+\end{equation}
+
+Pela lei dos cossenos,
+\begin{equation}
+ \rcaligrafico^2 = r^{\prime 2} + r^{2} - 2rr^{\prime}\cos{\alpha},
+\end{equation}
+onde $\alpha$ é o ângulo entre os dois vetores.
+
+ESQUEÇA ESTA PORRA
+
+Melhor considerar o ponto em questão em cima do eixo $\hat{z}$, de maneira que o ângulo entre o ponto que observamos $\vec{A}$ e o elemento de integração em
+$\vec{r}^{\prime}$ será o próprio $\theta^{\prime}$.
+
+O potencial vetor é dado por
+\begin{equation}
+ \vec{A} = \frac{\mu_0}{4 \pi} \int \frac{\vec{K}}{\rcaligrafico} da^{\prime}.
+\end{equation}
+
+A corrente superficial irá surgir devido ao movimento da densidade de cargas ao rotacionar. A definição de corrente superficial, creio eu, é
+\begin{equation}
+ \vec{K} \equiv \sigma \vec{v},
+\end{equation}
+onde $\vec{v}$ é a velocidade da linha de corrente. A velocidade de cada ponto terá como módulo sua distância do eixo de rotação multiplicado por $\omega$, e como direção
+terá a componente angular $\hat{\phi}$ em coordenadas cilíndricas. Isto é justamente o produto vetorial entre $\omega$ e $\vec{r}^{\prime}$:
+\begin{equation}
+ \vec{v} = \vec{\omega} \times \vec{r}^{\prime}.
+\end{equation}
+Escolhemos isto pois, aparentemente, calcular o produto vetorial é menos complicado que descobrir qual é o ângulo entre os dois vetores. Bom, o produto vetorial será
+
+\begin{align}
+\vec{v} &=
+\begin{vmatrix}
+\hat{x} & \hat{y} & \hat{z} \\ 
+\omega_x & \omega_y & \omega_z \\ 
+x^{\prime} & y^{\prime} & z^{\prime} \ \notag
+\end{vmatrix}
+=
+\begin{vmatrix}
+\hat{x} & \hat{y} & \hat{z} \\ 
+\omega\sin{\psi} & 0 & \omega\cos{\psi} \\ 
+r^{\prime}\sin{\theta^{\prime}}\cos{\phi^{\prime}} & r^{\prime}\sin{\theta^{\prime}}\sin{\phi^{\prime}} & r^{\prime}\cos{\theta^{\prime}} \ \notag
+\end{vmatrix}\\
+&=
+R\omega \left[ -\cos{\psi}\sin{\theta^{\prime}}\sin{\phi^{\prime}} \hat{x} + \left( \cos{\psi}\sin{\theta^{\prime}}\cos{\phi^{\prime}} -
+\sin{\psi}\cos{\theta^{\prime}}\right) \hat{y} + \sin{\psi}\sin{\theta^{\prime}\sin{\phi^{\prime}}} \hat{z}\right],
+\end{align}
+pois todos elementos de integração estarão na superfície ($r^{\prime} = R$).
+
+Bom, a distância entre o ponto considerado e o elemento de integração será simplesmente a lei dos cossenos:
+\begin{equation}
+ \rcaligrafico = \sqrt{R^2 + r^{2} - 2rR\cos{\theta^{\prime}}}.
+\end{equation}
+
+Como a integral será proporcional à velocidade em cada componente, e o denominador não tem nenhum termo em $\phi^{\prime}$, vamos avaliar como ficará a integral de
+$\vec{v}$ em $\phi^{\prime}$:
+\begin{alignat}{2}
+ \int_{0}^{2\pi} \vec{v} d\phi^{\prime} &=
+ \int_{0}^{2\pi} R\omega \left[ -\cos{\psi}\sin{\theta^{\prime}}\sin{\phi^{\prime}} \hat{x} + \left( \cos{\psi}\sin{\theta^{\prime}}\cos{\phi^{\prime}} -
+\sin{\psi}\cos{\theta^{\prime}}\right) \hat{y} + \sin{\psi}\sin{\theta^{\prime}\sin{\phi^{\prime}}} \hat{z}\right] d\phi^{\prime}\\ \nonumber
+&= R\omega \left[ -\cos{\psi}\sin{\theta^{\prime}} \int_{0}^{2\pi} \sin{\phi^{\prime}} d\phi^{\prime} \hat{x} + \left( \cos{\psi}\sin{\theta^{\prime}}
+\int_{0}^{2\pi} \cos{\phi^{\prime}} d\phi^{\prime}-
+\sin{\psi}\cos{\theta^{\prime}}\int_{0}^{2\pi} d\phi^{\prime} \right) \hat{y} +\right.\\
+&\hspace{9.5cm} \left. + \sin{\psi}\sin{\theta^{\prime}\int_{0}^{2\pi}\sin{\phi^{\prime}}}d\phi^{\prime} \hat{z} \right].
+\end{alignat}
+Lembre-se de que as integrais em seno e cosseno em um período completo são zero. Logo, teremos
+\begin{equation}
+ \int_{0}^{2\pi} \vec{v} d\phi^{\prime} = 2\pi \sin{\psi}\cos{\theta^{\prime}} \hat{y}.
+\end{equation}
+
+Voltando para a integral original:
+\begin{alignat}{1}
+ \vec{A} &= \frac{\mu_0 \sigma}{4 \pi} \int \frac{\vec{v}}{\sqrt{R^2 + r^{2} - 2rR\cos{\theta^{\prime}}}} da^{\prime}\\
+ &= - \frac{\mu_0 \sigma 2\pi \sin{\psi}}{4 \pi} \int_{0}^{\pi} \frac{\cos{\theta^{\prime}}}{\sqrt{R^2 + r^{2} - 2rR\cos{\theta^{\prime}}}}
+ R^2 \sin{\theta^{\prime}}d\theta^{\prime}\\
+ &= - \frac{\mu_0 \sigma \sin{\psi} R^2}{2} \int_{0}^{\pi}
+ \frac{\cos{\theta^{\prime}}\sin{\theta^{\prime}}d\theta^{\prime}}{\sqrt{R^2 + r^{2} - 2rR\cos{\theta^{\prime}}}}.
+\end{alignat}
+Fazendo a mesma substituição do Griffiths ($u = \cos{\theta^{\prime}}$):
+\begin{equation}
+ \vec{A} = \frac{\mu_0 \sigma \sin{\psi} R^2}{2} \int_{-1}^{1} \frac{udu}{\sqrt{R^2 + r^{2} - 2rRu}}.
+\end{equation}
+Outra substituição, $w = R^2 + r^{2} - 2rRu$, $dw = - 2rRdu \to du = -dw \slash 2rR$, nos dará a resposta direta. Não vou calcular aqui, pois isto é um saco. Enfim,
+\begin{equation}
+ x
+\end{equation}
+
+\section{Potencial vetor do solenoide infinito explorado anteriormente}
+Para resolver esta questão, é necessário um truque que relaciona a lei de Ampère com o potencial vetor:
+\begin{alignat}{1}
+ \oint \vec{A}\cdot d\vec{l} &= \int (\nabla \times \vec{A}) \cdot d\vec{a},\ \text{(teorema de Gauss)}\\
+ &= \int \vec{B} \cdot d\vec{a}\\
+ &= \Phi_M,
+\end{alignat}
+onde $\Phi_M$ é o fluxo magnético através da superfície considerada.
+
+Ora, percebemos que a expressão tem uma forma semelhante à lei de Ampère, só que teremos agora o fluxo magnético ao invés da corrente enclausurada. Bom, sabemos que o
+potencial vetor terá a mesma direção da corrente, então iremos considerar uma curva amperiana centrada no eixo $\hat{z}$, e de raio $s$. Se $s$ for maior que $R$,
+\begin{equation}
+ A 2\pi s = \Phi_M.
+\end{equation}
+O campo magnético dentro do solenoide é constante, e vale
+\begin{equation}
+ \vec{B} = \mu_0 n I \hat{z},
+\end{equation}
+logo, o fluxo será
+\begin{equation}
+ \Phi_M = B\cdot A = (\mu_0 n I) (\pi s^2).
+\end{equation}
+
+Assim,
+\begin{alignat}{1}
+ A 2\pi s &= \mu_0 n I \pi s^2\\
+ \vec{A} &= \frac{\mu_0 n I}{2}s \hat{\phi}.
+\end{alignat}
+
+Fora do cilindro, $\vec{B} = 0$, logo,
+\begin{alignat}{1}
+ \vec{A}2\pi s &= \mu_0 n I \pi R^2 \hat{\phi}\\
+ &= \mu_0 n I \frac{R^2}{s} \hat{\phi}.
+\end{alignat}
+
+\section{Corrente provocada por dois solenoides longos}
+Vamos considerar dois solenoides longos e coaxiais, cada um percorrido por corrente em uma direção. Bom, a corrente é angular, então os campos magnéticos serão na direção
+$\hat{z}$, cada um em uma direção (positivo e negativo). Vamos considerar o loop exterior causando um campo em $\hat{z}$ positivo.
+
+Fora dos dois solenoides, o campo será nulo, pois só existe campo magnético dentro dos solenoides. Entre o primeiro e o segundo solenoide, teremos o campo do solenoide
+exterior, que será
+\begin{equation}
+ \vec{B} = \mu_0 n_1 I \hat{z}.
+\end{equation}
+
+Caso adentremos os dois solenoides, teremos uma superposição dos campos magnéticos
+\begin{equation}
+ \vec{B} = \mu_0 I (n_1 - n_2) \hat{z}.
+\end{equation}
+
+\section{Momento de dipolo magnético}
+Vamos calcular o momento de dipolo magnético de uma geometria de correntes demonstrado na figura a seguir:
+
+\begin{wrapfigure}[9]{l}{0.25\textwidth}
+\tdplotsetmaincoords{10}{125}
+\begin{tikzpicture}[>= latex]
+ \draw[->] (0,0,0) -- (2,0,0) node[right] {$x$};
+ \draw[->] (0,0,0) -- (0,2,0) node[right] {$y$};
+ \draw[->] (0,0,0) -- (0,0,2.5) node[right] {$z$};
+ \draw[thick,fill = blue,fill opacity = 0.3] (0,0,1) -- (0,0,-1) -- (0,1,-1) -- (0,1,1) -- cycle;
+ \draw[thick,fill = red,fill opacity = 0.3] (0,0,1) -- (1,0,1) -- (1,0,-1) -- (0,0,-1) -- cycle;
+ \draw[<->] (0,1.2,1) -- (0,1.2,-1) node[midway] {\contour{white}{$\omega$}};
+ \draw[<->] (0,0,1.4) -- (1,0,1.4) node[midway] {\contour{white}{$\omega$}};
+\end{tikzpicture}
+\end{wrapfigure}
+O momento de dipolo magnético é definido como
+\begin{equation}
+ \vec{m} \equiv I \int d\vec{a} = I \vec{a}.
+\end{equation}
+
+Vamos separar agora os dois loops, o do plano $xz$ é
+\begin{equation}
+ \vec{m}_1 = I\omega^2 \hat{y},
+\end{equation}
+e no plano $xy$ é
+\begin{equation}
+ \vec{m}_2 = I\omega^2 \hat{z}.
+\end{equation}
+
+A soma total do momento magnético será então
+\begin{equation}
+ \vec{m} = \vec{m}_1 + \vec{m}_2 = I\omega^2 (\hat{y} + \hat{z}).
+\end{equation}
+
+Muito fácil, não é? Tem nem graça.
+
+\section{Campo magnético de um plano infinito}
+Vamos considerar um plano infinito percorrido por uma densidade superficial de corrente uniforme em uma direção $\vec{K} = K \hat{x}$. Pela regra da mão direita,
+o campo deve estar na direção $-\hat{y}$ acima do plano e $\hat{y}$ abaixo do plano. A lei de Ampère nos diz que
+\begin{equation}
+ \oint \vec{B} \cdot d\vec{l} = \mu_0 I_{\mathrm{enc}}.
+\end{equation}
+
+Pela simetria do problema, nossa curva amperiana será um retângulo, onde a densidade de corrente irá cruzar perpendicularmente o retângulo. Assim,
+\begin{alignat}{1}
+ B(d) L - B(-d)L &= \mu_0 K L\\
+ B(d) L + B(d)L &= \mu_0 K L\\
+ B(d) &= \frac{\mu_0 K}{2}.
+\end{alignat}
+
+Utilizando a lei de Ampère para o potencial vetor:
+\begin{alignat}{1}
+ \oint \vec{A} \cdot d\vec{l} &= \Phi_M\\
+ A L &= B L d\\
+ A &= B d \\
+ \vec{A} &= \frac{\mu_0 K}{2} z \hat{x}.
+\end{alignat}
+
+Calculando o rotacional de $\vec{A}$ para ver se obtivemos o campo realmente:
+\begin{equation}
+ \nabla \times \vec{A} = \frac{\partial A_x}{\partial z}\hat{y} = \frac{\mu_0 K}{2}\hat{y} = \vec{B},
+\end{equation}
+confirmando nossa expectativa.
+
+\section{Campo elétrico e magnético dentro de um solenoide infinito percorrido por corrente}
+Vamos considerar um solenoide infinito, com $n$ voltas, percorrido centralmente por uma corrente não estacionária do tipo $I = I_0 \sin{\omega t}$. Sabendo da equação
+de Maxwell
+\begin{equation}
+ \nabla \times \vec{E} + \frac{\partial \vec{B}}{\partial t} = 0
+\end{equation}
+
+\section{Potencial vetor do fio percorrido por corrente}
+Teremos que, pela lei de Ampère, fora do foi:
+\begin{alignat}{1}
+ \oint \vec{B} \cdot d\vec{l} &= \mu_0 I_{\mathrm{enc}}\\
+ B 2\pi s &= \mu_0 J \pi R^2\\
+ B &= \frac{\mu_0 J R^2}{2 s}.
+\end{alignat}
+
+Já que $\vec{B}$ está na direção $\hat{\phi}$, $\vec{A}$ deve estar na direção $\hat{z}$. Nossa curva amperiana será um retângulo de dois lados paralelos ao eixo
+$\hat{z}$:
+\begin{alignat}{1}
+ \oint \vec{A} \cdot d\vec{l} &= \Phi_M\\
+ A(d_1)L - A(d_2)L &= L \frac{\mu_0 J R^2}{2} \int_{d_1}^{d_2} \frac{ds}{s}\\
+ A(d_1) - A(d_2) &= \frac{\mu_0 J R^2}{2} \ln{\left(\frac{d_1}{d_2}\right)}.
+\end{alignat}
+
+Dentro do fio:
+\begin{alignat}{1}
+ B &= \frac{\mu_0 J s}{2}\\
+ \oint \vec{A} \cdot d\vec{l} &= \Phi_M\\
+\end{alignat}
+
+
+\section{Primeira questão do Jackson}
+Começando da expressão
+\begin{equation}
+ d\vec{B} = \frac{\mu_0J}{4\pi}dl^{\prime} \times \frac{\vec{x} - \vec{x}^{\prime}}{\left| \vec{x} - \vec{x}^{\prime}\right|^3},
+\end{equation}
+para a indução magnética no ponto $P$ com coordenadas $\vec{x}$, produzido por um incremento de corrente $Idl^{\prime}$ em $\vec{x}^{\prime}$, vamos mostrar
+explicitamente que para um loop fechado carregando uma corrente $I$ a indução magnética em $P$ é
+\begin{equation}
+ \vec{B} = \frac{\mu_0J}{4\pi}\nabla\Omega,
+\end{equation}
+onde $\Omega$ é o ângulo sólido subentendido pelo loop no ponto $P$. Isto corresponde a um potencial  escalar magnético de $\Phi_M = -\mu_0I\Omega\slash4\pi$. A
+convenção de sinal para o ângulo sólido é tal que $\Omega$ é positivo se o ponto $P$ vê o lado ``interior'' da superfície expandindo o loop, isto é 
+
+\end{document}

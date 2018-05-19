@@ -1,0 +1,206 @@
+\documentclass{article}
+
+\usepackage[portuguese]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{indentfirst}
+\usepackage{geometry}
+\geometry{
+a4paper,
+top=20mm,
+bottom=20mm,
+left=20mm,
+right=20mm
+}
+\usepackage{lipsum}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\newcommand{\reais}{{\rm I\!R}}
+
+\begin{document}
+\section{Prova das propriedades do delta de Dirac}
+\subsection{Avaliar o $\delta(\alpha (x-x_0))$}
+Vamos considerar a integral
+\begin{equation}
+ \int_{-\infty}^{\infty} f(x)\delta(\alpha (x-x_0)) dx.
+\end{equation}
+Substituindo $u = \alpha (x-x_0)$, teremos que $du = \alpha dx$. No caso em que $\alpha > 0$, teremos que a integral irá naturalmente de um valor negativo para um
+positivo, mas caso $\alpha$ seja menor que zero, a integral irá de um valor positivo para um negativo, invertendo o sentido, onde teremos que alterar o sinal da integral
+para o resultado ser correto. Logo, separaremos em dois casos:
+\begin{alignat}{1}
+ &\int_{-\infty}^{\infty} f\left(\frac{u}{\alpha} + x_0\right)\delta(u) \frac{du}{\alpha},\ \alpha > 0,\\
+ -&\int_{-\infty}^{\infty} f\left(\frac{u}{\alpha} + x_0\right)\delta(u) \frac{du}{\alpha},\ \alpha < 0.
+\end{alignat}
+
+Estas expressões podem ser unidas em uma caso consideremos o módulo de $\alpha$ e reconheçamos que $\alpha = |\alpha|$ no primeiro caso e $\alpha = -|\alpha|$ no
+segundo. Assim,
+\begin{equation}
+ \int_{-\infty}^{\infty} f\left(\frac{u}{\alpha} + x_0\right)\delta(u) \frac{du}{|\alpha|}.
+\end{equation}
+
+Pela definição de $\delta{(u)}$:
+\begin{equation}\label{eq:fxzerosobrealfa}
+ \int_{-\infty}^{\infty} f\left(\frac{u}{\alpha} + x_0\right)\delta(u) \frac{du}{|\alpha|} = \frac{f(x_0)}{|\alpha|}.
+\end{equation}
+
+Finalmente,
+\begin{equation}\label{eq:deltadealfa}
+ \int_{-\infty}^{\infty} f(x)\delta(\alpha (x-x_0)) dx = \frac{f(x_0)}{|\alpha|}.
+\end{equation}
+
+\subsection{Avaliar o $\delta^{\prime}(x)$}
+Vamos considerar a integral
+\begin{equation}
+ \int_{-\infty}^{\infty} f(x)\frac{d\delta(x)}{dx} dx.
+\end{equation}
+
+Integrando por partes, teremos que
+\begin{equation}
+ \int_{-\infty}^{\infty} f(x)\frac{d\delta(x)}{dx} dx = \left. f(x)\delta(x)\right|_{-\infty}^{\infty} - \int_{-\infty}^{\infty} \frac{df(x)}{dx}\delta(x) dx.
+\end{equation}
+Mas $f(x)\delta(x) = 0,\ \forall x \neq 0$, pela própria definição do delta. Logo,
+\begin{equation}
+ \int_{-\infty}^{\infty} f(x)\frac{d\delta(x)}{dx} dx = - \int_{-\infty}^{\infty} \frac{df(x)}{dx}\delta(x) dx.
+\end{equation}
+
+Concluímos então que
+\begin{equation}
+ \int_{-\infty}^{\infty} f(x)\frac{d\delta(x)}{dx} dx = - \frac{df(0)}{dx}.
+\end{equation}
+
+\subsection{Avaliar o $\delta((x-x_1)(x-x_2))$}
+Vamos considerar a integral
+\begin{equation}\label{eq:deltax1x2}
+ \int_{-\infty}^{\infty} f(x)\delta((x-x_1)(x-x_2)) dx.
+\end{equation}
+
+Pelas propriedades da função delta, a integral $\int f(x)\delta(x)dx$ é nula se integrada em um intervalo que não contém o $0$, e igual a $f(0)$ caso contrário. Isto pode
+ser generalizado ``trocando'' $x$ por uma função real contínua em suas raízes. Assim, a integral (ex $\int f(x)\delta(g(x))dx$) será nula caso integrada em um intervalo
+que não contém nenhuma raiz do argumento (ex $g(x)$) da delta (ex $\delta(g(x))$), pois $\delta{(\xi)} = 0,\ \forall\ \xi \in \reais,\ \xi \neq 0$.
+
+Desta forma, teremos que a integral \eqref{eq:deltax1x2} poderá ser decomposta em
+\begin{alignat}{1}
+\nonumber
+ \int_{-\infty}^{\infty} f(x)\delta((x-x_1)(x-x_2)) dx = \int_{x_1 - \epsilon_1}^{x_1 + \epsilon_1} &f(x)\delta((x-x_1)(x-x_2)) dx +\\
+ &+ \int_{x_2 - \epsilon_2}^{x_2 + \epsilon_2} f(x)\delta((x-x_1)(x-x_2)) dx,\label{eq:somadeltapartes}
+\end{alignat}
+onde $\epsilon_1$ é escolhido de maneira a garantir tanto a continuidade de $f$ em $x_1$ quanto a existência de apenas esta raiz no intervalo de integração. A mesma coisa
+pode ser dita para $\epsilon_2$, $f$, $x_2$.
+
+Vamos agora considerar $\chi$ como sendo o conjunto $(x_1 - \epsilon_1,x_1 + \epsilon_1)$, e $y \in \chi$. Relembrando a propriedade \eqref{eq:deltadealfa}, fica
+evidente que
+\begin{alignat}{1}
+ \int_{x_1 - \epsilon_1}^{x_1 + \epsilon_1} f(x)\delta((x-x_1)(x-x_2)) dx &\leq
+ \lim \sup_{y \in \chi} \int_{x_1 - \epsilon_1}^{x_1 + \epsilon_1} f(x)\delta((x-x_1)y) dx\\
+ &= \int_{x_1 - \epsilon_1}^{x_1 + \epsilon_1} f(x)\delta((x-x_1)(x_1 - \epsilon_1 - x_2)) dx\\
+ &= \frac{1}{|x_1 - \epsilon_1 - x_2|}\int_{x_1 - \epsilon_1}^{x_1 + \epsilon_1} f(x)\delta(x-x_1) dx.
+\end{alignat}
+De maneira análoga para o \textit{infimum},
+\begin{alignat}{1}
+ \int_{x_1 - \epsilon_1}^{x_1 + \epsilon_1} f(x)\delta((x-x_1)(x-x_2)) dx &\geq
+ \lim \inf_{y \in \chi} \int_{x_1 - \epsilon_1}^{x_1 + \epsilon_1} f(x)\delta((x-x_1)y) dx\\
+ &= \int_{x_1 - \epsilon_1}^{x_1 + \epsilon_1} f(x)\delta((x-x_1)(x_1 + \epsilon_1 - x_2)) dx\\
+ &= \frac{1}{|x_1 + \epsilon_1 - x_2|}\int_{x_1 - \epsilon_1}^{x_1 + \epsilon_1} f(x)\delta(x-x_1) dx.
+\end{alignat}
+
+Logo, chegamos à conclusão de que
+\begin{alignat}{2}
+ \lim \inf_{y \in \chi} \int_{x_1 - \epsilon_1}^{x_1 + \epsilon_1} f(x)\delta((x-x_1)y) dx \leq \int_{x_1 - \epsilon_1}^{x_1 + \epsilon_1} f(x)\delta((x-x_1)(x-x_2))
+ \leq \lim \sup_{y \in \chi} \int_{x_1 - \epsilon_1}^{x_1 + \epsilon_1} f(x)\delta((x-x_1)y) dx,\\
+ \frac{1}{|x_1 + \epsilon_1 - x_2|}\int_{x_1 - \epsilon_1}^{x_1 + \epsilon_1} f(x)\delta(x-x_1) dx \leq \int_{x_1 - \epsilon_1}^{x_1 + \epsilon_1} f(x)\delta((x-x_1)(x-x_2))
+ \leq \frac{1}{|x_1 - \epsilon_1 - x_2|}\int_{x_1 - \epsilon_1}^{x_1 + \epsilon_1} f(x)\delta(x-x_1) dx.
+\end{alignat}
+
+Consequentemente, existe um $\epsilon_1$ tal que
+\begin{equation}
+ \frac{1}{|x_1 - x_2|}\int_{x_1 - \epsilon_1}^{x_1 + \epsilon_1} f(x)\delta(x-x_1) dx \leq \int_{x_1 - \epsilon_1}^{x_1 + \epsilon_1} f(x)\delta((x-x_1)(x-x_2))
+ \leq \frac{1}{|x_1 - x_2|}\int_{x_1 - \epsilon_1}^{x_1 + \epsilon_1} f(x)\delta(x-x_1) dx.
+\end{equation}
+Pelo teorema do confronto,
+\begin{equation}
+ \int_{x_1 - \epsilon_1}^{x_1 + \epsilon_1} f(x)\delta((x-x_1)(x-x_2)) = \frac{1}{|x_1 - x_2|}\int_{x_1 - \epsilon_1}^{x_1 + \epsilon_1} f(x)\delta(x-x_1) dx.
+\end{equation}
+
+Procedendo de maneira análoga para $x_2$, teremos que
+\begin{equation}
+ \int_{x_2 - \epsilon_2}^{x_2 + \epsilon_2} f(x)\delta((x-x_1)(x-x_2)) = \frac{1}{|x_2 - x_1|}\int_{x_2 - \epsilon_2}^{x_2 + \epsilon_2} f(x)\delta(x-x_2) dx.
+\end{equation}
+
+Retormando \eqref{eq:somadeltapartes}, concluímos que
+\begin{alignat}{1}
+ \int_{-\infty}^{\infty} f(x)\delta((x-x_1)(x-x_2)) dx &= \frac{1}{|x_1 - x_2|}\int_{x_1 - \epsilon_1}^{x_1 + \epsilon_1} f(x)\delta(x-x_1) dx + 
+ \frac{1}{|x_2 - x_1|}\int_{x_2 - \epsilon_2}^{x_2 + \epsilon_2} f(x)\delta(x-x_2) dx\\
+ &= \frac{1}{|x_1 - x_2|}\int_{x_1 - \epsilon_1}^{x_1 + \epsilon_1} f(x)\delta(x-x_1) dx - 
+ \frac{1}{|x_1 - x_2|}\int_{x_2 - \epsilon_2}^{x_2 + \epsilon_2} f(x)\delta(x-x_2) dx\\
+ &= \frac{1}{|x_1 - x_2|}\left( \int_{x_1 - \epsilon_1}^{x_1 + \epsilon_1} f(x)\delta(x-x_1) dx - \int_{x_2 - \epsilon_2}^{x_2 + \epsilon_2} f(x)\delta(x-x_2) dx \right).
+\end{alignat}
+Resgatando os limites originais de integração, devido às propriedades do delta:
+\begin{alignat}{1}
+ \int_{-\infty}^{\infty} f(x)\delta((x-x_1)(x-x_2)) dx 
+ &= \frac{1}{|x_1 - x_2|}\left( \int_{x_1 - \epsilon_1}^{x_1 + \epsilon_1} f(x)\delta(x-x_1) dx - \int_{x_2 - \epsilon_2}^{x_2 + \epsilon_2} f(x)\delta(x-x_2) dx \right)\\
+ &= \frac{1}{|x_1 - x_2|}\left( \int_{-\infty}^{\infty} f(x)\delta(x-x_1) dx - \int_{-\infty}^{\infty} f(x)\delta(x-x_2) dx \right)\\
+ &= \frac{1}{|x_1 - x_2|}\int_{-\infty}^{\infty} f(x)\left( \delta(x-x_1) - \delta(x-x_2) \right) dx.\\
+\end{alignat}
+
+Finalmente,
+\begin{equation}
+ \delta((x-x_1)(x-x_2)) = \frac{\delta(x-x_1) - \delta(x-x_2)}{|x_1 - x_2|}.
+\end{equation}
+
+\subsection{Avaliar o $\delta(f)$}
+Como $f(x_0) = 0$, vamos expandir $f(x)$ em torno deste ponto:
+\begin{equation}
+ f(x) = f(x_0) + (x - x_0)f^{\prime}(x_0) + \ldots.
+\end{equation}
+Porém, $f(x_0) = 0$. Logo,
+\begin{equation}
+ f(x) = (x - x_0)f^{\prime}(x_0) + \ldots.
+\end{equation}
+
+Então, o $\delta(f(x))$ será
+\begin{equation}\label{eq:expansao}
+ \delta(f(x)) = \delta((x - x_0)f^{\prime}(x_0) + \ldots).
+\end{equation}
+
+Integrando em todo o espaço, teremos
+\begin{equation}
+ \int_{-\infty}^{\infty}g(x)\delta(f(x))dx = \int_{x_0 - \epsilon}^{x_0 + \epsilon}g(x)\delta(f(x))dx,
+\end{equation}
+pois $f(x)$ só é nula em $x = x_0$. Todos os outros valores são irrelevantes para a delta.
+
+Substituindo a expansão \eqref{eq:expansao}:
+\begin{equation}
+ \int_{x_0 - \epsilon}^{x_0 + \epsilon}g(x)\delta(f(x))dx = \int_{x_0 - \epsilon}^{x_0 + \epsilon} g(x)\delta((x - x_0)f^{\prime}(x_0) + \ldots) dx.
+\end{equation}
+
+Tomando um limite de $\epsilon$ tão pequeno quanto desejado, os termos de ordem $n=2$ ou superiores em $x^n$ podem ser desprezados. Logo,
+\begin{equation}
+ \int_{x_0 - \epsilon}^{x_0 + \epsilon} g(x)\delta((x - x_0)f^{\prime}(x_0) + \ldots) dx = \int_{x_0 - \epsilon}^{x_0 + \epsilon} g(x)\delta((x - x_0)f^{\prime}(x_0)) dx.
+\end{equation}
+Utilizando as propriedades dos quesitos anteriores para a função Delta:
+\newline($\int \delta(kx)g(x)dx = |k|^{-1}g(0) = |k|^{-1}\int \delta(x)g(x)dx$ e $\int \delta(x-x_0)g(x)dx = g(x_0)$)
+\begin{equation}
+ \int_{x_0 - \epsilon}^{x_0 + \epsilon} g(x)\delta((x - x_0)f^{\prime}(x_0)) dx =
+ \frac{1}{|f^{\prime}(x_0)|}\int_{x_0 - \epsilon}^{x_0 + \epsilon} g(x)\delta((x - x_0)) dx.
+\end{equation}
+Temos então que
+\begin{alignat}{1}
+ \int_{x_0 - \epsilon}^{x_0 + \epsilon}g(x)\delta(f(x))dx &= \int_{x_0 - \epsilon}^{x_0 + \epsilon} g(x)\delta((x - x_0)f^{\prime}(x_0)) dx,\\
+ &= \frac{1}{|f^{\prime}(x_0)|}\int_{x_0 - \epsilon}^{x_0 + \epsilon} g(x)\delta(x-x_0)dx,\\
+ &= \int_{x_0 - \epsilon}^{x_0 + \epsilon} \frac{1}{|f^{\prime}(x_0)|} g(x)\delta(x-x_0)dx.
+\end{alignat}
+
+Como a igualdade
+\begin{equation}
+ \int_{x_0 - \epsilon}^{x_0 + \epsilon}g(x)\delta(f(x))dx = \int_{x_0 - \epsilon}^{x_0 + \epsilon} \frac{1}{|f^{\prime}(x_0)|} g(x)\delta(x-x_0)dx
+\end{equation}
+vale para qualquer $g(x)$ contínua em $x = x_0$, os integrantes devem ser iguais:
+\begin{equation}
+ g(x)\delta(f(x)) = \frac{1}{|f^{\prime}(x_0)|} g(x)\delta(x-x_0).
+\end{equation}
+
+Consequentemente,
+\begin{equation}
+ \delta(f(x)) = \frac{1}{|f^{\prime}(x_0)|} \delta(x-x_0),
+\end{equation}
+independente do valor de $g(x)$.
+\end{document}

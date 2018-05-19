@@ -1,0 +1,146 @@
+\documentclass{article}
+
+\usepackage[portuguese]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{indentfirst}
+\usepackage{geometry}
+\geometry{
+a4paper,
+top=20mm,
+bottom=20mm,
+left=20mm,
+right=20mm
+}
+\usepackage{lipsum}
+\usepackage{amsmath}
+\usepackage{mathtools}
+
+\begin{document}
+\section{Prova da regra de L'Hôspital para o caso nulo \newline($\lim_{x \to c} f(x) = \lim_{x \to c} g(x) = 0$)}
+Vamos supor que ambas, $f(x)$ e $g(x)$ podem ser escritas como séries de potência, e $g^{\prime}(c) \neq 0$. Expandindo-as em torno do ponto $x=c$:
+\begin{alignat}{1}
+ f(x) &= f(c) + (x-c)f^{\prime}(c) + \frac{(x-c)^2}{2}f^{\prime\prime}(c) + \ldots, \\
+ g(x) &= g(c) + (x-c)g^{\prime}(c) + \frac{(x-c)^2}{2}g^{\prime\prime}(c) + \ldots.
+\end{alignat}
+Porém, como $f(c) = g(c) = 0$, pois, caso contrário, saberíamos exatamente quanto vale o limite, temos que
+\begin{alignat}{1}
+ f(x) &= (x-c)f^{\prime}(c) + \frac{(x-c)^2}{2}f^{\prime\prime}(c) + \ldots, \\
+ g(x) &= (x-c)g^{\prime}(c) + \frac{(x-c)^2}{2}g^{\prime\prime}(c) + \ldots.
+\end{alignat}
+
+Assim,
+\begin{equation}
+ \lim_{x \to c} \frac{f(x)}{g(x)} = \lim_{x \to c} \frac{(x-c)f^{\prime}(c) + \frac{(x-c)^2}{2}f^{\prime\prime}(c) + \ldots}
+ {(x-c)g^{\prime}(c) + \frac{(x-c)^2}{2}g^{\prime\prime}(c) + \ldots}.
+\end{equation}
+Colocando $(x-c)$ em evidência:
+\begin{equation}
+ \lim_{x \to c} \frac{f(x)}{g(x)} = \lim_{x \to c} \frac{(x-c)(f^{\prime}(c) + \frac{(x-c)}{2}f^{\prime\prime}(c) + \ldots)}
+ {(x-c)(g^{\prime}(c) + \frac{(x-c)}{2}g^{\prime\prime}(c) + \ldots)}.
+\end{equation}
+Levando-nos a
+\begin{equation}
+ \lim_{x \to c} \frac{f(x)}{g(x)} = \lim_{x \to c} \frac{f^{\prime}(c) + \frac{(x-c)}{2}f^{\prime\prime}(c) + \ldots}
+ {g^{\prime}(c) + \frac{(x-c)}{2}g^{\prime\prime}(c) + \ldots}.
+\end{equation}
+Como $f^{(n)}(c)$ são constantes, e $(x-c)$ é exatamente 0 em $c$,
+\begin{equation}
+ \lim_{x \to c} \frac{f(x)}{g(x)} = \lim_{x \to c} \frac{f^{\prime}(c)}
+ {g^{\prime}(c)}.
+\end{equation}
+
+\section{Prova da regra de L'Hôspital para o caso divergente\newline($\lim_{x \to c} |f(x)| = \lim_{x \to c} |g(x)| = \infty$)}
+Para cada $x$ no intervalo, vamos considerar
+\begin{equation}
+ m(x) = \inf{\frac{f^{\prime}(\xi)}{g^{\prime}(\xi)}},
+\end{equation}
+e
+\begin{equation}
+ M(x) = \sup{\frac{f^{\prime}(\xi)}{g^{\prime}(\xi)}},
+\end{equation}
+onde $\xi$ ``varre'' todos os valores entre $x$ e $c$. Ao encontrar um valor mínimo no intervalo $]x,c[$, temos $m$ para aquele $x$ considerado. O mesmo vale para quando
+encontrarmos o maior valor no intervalo, tendo então $M$. Note que a variável $x$ está explícita nas funções porque, de acordo com a nossa escolha de intervalo aberto
+$]x,c[$, o valor de $m$ e $M$ pode mudar.
+
+O Teorema do Valor Médio de Cauchy nos diz que, para quaisquer dois valores $x$ e $y$ no intervalo considerado, existe um $\xi$ entre $x$ e $y$ (dentro do intervalo),
+tal que
+\begin{alignat}{1}
+ f^{\prime}(\xi) &= \frac{f(x) - f(y)}{x - y},\\
+ g^{\prime}(\xi) &= \frac{g(x) - g(y)}{x - y}.
+\end{alignat}
+
+Consequentemente, teremos
+\begin{equation}
+ \frac{f(x) - f(y)}{g(x) - g(y)} = \frac{f^{\prime}(\xi)}{g^{\prime}(\xi)}.
+\end{equation}
+
+Ora, $f^{\prime}(\xi) \slash g^{\prime}(\xi)$, para um $\xi$ qualquer, será sempre maior ou igual que o valor mínimo da razão $f^{\prime} \slash g^{\prime}$ no
+intervalo $]x,c[$, ou seja, $f^{\prime}(\xi) \slash g^{\prime}(\xi) \geq m(x)$, e também sempre menor ou igual que seu valor máximo no mesmo intervalo, ou seja,
+$f^{\prime}(\xi) \slash g^{\prime}(\xi) \leq M(x)$.
+
+Temos então as desigualdades
+\begin{equation}
+ m(x) \leq \frac{f(x) - f(y)}{g(x) - g(y)} \leq M(x).
+\end{equation}
+Colocando $g(y)$ em evidência:
+\begin{equation}
+ m(x) \leq \frac{\frac{f(x)}{g(y)} - \frac{f(y)}{g(y)}}{\frac{g(x)}{g(y)} - 1} \leq M(x).
+\end{equation}
+No limite em que $y$ se aproxima de $c$, tanto $f(y)$ quanto $g(y)$ tendem a divergir, por hipótese. Logo,
+\begin{equation}
+ \lim_{y \to c} \frac{f(x)}{f(y)} = \lim_{y \to c} \frac{g(x)}{g(y)} = 0.
+\end{equation}
+
+Teremos então
+\begin{alignat}{2}
+ \lim_{y \to c} m(x) &\leq \lim_{y \to c} \frac{\frac{f(x)}{g(y)} - \frac{f(y)}{g(y)}}{\frac{g(x)}{g(y)} - 1} &&\leq \lim_{y \to c} M(x),\\
+ m(x) &\leq \lim_{y \to c} \frac{0 - \frac{f(y)}{g(y)}}{0 - 1} &&\leq M(x),\\
+ &m(x) \leq \lim_{y \to c} \frac{f(y)}{g(y)} &&\leq M(x).\\
+\end{alignat}
+Mas, como não sabemos se o limite 
+\begin{equation}
+ \lim_{y \to c} \frac{f(y)}{g(y)}
+\end{equation}
+existe, é mais adequado reescrever a expressão de outra maneira:
+\begin{equation}
+ m(x) \leq \lim_{\substack{y \in ]x,c[\\y \to c}} \inf \frac{f(y)}{g(y)} \leq \lim_{\substack{y \in ]x,c[\\y \to c}} \sup \frac{f(y)}{g(y)} \leq M(x)
+\end{equation}
+
+No limite em que $x \to c$, teremos
+\begin{alignat}{2}
+ \lim_{x \to c} &\left( \lim_{\substack{y \in ]x,c[\\y \to c}} \inf \frac{f(y)}{g(y)} \right) &&= \lim_{x \to c} \inf \frac{f(x)}{g(x)},\\
+ \lim_{x \to c} &\left( \lim_{\substack{y \in ]x,c[\\y \to c}} \sup \frac{f(y)}{g(y)} \right) &&= \lim_{x \to c} \sup \frac{f(x)}{g(x)}.\\
+\end{alignat}
+Logo, o limite existe.
+
+Teremos também, no mesmo limite, que
+\begin{alignat}{2}
+ \lim_{x \to c} m(x) &= \lim_{x \to c}\inf{\frac{f^{\prime}(\xi)}{g^{\prime}(\xi)}} &&= L,\\
+ \lim_{x \to c} M(x) &= \lim_{x \to c} \sup{\frac{f^{\prime}(\xi)}{g^{\prime}(\xi)}} &&= L,
+\end{alignat}
+pois, quando se ``espreme'' o intervalo, aproximando $x$ de $c$ em $]x,c[$, o valor máximo e o valor mínimo irão tender para o mesmo valor. Logo,
+\begin{alignat}{2}
+ \lim_{x \to c} m(x) &\leq \lim_{x \to c} \lim_{y \to c} \frac{f(y)}{g(y)} &&\leq \lim_{x \to c}M(x),\\
+ L &\leq \lim_{x \to c} \lim_{y \to c} \frac{f(y)}{g(y)} &&\leq L.
+\end{alignat}
+
+Então, pelo Teorema do Sanduíche,
+\begin{equation}
+ \lim_{x \to c} \inf \frac{f(x)}{g(x)} = \lim_{x \to c} \sup \frac{f(x)}{g(x)}=  \lim_{x \to c} \frac{f(x)}{g(x)} = L.
+\end{equation}
+
+Como
+\begin{equation}
+ \lim_{x \to c} m(x) = \lim_{x \to c} M(x) = L,
+\end{equation}
+teremos que, consequentemente,
+\begin{equation}
+ \lim_{x \to c}\inf{\frac{f^{\prime}(\xi)}{g^{\prime}(\xi)}} = \lim_{x \to c} \sup{\frac{f^{\prime}(\xi)}{g^{\prime}(\xi)}} =
+ \lim_{x \to c} \frac{f^{\prime}(x)}{g^{\prime}(x)} = L.
+\end{equation}
+Assim,
+\begin{equation}
+ \lim_{x \to c} \frac{f(x)}{g(x)} = \lim_{x \to c} \frac{f^{\prime}(x)}{g^{\prime}(x)}.
+\end{equation}
+
+\end{document}

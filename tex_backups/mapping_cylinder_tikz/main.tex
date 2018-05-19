@@ -1,0 +1,75 @@
+\documentclass{standalone}
+
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+
+\begin{document}
+
+\tdplotsetmaincoords{80}{170}
+\tdplotsetrotatedcoords{0}{0}{0} %<- rotate around (z,y,z)
+\begin{tikzpicture}[scale=1,tdplot_main_coords,
+		declare function={
+				   xfunc(\rad,\ang,\hei) = {\rad*(1-exp(-\hei/5)*(cos(\ang)))*cos(\ang)+4*exp(-\hei/3)};
+				   yfunc(\rad,\ang,\hei) = {\rad*(1-exp(-\hei/5)*(cos(\ang)))*sin(\ang)+1*exp(-\hei/3)};
+% % 				   xfunc(\rad,\ang) = {\rad*cos(\ang)};
+% % 				   yfunc(\rad,\ang) = {\rad*sin(\ang)};
+				   zfunc(\hei) = {\hei};
+				   revfunc(\k) = {10};
+				  }
+		   ]
+
+		   
+  \begin{scope}[canvas is xy plane at z=0]
+    \draw (-5,0) circle (20);
+%     \draw (0,0) -- (20,0) node[pos=1.3] {$x$};
+%     \draw (0,0) -- (0,20) node[pos=1.3] {$y$};
+  \end{scope}
+
+%   \begin{scope}[scale=20]
+%    \draw[->] (0,0,0) -- (1,0,0) node[pos=1.02]{\Huge $x$};
+%    \draw[->] (0,0,0) -- (0,1,0) node[pos=1.02]{\Huge $y$};
+%    \draw[->] (0,0,0) -- (0,0,1) node[pos=1.02]{\Huge $z$};
+%   \end{scope}
+
+ \def\npoints{40}
+ \def\height{10}
+ \def\incremento{1}
+ \foreach \h in {0,\incremento,...,\height}
+ {
+%   \draw[thick,blue] ({revfunc(\h)},0,\h) -- ({revfunc(\h+\incremento)},0,\h+\incremento);
+  \foreach \t in {0,1,2,...,\npoints}
+  {
+    \pgfmathsetmacro{\th}{360*\t/(\npoints+1)};
+    \pgfmathsetmacro{\r}{revfunc(\h)};
+    \pgfmathsetmacro{\nextradius}{revfunc(\h+\incremento)};
+    \pgfmathsetmacro{\nextangle}{360*(\t+1)/(\npoints+1)};
+
+    \ifthenelse{\h = 0}
+    {
+      \path[draw,black]
+	({xfunc(\r,\th,\h)},{yfunc(\r,\th,\h)},{zfunc(\h)}) -- ({xfunc(\r,\nextangle,\h)},{yfunc(\r,\nextangle,\h)},{zfunc(\h)});
+    }{}
+    
+    \path[draw,red!80!black!30,opacity=0.5,ultra thin,fill=red!50!white,fill opacity=0.8]
+      ({xfunc(\r,\th,\h)},{yfunc(\r,\th,\h)},{zfunc(\h)}) -- ({xfunc(\r,\nextangle,\h)},{yfunc(\r,\nextangle,\h)},{zfunc(\h)})
+	-- ({xfunc(\nextradius,\nextangle,\h+\incremento)},{yfunc(\nextradius,\nextangle,\h+\incremento)},{zfunc(\h+\incremento)}) -- 
+	  ({xfunc(\nextradius,\th,\h+\incremento)},{yfunc(\nextradius,\th,\h+\incremento)},{zfunc(\h+\incremento)}) -- cycle;
+	  
+    \ifthenelse{\h = \height}
+    {
+      \path[draw,black]
+	({xfunc(\nextradius,\nextangle,\h+\incremento)},{yfunc(\nextradius,\nextangle,\h+\incremento)},{zfunc(\h+\incremento)}) -- 
+	  ({xfunc(\nextradius,\th,\h+\incremento)},{yfunc(\nextradius,\th,\h+\incremento)},{zfunc(\h+\incremento)});
+    }{}
+  }
+ }
+ 
+%  \begin{scope}[canvas is xz plane at y = 0]
+%    \draw (-18,0) -- (-18,\height) node[midway,anchor=west] {\Huge $M_f$};
+%   \end{scope}
+%  \node at ({20*cos(180)},{20*sin(180)},\height) {\Huge $X$};
+%  \node at (0,0,0) {\Huge $f(X)$};
+ 
+\end{tikzpicture}
+
+\end{document}

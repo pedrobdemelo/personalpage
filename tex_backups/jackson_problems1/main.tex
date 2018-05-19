@@ -1,0 +1,971 @@
+\documentclass{article}
+
+\usepackage{geometry}
+\geometry{
+a4paper,
+top = 20mm,
+bottom = 20mm,
+left = 20mm,
+right = 20mm}
+
+\usepackage[portuguese]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+\usepackage{tikz,tikz-3dplot}
+\usetikzlibrary{shapes}
+\usetikzlibrary{patterns}
+\usepackage[outline]{contour}
+\contourlength{0.9pt}
+\usepackage{wrapfig}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{cases}
+\usepackage{lipsum}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+% \usepackage{calrsfs}
+% \usepackage{BOONDOX-calo}
+\allowdisplaybreaks
+% 
+% \author{Pedroka}
+% \date{Julho 2017}
+\author{}
+\date{}
+\title{\vspace{-1cm}Soluções da lista de eletro 1, do \raisebox{\depth}{\rotatebox{180}{{\color{orange}\uppercase{\textit{\textbf{J a c k s o n}}}}}}}
+
+\newcommand\shadetext[2][]{%
+  \setbox0=\hbox{{\special{pdf:literal 7 Tr }#2}}%
+  \tikz[baseline=0]\path [#1] \pgfextra{\rlap{\copy0}} (0,-\dp0) rectangle (\wd0,\ht0);%
+}
+\newcommand{\eval}[3]{\left. #1 \right\rvert_{#2}^{#3}}
+\def\Xint#1{\mathchoice
+   {\XXint\displaystyle\textstyle{#1}}%
+   {\XXint\textstyle\scriptstyle{#1}}%
+   {\XXint\scriptstyle\scriptscriptstyle{#1}}%
+   {\XXint\scriptscriptstyle\scriptscriptstyle{#1}}%
+   \!\int}
+\def\XXint#1#2#3{{\setbox0=\hbox{$#1{#2#3}{\int}$}
+     \vcenter{\hbox{$#2#3$}}\kern-.5\wd0}}
+\def\ddashint{\Xint=}
+\def\dashint{\Xint-}
+
+\begin{document}
+% \maketitle
+\vspace{-1.5cm}
+\section{Cilindro com bordas aterradas e potencial na superfície lateral}
+\begin{wrapfigure}[13]{l}{0.4\textwidth}
+\begin{tikzpicture}[>=stealth]
+% \draw[pattern = north east lines] (0,0) ellipse (1.25 and 0.5);
+\path[opacity=0.8,pattern color=yellow,pattern = north east lines] (0,-3.5) ellipse (1.25 and 0.5);
+\draw[opacity = 0.8] (0,-3.5) -- (0,0);
+\draw[->,opacity = 0.8] (0,-1.75) -- (1.8,-1.75) node[above] {$\rho$};
+\draw [dashed] (-1.25,-1.75) arc (180:360:1.25 and -0.5);
+\draw (-1.25,-1.75) arc (180:360:1.25 and 0.5);
+\draw[opacity = 0.8] (0.625,-1.75) arc (360:290:0.625 and 0.25) node[midway,right] {\contour{white}{$\phi$}};
+% \path (0.625,-1.75) arc (360:290:0.625 and 0.25) -- (0,-1.75);
+\path (1,-1.75) arc (360:290:1 and 0.4) coordinate (fimarco);%-- (0,-1.75);
+\draw[<-,opacity = 0.8] (fimarco) -- (0,-1.75);
+\draw[fill=yellow,fill opacity=0.8] (0,0) ellipse (1.25 and 0.5);
+\node at (0,0) {\contour{white}{$V(z = L) = 0$}};
+\draw (-1.25,0) -- (-1.25,-3.5);
+\draw (-1.25,-3.5) arc (180:360:1.25 and 0.5);
+\draw [dashed] (-1.25,-3.5) arc (180:360:1.25 and -0.5);
+\draw (1.25,-3.5) -- (1.25,0);
+% \fill [gray,opacity=0.05] (-1.25,0) -- (-1.25,-3.5) arc (180:360:1.25 and 0.5) -- (1.25,0) arc (0:180:1.25 and -0.5);
+% \path[opacity=0.8,pattern color=red,pattern = north east lines] (0,-3.5) ellipse (1.25 and 0.5);
+% \path[opacity=0.5,color=red,fill] (0,-3.5) ellipse (1.25 and 0.5);
+\node at (0,-3.5) {\contour{white}{$V(z=0) = 0$}};
+\draw[->,opacity = 0.5] (0,0) -- (0,1) node[right] {$z$};
+% \path [pattern = north west lines,opacity=0.5] (-1.25,-3.5) arc (180:360:1.25 and 0.5) -- (1.25,-3.5) arc (0:180:1.25 and -0.5);
+\end{tikzpicture}
+\hspace{0.2cm}
+\begin{tikzpicture}
+\draw (0,0) ellipse (1.25 and 0.5);
+\draw (-1.25,0) -- (-1.25,-3.5);
+\draw (-1.25,-3.5) arc (180:360:1.25 and 0.5);
+% \draw [dashed] (-1.25,-3.5) arc (180:360:1.25 and -0.5);
+\draw (1.25,-3.5) -- (1.25,0);
+\path [fill,orange,opacity=0.1] (-1.25,0) -- (-1.25,-3.5) arc (180:360:1.25 and 0.5) -- (1.25,0) arc (0:180:1.25 and -0.5);
+\path [pattern = north east lines,opacity=0.2] (-1.25,0) -- (-1.25,-3.5) arc (180:360:1.25 and 0.5) -- (1.25,0) arc (0:180:1.25 and -0.5);
+\node at (0,-1.75) {\contour{white}{$V = V(\phi)$}};
+% \path [pattern = north west lines,opacity=0.5] (-1.25,-3.5) arc (180:360:1.25 and 0.5) -- (1.25,-3.5) arc (0:180:1.25 and -0.5);
+\end{tikzpicture}
+\caption{Cilindro a ser estudado. Tampas aterradas e lateral com potencial dependente de $\phi$ fixo.}
+\end{wrapfigure}
+Vamos considerar um cilindro com as tampas aterradas e a borda submetida a um potencial $V = V(\phi)$. Nossas condições de contorno para este problema serão:
+% \[
+% V(\rho,\phi,z) = 
+%  \begin{cases}
+%   V(\rho,\phi,z = 0) &= 0\mathrm{,} \\
+%   V(\rho,\phi,z = L) &= 0\mathrm{,} \\
+%   V(\rho = R,\phi,z) &= V(\phi)\mathrm{.}
+%  \end{cases}
+% \]
+
+\begin{subnumcases}{V(\rho,\phi,z) = }
+   V(\rho,\phi,z = 0) = 0 \mathrm{,} \label{eq:zzero}\\
+   V(\rho,\phi,z = L) = 0  \mathrm{,} \label{eq:zL} \\
+   V(\rho = R,\phi,z) = V(\phi)\mathrm{.} \label{eq:bordas}
+\end{subnumcases}
+
+A solução da equação diferencial de Laplace em coordenadas cilíndricas, por sua vez, é dada por
+\begin{multline}
+ V(\rho,\phi,z) = \sum_{\nu = 0}^{\infty} \ \sum_{\mathclap{\substack{k \neq 0 \\ k = -\infty}}}^{\infty} (E_{\nu}J_{\nu}(k\rho) + F_{\nu}N_{\nu}(k \rho)) \times \\
+ \times (C_{\nu}\cos{\nu \phi} + D_{\nu}\sin{\nu \phi})(A_k e^{kz} + B_k e^{-kz}) \mathrm{.}
+\end{multline}
+
+Para o potencial dentro do cilindro, nossa solução deve ser regular em todo ponto, inclusive em $\rho = 0$. A solução radial então não pode depender das funções
+de Neumann, visto que estas são irregulares na origem. Podemos, ao mesmo tempo, absorver a constante ($E_{\nu}$) que acompanha a função de Bessel nas outras constantes
+de nossa solução. Temos então
+\begin{equation}
+ V(\rho,\phi,z) = \sum_{\nu = 0}^{\infty} \ \sum_{\mathclap{\substack{k \neq 0 \\ k = -\infty}}}^{\infty} J_{\nu}(k\rho)
+ (C_{\nu}\cos{\nu \phi} + D_{\nu}\sin{\nu \phi})(A_k e^{kz} + B_k e^{-kz}) \mathrm{.}
+\end{equation}
+
+Vamos utilizar a primeira condição de contorno, \eqref{eq:zzero}, em nosso potencial:
+\begin{equation}
+ V(\rho,\phi,0) = \sum_{\nu = 0}^{\infty} \ \sum_{\mathclap{\substack{k \neq 0 \\ k = -\infty}}}^{\infty} J_{\nu}(k\rho)
+ (C_{\nu}\cos{\nu \phi} + D_{\nu}\sin{\nu \phi})(A_k + B_k) = 0 \mathrm{.}
+\end{equation}
+
+Como a condição vale para todo valor de $\rho$ e $\phi$, temos que $A_k + B_k$ deve ser nulo, $\forall k$. Desta forma, $B_k = -A_k$, e a parte longitudinal da solução
+será
+\begin{equation}
+ A_k e^{kz} + B_k e^{-kz} = A_k (e^{kz} - e^{-kz}) = 2A_k \frac{e^{kz} - e^{-kz}}{2} \propto A_k \sinh{kz}\mathrm{,}
+\end{equation}
+onde podemos unificar as constantes sem problema algum.
+
+Nosso potencial se resume agora a
+\begin{equation}
+ V(\rho,\phi,z) = \sum_{\nu = 0}^{\infty} \ \sum_{\mathclap{\substack{k \neq 0 \\ k = -\infty}}}^{\infty} J_{\nu}(k\rho)
+ (C_{\nu}\cos{\nu \phi} + D_{\nu}\sin{\nu \phi})A_k \sinh{kz} \mathrm{.}
+\end{equation}
+Na segunda condição, \eqref{eq:zL}:
+\begin{equation}
+ V(\rho,\phi,L) = \sum_{\nu = 0}^{\infty} \ \sum_{\mathclap{\substack{k \neq 0 \\ k = -\infty}}}^{\infty} J_{\nu}(k\rho)
+ (C_{\nu}\cos{\nu \phi} + D_{\nu}\sin{\nu \phi})A_k \sinh{kL} = 0\mathrm{.}
+\end{equation}
+Para isto ocorrer, novamente, precisamos que $\sinh{kL}$ seja nulo. Ora,
+\begin{equation}
+ \sinh{kL} = \frac{e^{kL} - e^{-kL}}{2} = 0 \implies e^{kL} = e^{-kL}\mathrm{,}
+\end{equation}
+o que só é possível caso $k$ seja puramente imaginário, visto que $L \neq 0$ (verifique se quiser). Vamos então adotar $k$ como real, e substituir $k \to i k$:
+\begin{equation}
+ \sinh{(ikL)} = \frac{e^{ikL} - e^{-ikL}}{2} = i \sin{kL} = 0\mathrm{.}
+\end{equation}
+Desta forma,
+\begin{equation}
+ \sin{kL} = 0 \mathrm{,}
+\end{equation}
+o que implica em
+\begin{equation}\label{eq:ken}
+ kL = n \pi,\ \forall n \in \mathbb{Z},\ \mathrm{ou,\ }k = \frac{n \pi}{L}\mathrm{.}
+\end{equation}
+
+A soma em $k$ em nossa solução para o potencial pode ser substituída por uma soma em $n$, visto que ambos se relacionam pela condição \eqref{eq:ken}. Temos assim então
+\begin{equation}
+ V(\rho,\phi,z) = \sum_{\nu = 0}^{\infty} \ \sum_{\mathclap{\substack{n \neq 0 \\ n = -\infty}}}^{\infty} J_{\nu}\left(i \frac{n \pi}{L}\rho \right)
+ (C_{\nu}\cos{\nu \phi} + D_{\nu}\sin{\nu \phi})A_n i \sin{\left( \frac{n \pi}{L}z \right)} \mathrm{.}
+\end{equation}
+Se distribuirmos $A_n$ dentro do parêntesis, iremos obter duas constantes que acompanham os senos e cossenos, $A_k C_{\nu}$ e $A_k D_{\nu}$, que podem ser reescritas
+como
+\begin{alignat}{1}
+ A_n C_{\nu} = A_{n \nu}\mathrm{,}\\
+ A_n D_{\nu} = B_{n \nu}\mathrm{.}
+\end{alignat}
+Além de que as funções de Bessel com argumento puramente imaginário e multiplicadas de $i$ são representadas como
+\begin{equation}
+ i J_{\nu}\left(i \frac{n \pi}{L}\rho \right) = j_{\nu}\left( \frac{n \pi}{L}\rho \right)\mathrm{,}
+\end{equation}
+onde $j_{\nu}$ são denominadas as funções modificadas de Bessel.
+
+Nosso potencial se encontra então da forma
+\begin{equation}
+ V(\rho,\phi,z) = \sum_{\nu = 0}^{\infty} \ \sum_{\mathclap{\substack{n \neq 0 \\ n = -\infty}}}^{\infty} j_{\nu}\left( \frac{n \pi}{L}\rho \right)
+ (A_{n \nu} \cos{\nu \phi} + B_{n \nu} \sin{\nu \phi}) \sin{\left( \frac{n \pi}{L}z \right)} \mathrm{.}
+\end{equation}
+
+Vamos analisar a última condição de contorno, \eqref{eq:bordas}, sobre como fica nosso potencial nas bordas:
+\begin{equation}
+ V(R,\phi,z) = \sum_{\nu = 0}^{\infty} \ \sum_{\mathclap{\substack{n \neq 0 \\ n = -\infty}}}^{\infty} j_{\nu}\left( \frac{n \pi}{L} R \right)
+ (A_{n \nu} \cos{\nu \phi} + B_{n \nu} \sin{\nu \phi}) \sin{\left( \frac{n \pi}{L}z \right)} = V(\phi)\mathrm{.}
+\end{equation}
+A fim de utilizar a ortogonalidade dos senos e cossenos, iremos multiplicar a solução do potencial por $\sin{\left( \frac{n^{\prime} \pi}{L}z \right)}$ e
+$\sin{(\nu^{\prime}\phi)}$ e integrar em um período de oscilação:
+\begin{multline}
+ \sum_{\nu = 0}^{\infty} \ \sum_{\mathclap{\substack{n \neq 0 \\ n = -\infty}}}^{\infty}
+ \int_{-L}^{L} \! \int_{-\pi}^{\pi}
+ A_{n \nu} j_{\nu}\left( \frac{n \pi}{L} R \right) \cos{(\nu \phi)} \sin{\left( \frac{n \pi}{L}z \right)} \sin{(\nu^{\prime} \phi)}
+ \sin{\left( \frac{n^{\prime} \pi}{L}z \right)} d\phi dz+ \\
+ + \int_{-L}^{L} \!  \int_{-\pi}^{\pi}
+ B_{n \nu} j_{\nu}\left( \frac{n \pi}{L} R \right) \sin{(\nu \phi)} \sin{\left( \frac{n \pi}{L}z \right)} \sin{(\nu^{\prime} \phi)}
+ \sin{\left( \frac{n^{\prime} \pi}{L}z \right)} d\phi dz = \\
+ = \int_{-L}^{L} \!  \int_{-\pi}^{\pi}
+ V(\phi) \sin{(\nu^{\prime} \phi)} \sin{\left( \frac{n^{\prime} \pi}{L}z \right)} d\phi dz \mathrm{.}
+\end{multline}
+
+É útil lembrar das relações de integrais entre senos e cossenos num período de oscilação:
+\begin{alignat}{2}
+ &\int_{0}^{2 \pi} \sin{(m \theta)} \sin{(m^{\prime}\theta)} d\theta &=& \pi \delta_{m,m^{\prime}}, \mathrm{onde\ }m, m^{\prime} \geq 1 \mathrm{,}\\
+ &\int_{0}^{2 \pi} \cos{(m \theta)} \sin{(m^{\prime}\theta)} d\theta &=& 0\mathrm{.}
+\end{alignat}
+
+Da segunda relação vemos de cara que a integral que acompanha $A_{n \nu}$ é zero. Logo, o que nos resta é avaliar a integral que acompanha $B_{n \nu}$.
+\begin{multline}
+ \int_{-L}^{L} \!  \int_{-\pi}^{\pi}
+ B_{n \nu} j_{\nu}\left( \frac{n \pi}{L} R \right) \sin{(\nu \phi)} \sin{\left( \frac{n \pi}{L}z \right)} \sin{(\nu^{\prime} \phi)}
+ \sin{\left( \frac{n^{\prime} \pi}{L}z \right)} d\phi dz = \\
+ B_{n \nu} j_{\nu}\left( \frac{n \pi}{L} R \right)
+ \int_{-\pi}^{\pi}
+ \sin{(\nu \phi)}\sin{(\nu^{\prime} \phi)} d\phi \int_{-L}^{L}\sin{\left( \frac{n \pi}{L}z \right)}\sin{\left( \frac{n^{\prime} \pi}{L}z \right)}
+  dz\mathrm{,}
+\end{multline}
+onde a primeira integra será:
+\begin{equation}
+ \int_{-\pi}^{\pi} \sin{(\nu \phi)}\sin{(\nu^{\prime} \phi)} d\phi = \pi \delta_{\nu,\nu^{\prime}}, \forall \nu, \nu^{\prime} \neq 0\mathrm{,}
+\end{equation}
+verifique se quiser. E a segunda será
+\begin{equation}
+ \int_{-L}^{L}\sin{\left( \frac{n \pi}{L}z \right)}\sin{\left( \frac{n^{\prime} \pi}{L}z \right)} dz =
+ \frac{L}{\pi} \int_{-\pi}^{\pi}\sin{\left( n u \right) }\sin{\left( n^{\prime}u \right)} du = L \delta_{n, n^{\prime}}
+\end{equation}
+com a substituição $\pi z \slash L = u$. Retornando ao potencial original:
+\begin{multline}
+ \sum_{\nu = 0}^{\infty} \ \sum_{\mathclap{\substack{n \neq 0 \\ n = -\infty}}}^{\infty}
+ \int_{-L}^{L} \!  \int_{-\pi}^{\pi}
+ B_{n \nu} j_{\nu}\left( \frac{n \pi}{L} R \right) \sin{(\nu \phi)} \sin{\left( \frac{n \pi}{L}z \right)} \sin{(\nu^{\prime} \phi)}
+ \sin{\left( \frac{n^{\prime} \pi}{L}z \right)} d\phi dz = \\
+ = \sum_{\nu = 0}^{\infty} \ \sum_{\mathclap{\substack{n \neq 0 \\ n = -\infty}}}^{\infty} B_{n \nu} j_{\nu}\left( \frac{n \pi}{L} R \right)
+ \pi \delta_{\nu,\nu^{\prime}} L \delta_{n, n^{\prime}} = B_{n^{\prime} \nu^{\prime}} j_{\nu^{\prime}}\left( \frac{n^{\prime} \pi}{L} R \right) \pi L, \forall
+ \nu^{\prime} n^{\prime} \neq 0\mathrm{,}
+\end{multline}
+o que nos leva a
+\begin{equation}
+ B_{n^{\prime} \nu^{\prime}} = \frac{1}{\pi L j_{\nu^{\prime}}\left( \frac{n^{\prime} \pi}{L} R \right)}\int_{-L}^{L} \!  \int_{-\pi}^{\pi}
+ V(\phi) \sin{(\nu^{\prime} \phi)} \sin{\left( \frac{n^{\prime} \pi}{L}z \right)} d\phi dz, \forall \nu^{\prime}, n^{\prime} \geq 1 \mathrm{.}
+\end{equation}
+Para $n^{\prime} = 0$ ou $\nu^{\prime} = 0$, uma ou outra integral será nula, então $B_{n^{\prime}0}$ e $B_{0\nu^{\prime}}$ serão nulos para
+todo $n^{\prime}$ e $\nu^{\prime}$, respectivamente. Para $n^{\prime}$ negativo, a integral inverte seu sinal, dada a paridade do seno. Ou seja,
+\begin{equation}
+ B_{n^{\prime} \nu^{\prime}} = \frac{-1}{\pi L j_{\nu^{\prime}}\left( \frac{n^{\prime} \pi}{L} R \right)}\int_{-L}^{L} \!  \int_{-\pi}^{\pi}
+ V(\phi) \sin{(\nu^{\prime} \phi)} \sin{\left( \frac{n^{\prime} \pi}{L}z \right)} d\phi dz, \forall n^{\prime} < 0, \nu^{\prime} \neq 0 \mathrm{.}
+\end{equation}
+
+Podemos multiplicar a expressão original do potencial por $\cos{(\nu^{\prime}\phi)}$ e integrar no período de oscilação, de tal forma que
+\begin{multline}
+ \sum_{\nu = 0}^{\infty} \ \sum_{\mathclap{\substack{n \neq 0 \\ n = -\infty}}}^{\infty}
+ \int_{-L}^{L} \! \int_{-\pi}^{\pi}
+ A_{n \nu} j_{\nu}\left( \frac{n \pi}{L} R \right) \cos{(\nu \phi)} \sin{\left( \frac{n \pi}{L}z \right)} \cos{(\nu^{\prime} \phi)}
+ \sin{\left( \frac{n^{\prime} \pi}{L}z \right)} d\phi dz+ \\
+ + \int_{-L}^{L} \!  \int_{-\pi}^{\pi}
+ B_{n \nu} j_{\nu}\left( \frac{n \pi}{L} R \right) \sin{(\nu \phi)} \sin{\left( \frac{n \pi}{L}z \right)} \cos{(\nu^{\prime} \phi)}
+ \sin{\left( \frac{n^{\prime} \pi}{L}z \right)} d\phi dz = \\
+ = \int_{-L}^{L} \!  \int_{-\pi}^{\pi}
+ V(\phi) \cos{(\nu^{\prime} \phi)} \sin{\left( \frac{n^{\prime} \pi}{L}z \right)} d\phi dz \mathrm{.}
+\end{multline}
+As relações integrais são análogas às apresentadas anteriormente, de tal forma que temos
+\begin{alignat}{2}
+ &\int_{0}^{2 \pi} \cos{(m \theta)} \cos{(m^{\prime}\theta)} d\theta &=& \pi \delta_{m,m^{\prime}}, \mathrm{onde\ }m, m^{\prime} \neq 0 \mathrm{,}\\
+ &\int_{0}^{2 \pi} \cos{(m \theta)} \cos{(m^{\prime}\theta)} d\theta &=& 2\pi, \mathrm{se\ }m, m^{\prime} = 0 \mathrm{,}\\
+ &\int_{0}^{2 \pi} \cos{(m \theta)} \cos{(m^{\prime}\theta)} d\theta &=& 0, \mathrm{se\ ou\ }m = 0 \mathrm{\ ou\ } m^{\prime} = 0 \mathrm{,}\\
+ &\int_{0}^{2 \pi} \sin{(m \theta)} \cos{(m^{\prime}\theta)} d\theta &=& 0\mathrm{.}
+\end{alignat}
+De maneira análoga à anterior, para os $B_{n^{\prime} \nu^{\prime}}$, encontramos as relações para os $A_{n^{\prime} \nu^{\prime}}$ como
+\begin{alignat}{1}
+ A_{n^{\prime} \nu^{\prime}} &= \frac{1}{\pi L j_{\nu^{\prime}}\left( \frac{n^{\prime} \pi}{L} R \right)}\int_{-L}^{L} \!  \int_{-\pi}^{\pi}
+ V(\phi) \cos{(\nu^{\prime} \phi)} \sin{\left( \frac{n^{\prime} \pi}{L}z \right)} d\phi dz, \forall \nu^{\prime}, n^{\prime} \neq 0 \mathrm{,}\\
+ A_{00} &= \frac{1}{2\pi L j_{\nu^{\prime}}\left( \frac{n^{\prime} \pi}{L} R \right)}\int_{-L}^{L} \!  \int_{-\pi}^{\pi}
+ V(\phi) \sin{\left( \frac{n^{\prime} \pi}{L}z \right)} d\phi dz \mathrm{,}\\
+ A_{0\nu^{\prime}} &= A_{n^{\prime}0} = 0\mathrm{.}
+\end{alignat}
+\hfill$\blacksquare$
+\section{Aplicando a solução para um potencial bipolar}
+Vamos agora aplicar o resultado obtido anteriormente para encontrar o potencial causado por uma distribuição do potencial onde metade (em $\phi$) do cilindro é
+mantida em $V_0$ e metade do cilindro mantida a $-V_0$.
+\begin{wrapfigure}[11]{l}{0.2\textwidth}
+\begin{tikzpicture}[>=stealth]
+\path[pattern = north east lines] (0,0) ellipse (1.25 and 0.5);
+\draw (0,0) ellipse (1.25 and 0.5);
+\draw (-1.25,0) -- (-1.25,-3.5);
+\draw (-1.25,-3.5) arc (180:360:1.25 and 0.5);
+\path[fill,red,opacity = 0.5] (-1.25,-3.5) arc (180:270:1.25 and 0.5) -- (0,-0.5) arc (270:180:1.25 and 0.5) -- cycle;
+\path[fill,red,opacity = 0.2] (-1.25,-3.5) arc (180:270:1.25 and 0.5) -- (0,0.5) arc (90:180:1.25 and 0.5) -- cycle;
+% \path[fill,red,opacity = 0.5] (-1.25,-3.5) arc (180:90:1.25 and 0.5) -- (0,0.5) arc (90:180:1.25 and 0.5) -- cycle;
+\path[fill,blue,opacity = 0.5] (1.25,-3.5) arc (0:-90:1.25 and 0.5) -- (0,-0.5) arc (270:360:1.25 and 0.5) -- cycle;
+\path[fill,blue,opacity = 0.2] (1.25,-3.5) arc (0:-90:1.25 and 0.5) -- (0,0.5) arc (90:0:1.25 and 0.5) -- cycle;
+% \path[fill,blue,opacity = 0.5] (1.25,-3.5) arc (0:90:1.25 and 0.5) -- (0,0.5) arc (90:0:1.25 and 0.5) -- cycle;
+\draw [dashed] (-1.25,-3.5) arc (180:360:1.25 and -0.5);
+\draw (1.25,-3.5) -- (1.25,0);
+\path[pattern = north east lines,opacity=0.2] (0,-3.5) ellipse (1.25 and 0.5);
+\node at (0.625,-1.75) {$-V$};
+\node at (-0.625,-1.75) {$+V$};
+% linha central do cilindro
+% \draw (0,-0.5) -- (0,-4.0);
+\end{tikzpicture}
+\caption{Diagrama do potencial imposto no cilindro}
+\end{wrapfigure}
+As tampas ainda serão mantidas aterradas, em potencial nulo.
+
+Podemos definir matematicamente o potencial aplicado como
+\begin{equation}
+V(\rho,\phi,z) = \left\{
+\begin{alignedat}{3}
+ &+V, \mathrm{se\ } -&\pi& &\leq \phi& < 0\\
+ &-V, \mathrm{se\ } &0& &\leq \phi& < \pi
+\end{alignedat}
+\right.
+\end{equation}
+
+Para determinar os coeficientes da série do potencial, basta que calculemos as integrais
+\begin{alignat}{1}
+ &\int_{-\pi}^{\pi} V(\phi) \cos{(\nu^{\prime}\phi)} d\phi =
+ \int_{-\pi}^{0} V \cos{(\nu^{\prime}\phi)} d\phi - \int_{0}^{\pi} V \cos{(\nu^{\prime}\phi)} d\phi \mathrm{,}\\
+ &\int_{-\pi}^{\pi} V(\phi) \sin{(\nu^{\prime}\phi)} d\phi =
+ \int_{-\pi}^{0} V \sin{(\nu^{\prime}\phi)} d\phi - \int_{0}^{\pi} V \sin{(\nu^{\prime}\phi)} d\phi \mathrm{,}\\
+ &\int_{-L}^{L} \sin{\left( \frac{n^{\prime} \pi}{L}z \right)} dz \mathrm{.}
+\end{alignat}
+
+A primeira integral será ($\nu \neq 0$):
+\begin{alignat}{1}
+\nonumber
+ \int_{-\pi}^{0} V \cos{(\nu^{\prime}\phi)} d\phi - \int_{0}^{\pi} V \cos{(\nu^{\prime}\phi)} d\phi &=
+ \eval{V \frac{1}{\nu^{\prime}} \sin{(\nu^{\prime}\phi)} }{-\pi}{0} -
+ \eval{V \frac{1}{\nu^{\prime}} \sin{(\nu^{\prime}\phi)} }{0}{\pi} \\ \nonumber
+ &= V \frac{1}{\nu^{\prime}} \sin{(\nu^{\prime}\pi)} - V \frac{1}{\nu^{\prime}} \sin{(\nu^{\prime}\pi)} \\
+ &= 0\mathrm{.}
+\end{alignat}
+A segunda ($\nu \neq 0$):
+\begin{alignat}{1}
+\nonumber
+ \int_{-\pi}^{0} V \sin{(\nu^{\prime}\phi)} d\phi - \int_{0}^{\pi} V \sin{(\nu^{\prime}\phi)} d\phi &=
+ \eval{-V \frac{1}{\nu^{\prime}} \cos{(\nu^{\prime}\phi)} }{-\pi}{0} +
+ \eval{V \frac{1}{\nu^{\prime}} \cos{(\nu^{\prime}\phi)} }{0}{\pi} \\ \nonumber
+ &= V \frac{1}{\nu^{\prime}} (\cos{(\nu^{\prime}\pi)} - 1) + V \frac{1}{\nu^{\prime}} (\cos{(\nu^{\prime}\pi)} - 1)\\
+ &= \frac{2V}{\nu^{\prime}} (\cos{(\nu^{\prime}\pi)} - 1) \mathrm{.}
+\end{alignat}
+
+Logo,
+\begin{alignat}{1}
+ A_{n^{\prime} \nu^{\prime}} &= 0\mathrm{,}\\
+ B_{n^{\prime} \nu^{\prime}} &= \frac{1}{\pi L j_{\nu^{\prime}}\left( \frac{n^{\prime} \pi}{L} R \right)}
+ \left[ \frac{2V}{\nu^{\prime}} (\cos{(\nu^{\prime}\pi)} - 1) \right]
+ \int_{-L}^{L} \sin{\left( \frac{n^{\prime} \pi}{L}z \right)} dz, \forall \nu^{\prime}, n^{\prime} \geq 1 \mathrm{.}
+\end{alignat}
+
+\section{Plano infinito aterrado com disco mantido a um potencial fixo}
+\begin{wrapfigure}[11]{l}{0.35\textwidth}
+\def\lado{2}
+\def\raio{1}
+\tdplotsetmaincoords{70}{110}
+\begin{tikzpicture}[scale=1,tdplot_main_coords,>=stealth]
+\path[pattern=north west lines] (-\lado,-\lado,0) .. controls (-\lado-1,-1) and (-\lado+1,0) ..
+(-\lado,\lado,0)
+-- (\lado,\lado,0) -- (\lado,-\lado,0) -- cycle;
+ \path[fill,white!50!gray,opacity=0.3] (-\lado,-\lado,0) .. controls (-\lado-1,-1) and (-\lado+1,0) ..
+ (-\lado,\lado,0) -- (\lado,\lado,0) -- (\lado,-\lado,0) -- cycle;
+ \draw[thick,fill=white!70!blue,fill opacity = 1] (0,0,0) circle (\raio) node[left] {$V$};
+ \draw[->] (0,0,0) -- (3,0,0) node[anchor=north east]{$x$};
+ \draw[->] (0,0,0) -- (0,3,0) node[anchor=north west]{$y$};
+ \draw[->] (0,0,0) -- (0,0,2) node[anchor=south]{$z$};
+ \node[above] at (-\lado,-\lado,0) {$V = 0$};
+\end{tikzpicture}
+\caption{Diagrama das condições de contorno. Feio, mas ilustrativo.}
+\end{wrapfigure}
+Vamos considerar agora um plano infinito aterrado, onde nele há um disco circular, centrado na origem, de raio $a$, e este círculo é mantido a um potencial constante,
+$V$.
+
+As condições de contorno podem ser escritas matematicamente como
+\begin{subnumcases}{V(\rho,\phi,0) = }
+ V, \mathrm{\ se\ } \rho < a, \\
+ 0, \mathrm{\ caso\ contr\acute{a}rio}\mathrm{.}
+\end{subnumcases}
+A solução para a equação de Laplace em coordenadas cilíndricas é
+\begin{multline}
+ V(\rho,\phi,z) = \sum_{\nu = 0}^{\infty} \ \sum_{\mathclap{\substack{k \neq 0 \\ k = -\infty}}}^{\infty} (E_{\nu}J_{\nu}(k\rho) + F_{\nu}N_{\nu}(k \rho))\times\\
+ \times (C_{\nu}\cos{\nu \phi} + D_{\nu}\sin{\nu \phi})(A_k e^{kz} + B_k e^{-kz}) \mathrm{.}
+\end{multline}
+
+Como nosso potencial deve desaparecer para pontos muito longe do disco, $A_k = 0$ se $k > 0$. Para $k < 0$, o mesmo acontece com $B_k$. Como a soma se extende até o
+infinito, é irrelevante impormos esta condição explicitamente, sendo igualmente equivalente utilizar $A_k = 0, \forall k$, e $k>0$, apenas. Para que o potencial seja
+regular na origem, $F_{\nu} = 0$. Note também que para mantermos a simetria azimutal, é necessário restringirmos nosso valor de $\nu$ para $0$ apenas. Qualquer outro
+valor de $\nu$ irá causar a aparição de termos dependentes de $\phi$, tornando o potencial variante ante uma transformação $\phi \to \phi + \delta\phi$. Assim, teremos
+\begin{equation}
+ V(\rho,\phi,z) = \sum_{\mathclap{\substack{k \neq 0 \\ k = 0}}}^{\infty} B_k J_{0}(k\rho) e^{-kz} \mathrm{.}
+\end{equation}
+Como não temos restrições para um valor de $k$, vamos generalizar para o contínuo:
+\begin{equation}
+ V(\rho,\phi,z) = \lim_{\beta \to 0}\ \ \ \mathclap{\int_{\beta}^{\infty}}\ B(k) J_{0}(k\rho) e^{-kz} dk \mathrm{.}
+\end{equation}
+
+Sabemos que as funções de Bessel obedecem à condição
+\begin{equation}
+ \mathclap{\int_{0}^{\infty}}\ z J_{n}(kz)J_{n}(k^{\prime}z) dz = \frac{1}{k} \delta(k - k^{\prime})\mathrm{.}
+\end{equation}
+Multiplicando então a expressão para o potencial por $\rho J_{0}(k^{\prime}\rho)$ e integrando de $0$ a $\infty$ em $\rho$:
+\begin{alignat}{1}
+ \int_{0}^{\infty} V(\rho,\phi,z) \rho J_{0}(k^{\prime}\rho) d\rho &=
+ \lim_{\beta \to 0} \int_{0}^{\infty} \ \mathclap{\int_{\beta}^{\infty}}\ B(k) J_{0}(k\rho) \rho J_{0}(k^{\prime}\rho) e^{-kz} dk d\rho \mathrm{,} \\
+ &= \lim_{\beta \to 0} \ \ \ \mathclap{\int_{\beta}^{\infty}}\ B(k)
+ \left( \int_{0}^{\infty} J_{0}(k\rho) \rho J_{0}(k^{\prime}\rho) d\rho \right) e^{-kz} dk \mathrm{,}\\
+ &= \lim_{\beta \to 0} \ \ \ \mathclap{\int_{\beta}^{\infty}}\ B(k) \frac{1}{k}\delta(k - k^{\prime}) e^{-kz} dk \mathrm{,} \\
+ &= B(k^{\prime}) \frac{1}{k^{\prime}} e^{-k^{\prime}z}, k^{\prime} > 0 \mathrm{.}
+\end{alignat}
+Temos então uma equação integral do tipo
+\begin{equation}
+ k^{\prime} e^{k^{\prime}z} \int_{0}^{\infty} V(\rho,\phi,z) \rho J_{0}(k^{\prime}\rho) d\rho = B(k^{\prime}), k^{\prime} > 0 \mathrm{.}
+\end{equation}
+
+Vamos agora considerar o plano $z = 0$ e aplicar nossas condições de contorno \textbf{(CORRIGIR ISTO, esqueci $k^{\prime}$)}:
+\begin{alignat}{1}
+ B(k^{\prime}) &= k^{\prime} \int_{0}^{\infty} V(\rho,\phi,0) \rho J_{0}(k^{\prime}\rho) d\rho, k^{\prime} > 0 \mathrm{,}\\
+ &= k^{\prime} \int_{0}^{a} V \rho J_{0}(k^{\prime}\rho) d\rho, k^{\prime} > 0 \mathrm{,}\\
+ &= k^{\prime} V \int_{0}^{a} \rho J_{0}(k^{\prime}\rho) d\rho, k^{\prime} > 0 \mathrm{,}\\
+ &= k^{\prime} V \int_{0}^{a} \rho \sum_{m = 0}^{\infty}\frac{(-1)^m}{m!\Gamma(m + 1)}\left( \frac{\rho}{2} \right)^{2m} d\rho, k^{\prime} > 0 \mathrm{,}\\
+ &= k^{\prime} V \sum_{m = 0}^{\infty}\frac{(-1)^m}{m!\Gamma(m + 1)}\left( \frac{1}{2} \right)^{2m} \int_{0}^{a} \rho^{2m+1} d\rho, k^{\prime} > 0 \mathrm{,}\\
+ &= k^{\prime} V \sum_{m = 0}^{\infty}\frac{(-1)^m}{m!\Gamma(m + 1)}\left( \frac{1}{2} \right)^{2m} \frac{a^{2m + 2}}{2m + 2}, k^{\prime} > 0 \mathrm{,}\\
+ &= k^{\prime} V \sum_{m = 0}^{\infty}\frac{(-1)^m}{m!\underbrace{(m + 1)\Gamma(m + 1)}_{=\Gamma(m+2)}}\left( \frac{1}{2} \right)^{2m+1}
+ a^{2m + 2}, k^{\prime} > 0 \mathrm{,}\\
+ &= k^{\prime} V a \sum_{m = 0}^{\infty}\frac{(-1)^m}{m!\Gamma(m+2)}\left( \frac{a}{2} \right)^{2m+1}, k^{\prime} > 0 \mathrm{,}\\
+ &= k^{\prime} V a J_{1}(k^{\prime}a)\mathrm{.}
+\end{alignat}
+\shadetext[left color=magenta, right color=black!30!green, middle color=white!50!purple, shading angle=90]{\Large\bfseries F i n a l m e n t e,}
+\begin{equation}
+ V(\rho,\phi,z) = \lim_{\beta \to 0}\ \ \ \mathclap{\int_{\beta}^{\infty}}\ V a J_{1}(ka) J_{0}(k\rho) e^{-kz} dk \mathrm{.}
+\end{equation}
+\hfill$\blacksquare$
+
+\section{Cilindro com tampa inferior a potencial fixo e tampa superior e borda aterradas}
+Condições de contorno:
+\begin{subnumcases}{V(\rho,\phi,z) =}
+ 0,\ \mathrm{se\ }\rho = R, \\
+ 0,\ \mathrm{se\ }z = L, \\
+ V,\ \mathrm{se\ }z = 0\mathrm{.}
+\end{subnumcases}
+
+Equação de Laplace:
+\begin{equation}
+ V(\rho,\phi,z) = \sum_{\nu = 0}^{\infty} \ \sum_{\mathclap{\substack{k \neq 0 \\ k = -\infty}}}^{\infty} (E_{\nu}J_{\nu}(k\rho) + F_{\nu}N_{\nu}(k \rho))
+ (C_{\nu}\cos{\nu \phi} + D_{\nu}\sin{\nu \phi})(A_k e^{kz} + B_k e^{-kz}) \mathrm{.}
+\end{equation}
+
+$F_{\nu} = 0$, pois queremos o potencial dentro do cilindro, e $\nu = 0$ é a única opção possível, dada a simetria azimutal. Assim:
+\begin{equation}
+ V(\rho,\phi,z) = \sum_{\mathclap{\substack{k \neq 0 \\ k = -\infty}}}^{\infty} J_{0}(k\rho)
+ (A_{k} e^{kz} + B_{k} e^{-kz}) \mathrm{.}
+\end{equation}
+Condição de contorno em $z$:
+\begin{equation}
+ V(\rho,\phi,L) = \sum_{\mathclap{\substack{k \neq 0 \\ k = -\infty}}}^{\infty} J_{0}(k\rho)
+ (A_{k} e^{kL} + B_{k} e^{-kL}) = 0 \mathrm{.}
+\end{equation}
+Pela ortogonalidade de $J_{0}(k^{\prime}\rho)$,
+\begin{equation}
+ B_k = - A_k e^{2kL}\mathrm{.}
+\end{equation}
+Em $z = 0$,
+\begin{equation}
+ V(\rho,\phi,0) = \sum_{\mathclap{\substack{k \neq 0 \\ k = -\infty}}}^{\infty} A_k J_{0}(k\rho)
+ (1 - e^{2kL}) = V \mathrm{.}
+\end{equation}
+Multiplicando por $\rho J_0(k^{\prime}\rho)$ e integrando para aproveitar a ortogonalidade:
+\begin{equation}
+ \sum_{\mathclap{\substack{k \neq 0 \\ k = -\infty}}}^{\infty} \int_{0}^{\infty} A_k J_{0}(k\rho) \rho J_0(k^{\prime}\rho)
+ (1 - e^{2kL}) d\rho = \int_{0}^{\infty} V \rho J_0(k^{\prime}\rho) d\rho \mathrm{.}
+\end{equation}
+\begin{equation}
+ A_k \frac{1}{k} (1 - e^{2kL}) = V \int_{0}^{\infty} \rho J_0(k^{\prime}\rho) d\rho \mathrm{.}
+\end{equation}
+
+% 
+% Vamos aplicar a condição de contorno no raio:
+% \begin{equation}
+%  V(R,\phi,z) = \sum_{\mathclap{\substack{k \neq 0 \\ k = -\infty}}}^{\infty} J_{0}(kR)
+%  (A_{k} e^{kz} + B_{k} e^{-kz}) = 0\mathrm{.}
+% \end{equation}
+% Multiplicando por $J_0(k^{\prime})$
+% 
+% $k$, pelo visto, deve ser contínuo. Temos então que
+% \begin{equation}
+%  V(\rho,\phi,z) = \dashint_{-\infty}^{\infty} J_{0}(k\rho)
+%  (A_{k} e^{kz} + B_{k} e^{-kz}) dk\mathrm{.}
+% \end{equation}
+% Vamos aplicar a condição de contorno no raio:
+% % \begin{equation}
+% %  V(R,\phi,z) = \sum_{\mathclap{\substack{k \neq 0 \\ k = -\infty}}}^{\infty} J_{0}(kR)
+% %  (A_{k} e^{kz} + B_{k} e^{-kz}) = 0\mathrm{.}
+% % \end{equation}
+% \begin{equation}
+%  V(R,\phi,z) = \dashint_{-\infty}^{\infty} J_{0}(kR)
+%  (A_{k} e^{kz} + B_{k} e^{-kz}) dk = 0\mathrm{.}
+% \end{equation}
+\section{Expansão em multipolos de distribuições discretas de carga}
+\begin{equation}
+ q_{lm} = \int Y^{*}_{lm}(\theta^{\prime},\phi^{\prime})r^{\prime l}\rho(\vec{x}^{\prime}) d^{3}x^{\prime}\mathrm{.}
+\end{equation}
+A distribuição de cargas é:
+\begin{equation}
+ \rho(\vec{x}) = \frac{q}{a^2}\delta(r - a)\left( \delta(\phi)+\delta\left(\phi-\frac{\pi}{2}\right)-\delta(\phi-\pi)-\delta\left(\phi - \frac{3\pi}{2}\right) \right)
+ \delta\left(\theta - \frac{\pi}{2}\right)\mathrm{.}
+\end{equation}
+Logo,
+\begin{alignat}{1}
+ q_{lm} &= \int Y^{*}_{lm}(\theta^{\prime},\phi^{\prime})r^{\prime l}\rho(\vec{x}^{\prime}) d^{3}x^{\prime}\mathrm{,}\\
+ &= \int_{0}^{\pi} \int_{0}^{2\pi} \int_{0}^{\infty} Y^{*}_{lm}(\theta^{\prime},\phi^{\prime})r^{\prime l}\rho(\vec{x}^{\prime})
+ r^{\prime 2}\sin{\theta^{\prime}} dr^{\prime} d\phi^{\prime} d\theta^{\prime} \mathrm{,}\\
+ &= q a^{l} \left(Y^{*}_{lm}(\pi \slash 2,0) + Y^{*}_{lm}(\pi \slash 2,\pi \slash 2)-Y^{*}_{lm}(\pi \slash 2,\pi) -
+ Y^{*}_{lm}(\pi \slash 2,3\pi \slash 2) \right)\mathrm{.}
+\end{alignat}
+
+A expansão do potencial para um dipolo, sabendo os momentos de dipolo\footnote{Substitua se quiser.}
+\begin{equation}
+ \Phi(\vec{x}) = \frac{1}{4 \pi \epsilon_0} \sum_{l,m}\frac{4\pi}{2l + 1} q_{lm} \frac{Y_{lm}(\theta,\phi)}{r^{l+1}}\mathrm{,}
+\end{equation}
+e
+\begin{equation}
+ Y^{*}_{lm} = (-1)^m Y_{l,-m}(\theta,\phi)\mathrm{,}
+\end{equation}
+caso queira usar.
+
+Para a outra distribuição de cargas, teremos uma densidade descrita por
+\begin{equation}
+ \rho(\vec{x}) = q \left(-2\frac{\delta(r)}{r^2 4\pi}\underbrace{\frac{\delta(\theta)}{\sin{\theta}}}_{\mathrm{arbitr\acute{a}rio}} +
+ \frac{\delta(r-a)}{a^2 2\pi} \frac{(\delta(\theta) + \delta(\theta - \pi))}{\sin{\theta}}\right)
+ \underbrace{\frac{\delta(\phi)}{2\pi}}_{\mathrm{arbitr\acute{a}rio}}\mathrm{.}
+\end{equation}
+
+Vale a pena reservar um tempo para comentar a minha indignação com este método de resolução. Aqui fazemos algo que eu não gosto muito, que é tentar driblar a
+``filtragem'' dos deltas para valores onde o resultado seria originalmente nulo, como no caso de $\delta(\theta)$. Uma partícula pontual situada em cima do eixo $z$
+positivo terá este valor acompanhando sua densidade. Porém, em coordenadas esféricas, nosso jacobiano possui um termo multiplicativo de $\sin{\theta}$. Isto irá fazer
+com que o resultado seja nulo, pois integrar $\delta(\theta)\sin{\theta}$ nos dará zero, já que $\sin{0} = 0$.
+
+Para ``driblar'' este resultado, o que se faz é considerar $\delta(\theta)\slash \sin{\theta}$, o que, teoricamente, ``removeria'' o seno do nosso integrando,
+fazendo com que o resultado da integral seja um $1$ multiplicativo, eliminando nossos problemas. Porém, isto é tão errado que eu nem sei como nomear algo do gênero,
+as camadas de erro neste feito são tão grandes que chamar isto de erro chega a ser um erro absurdo com a palavra erro. O delta de dirac ``filtra'' justamente o valor
+em $\theta = 0$ do integrando. Porém, neste caso, ambas as funções $\sin{\theta}$, no numerador e no denominador, serão nulas, fazendo com que a divisão de uma pela
+outra seja \textbf{indefinida}. Remover o zero de nossa integração ou substituí-lo por um limite seria uma tentativa inútil, pois sem o $0$ em nossa integração, não
+haveria o que o delta filtrar. Substituí-lo por um limite seria frívolo, visto que o limite da ``função'' delta de Dirac avaliada em \textbf{qualquer valor real}
+é zero. A mesma só irá divergir no exato ponto determinado pelo argumento.
+
+O delta em $\phi$ é outra arbitrariedade imensa, pois $\phi$ ali pode ser avaliado em qualquer ponto, porém, este erro não chega a ser tão crasso quanto o anterior
+para $\delta(r)$ e $\delta(\theta)$.
+
+Fechando os olhos para estas {\color{black!30!red}barbaridades}, teremos,
+\begin{alignat}{1}
+ q_{lm} &= \int Y^{*}_{lm}(\theta^{\prime},\phi^{\prime})r^{\prime l}\rho(\vec{x}^{\prime}) d^{3}x^{\prime}\mathrm{,}\\
+ &= q a^l \left( Y^{*}_{lm}(0,0) + Y^{*}_{lm}(\pi,0) \right)\mathrm{.}
+\end{alignat}
+
+\section{Dipolo pontual como uma representação alternativa de densidade de cargas}
+Vamos mostrar que a densidade de cargas
+\begin{equation}\label{eq:densdipolo}
+ \rho_{\mathrm{eff}}(\vec{x}) = - \vec{p}\cdot\nabla\delta(\vec{x}-\vec{x}_0)
+\end{equation}
+pode ser uma representação para a densidade de cargas de um dipolo.
+
+O potencial de uma distribuição de cargas é
+\begin{equation}
+ \Phi(\vec{x}) = \frac{1}{4\pi \epsilon_0} \int \rho(\vec{x}^{\prime}) \frac{1}{ | \vec{x} - \vec{x}^{\prime}|} d^3 x^{\prime}\mathrm{.}
+\end{equation}
+Substituindo a densidade nesta expressão, teremos
+\begin{alignat}{1}
+\nonumber
+ \Phi(\vec{x}) &= \frac{-1}{4\pi \epsilon_0} \int \vec{p}\cdot\nabla\delta(\vec{x}-\vec{x}_0) \frac{1}{ | \vec{x} - \vec{x}^{\prime}|} d^3 x^{\prime}\\ \nonumber
+ &= \frac{-1}{4\pi \epsilon_0} \int \vec{p}\cdot\nabla\delta(\vec{x}-\vec{x}_0) \frac{1}{ | \vec{x} - \vec{x}^{\prime}|} d^3 x^{\prime}\\ \nonumber
+ &= \frac{-1}{4\pi \epsilon_0} \vec{p}\cdot \int \nabla\delta(\vec{x}-\vec{x}_0) \frac{1}{ | \vec{x} - \vec{x}^{\prime}|} d^3 x^{\prime}\\ \nonumber
+ &= \frac{1}{4\pi \epsilon_0} \vec{p}\cdot \int \delta(\vec{x}-\vec{x}_0) \nabla \frac{1}{ | \vec{x} - \vec{x}^{\prime}|} d^3 x^{\prime}
+ \ \mathrm{(integrando\ por\ partes)}\\ \nonumber
+ &= \frac{1}{4\pi \epsilon_0} \vec{p}\cdot \int \delta(\vec{x}-\vec{x}_0)
+ \frac{(\vec{x} - \vec{x}^{\prime})}{(\vec{x} - \vec{x}^{\prime})^{3\slash 2}} d^3 x^{\prime}\\
+ &= \frac{1}{4\pi \epsilon_0} \vec{p}\cdot \frac{(\vec{x} - \vec{x}_0)}{(\vec{x} - \vec{x}_0)^{3\slash 2}} =
+ \frac{1}{4\pi \epsilon_0} \vec{p}\cdot \frac{(\vec{x} - \vec{x}_0)}{|\vec{x} - \vec{x}_0|^{3}}
+ \mathrm{,}
+\end{alignat}
+que é \shadetext[left color=blue, right color=black!50!green, middle color=orange, shading angle=45]{\bfseries justamente} o potencial do dipolo.
+
+Vamos calcular agora a energia eletrostática
+\begin{alignat}{1}
+ W &= \int \rho(\vec{x})\Phi(\vec{x})d^3x\\ \nonumber
+ &= -\int \vec{p}\cdot\nabla\delta(\vec{x}-\vec{x}_0)\Phi(\vec{x})d^3x\ \mathrm{(integrando\ por\ partes)}\\ \nonumber
+ &= \vec{p}\cdot \int \delta(\vec{x}-\vec{x}_0)\nabla\Phi(\vec{x})d^3x\\ \nonumber
+ &= - \vec{p}\cdot \int \delta(\vec{x}-\vec{x}_0)\vec{E}(\vec{x})d^3x\\
+ &= - \vec{p}\cdot \vec{E}(\vec{x}_0)\mathrm{,}
+\end{alignat}
+de acordo com o resultado esperado.
+
+Terminamos de mostrar que, aparentemente, \eqref{eq:densdipolo} é uma distribuição de cargas de um dipolo.
+
+\section{questão 5}
+\section{Interação entre um quadrupolo e um campo elétrico}
+Vamos considerar um núcleo quadrupolar, com momento de quadrupolo $Q$, submisso a um campo elétrico com simetria cilíndrica, onde o gradiente do campo é
+$(\partial E \slash \partial z )_{0}$, ao longo do eixo $z$.
+
+A energia de interação de quadrupolo é
+\begin{equation}
+ W = - \frac{1}{6}Q_{ij}\left( \frac{\partial E_i}{\partial x_j} \right)
+\end{equation}
+
+\section{Expansão em multipolos de distribuição contínua de cargas}
+Considere a seguinte distribuição:
+\begin{equation}
+ \rho(\vec{r}) = \frac{1}{64\pi}r^2 e^{-r}\sin^2{\theta}\mathrm{.}
+\end{equation}
+Podemos substituir $\sin^2{\theta}$ por $1-\cos^2{\theta}$. $P_0(\cos{\theta}) = 1$, e $P_2(\cos{\theta}) = (1 \slash 2)(3\cos^2{\theta} - 1)$. Logo,
+$\sin^2{\theta} = (2\slash 3)(P_0(\cos{\theta}) - P_2(\cos{\theta}))$. Temos então que
+\begin{equation}
+ \rho(\vec{r}) = \frac{1}{64\pi}r^2 e^{-r}\frac{2}{3}\left( P_0(\cos{\theta}) - P_2(\cos{\theta}) \right)\mathrm{.}
+\end{equation}
+
+Como sabemos, os momentos de dipolo são definidos por
+\begin{equation}
+ q_{lm} = \int Y^{*}_{lm}(\theta^{\prime},\phi^{\prime})r^{\prime l}\rho(\vec{x}^{\prime}) d^{3}x^{\prime}\mathrm{.}
+\end{equation}
+Teremos então
+\begin{alignat}{1}
+ q_{lm} &= \int Y^{*}_{lm}(\theta^{\prime},\phi^{\prime})r^{\prime l}\frac{1}{64\pi}r^{\prime 2} e^{-r}
+ \frac{2}{3}\left( P_0(\cos{\theta^{\prime}}) - P_2(\cos{\theta^{\prime}}) \right) d^{3}x^{\prime} \\
+ &= \int_{0}^{2 \pi} \! \int_{0}^{\pi} \! \int_{0}^{\infty} Y^{*}_{lm}(\theta^{\prime},\phi^{\prime})r^{\prime l}\frac{1}{96\pi}r^{\prime 2} e^{-r}
+ \left( P_0(\cos{\theta^{\prime}}) - P_2(\cos{\theta^{\prime}}) \right) r^{\prime 2} \sin{\theta^{\prime}}dr^{\prime} d\theta^{\prime} d\phi^{\prime} \\
+ &=\frac{1}{96\pi} \int_{0}^{2 \pi} \! \int_{0}^{\pi} Y^{*}_{lm}(\theta^{\prime},\phi^{\prime})\left( P_0(\cos{\theta^{\prime}}) - P_2(\cos{\theta^{\prime}}) \right)
+ \int_{0}^{\infty} (r^{\prime})^{l + 4} e^{-r} dr^{\prime} \sin{\theta^{\prime}} d\theta^{\prime} d\phi^{\prime}\\
+ &= \frac{1}{96\pi} \Gamma(l+5) \int_{0}^{2 \pi} \! \int_{0}^{\pi} Y^{*}_{lm}(\theta^{\prime},\phi^{\prime})
+ \left( P_0(\cos{\theta^{\prime}}) - P_2(\cos{\theta^{\prime}}) \right) \sin{\theta^{\prime}} d\theta^{\prime} d\phi^{\prime}, l > -5 \mathrm{.}
+\end{alignat}
+Como a simetria é azimutal, teremos que $m$ deve ser zero, para termos momentos independentes de $\phi$. A relação entre os harmônicos esféricos e os polinômios de
+Legendre é
+\begin{alignat}{1}
+ Y_{lm}(\theta,\phi) &= \sqrt{\frac{(2l + 1)}{4 \pi}\frac{(l-m)!}{(l+m)!}} P_{l}^{m}(\cos{\theta}) e^{i m \phi}\mathrm{,}\\
+ Y_{l0}(\theta,\phi) &= \sqrt{\frac{(2l + 1)}{4 \pi}} P_{l}(\cos{\theta}) \mathrm{.}
+\end{alignat}
+Teremos então que
+\begin{alignat}{1}
+ q_{l0} &= \frac{1}{96\pi} \Gamma(l+5) 2\pi \int_{0}^{\pi} \sqrt{\frac{(2l + 1)}{4 \pi}} P_{l}(\cos{\theta^{\prime}})
+ \left( P_0(\cos{\theta^{\prime}}) - P_2(\cos{\theta^{\prime}}) \right) \sin{\theta^{\prime}} d\theta^{\prime}, l > -5 \\
+ &= \frac{1}{48} \Gamma(l+5) \sqrt{\frac{(2l + 1)}{4 \pi}}
+ \left( \int_{0}^{\pi} P_{l}(\cos{\theta^{\prime}}) P_0(\cos{\theta^{\prime}})\sin{\theta^{\prime}} d\theta^{\prime} -
+ \int_{0}^{\pi} P_{l}(\cos{\theta^{\prime}}) P_2(\cos{\theta^{\prime}}) \sin{\theta^{\prime}} d\theta^{\prime} \right), l > -5 \\
+ &= \frac{1}{48} \Gamma(l+5) \sqrt{\frac{(2l + 1)}{4 \pi}}
+ \left( \frac{2}{2l + 1}\delta_{l,0} - \frac{2}{2l + 1} \delta_{l,2} \right), l > -5 \mathrm{.}
+\end{alignat}
+Logo, somente dois $q_{l0}$ irão sobreviver, $q_{00}$ e $q_{20}$:
+\begin{alignat}{1}
+ q_{00} &= \frac{1}{24} \Gamma(5) \sqrt{\frac{1}{4 \pi}} = \sqrt{\frac{1}{4 \pi}} \mathrm{,}\\
+ q_{20} &= -\frac{1}{120} \Gamma(7) \sqrt{\frac{5}{4 \pi}} = - \sqrt{\frac{45}{\pi}}\mathrm{.}
+\end{alignat}
+
+A expansão em multipolos do potencial será então
+\begin{alignat}{1}
+ \Phi &= \frac{1}{4 \pi \epsilon_0} \sum_{l = -\infty}^{\infty} \frac{4 \pi}{2l + 1} q_{l0} \frac{Y_{lm}(\theta,\phi)}{r^{l+1}} \\
+ &= \frac{1}{4 \pi \epsilon_0} \sum_{l = -\infty}^{\infty} \sqrt{\frac{4 \pi}{2l + 1}} q_{l0} \frac{P_l(\cos{\theta})}{r^{l+1}} \\
+ &= \frac{1}{4 \pi \epsilon_0} \left( \frac{1}{r} - 6 \frac{P_2(\cos{\theta})}{r^{3}} \right) \\
+ &= \frac{1}{4 \pi \epsilon_0} \left( \frac{1}{r} - \frac{9\cos^2{\theta} - 3}{r^{3}} \right)\mathrm{.}
+\end{alignat}
+Para encontrar uma expansão do potencial próxima da origem, é necessário utilizar as funções de Green.
+
+\section{Casca cilíndrica imersa num dielétrico com vácuo entre as cascas}
+
+\section{Distribuições discretas de carga sugeridas pelo Zezo}
+Avaliando as densidades das distribuições de carga fornecidas pelo zezo:
+\begin{alignat}{1}
+ \rho_a(\vec{x}) &= Q \delta(r-a)\delta\left( \theta - \frac{\pi}{2}\right)\left( -\delta(\phi) + \delta\left( \phi - \frac{\pi}{2} \right) +
+ \delta\left( \phi - \pi \right) - \delta\left( \phi - \frac{3\pi}{2} \right) \right)\\
+ \rho_b(\vec{x}) &= Q \delta(r-a)\delta\left( \theta - \frac{\pi}{2}\right)\left( \delta(\phi) + \delta\left( \phi - \frac{\pi}{2} \right) +
+ \delta\left( \phi - \pi \right) + \delta\left( \phi - \frac{3\pi}{2} \right) \right) - \frac{4Q}{2\pi} \frac{\delta(r)}{r^2}\delta(\cos{\theta}) \\
+ \rho_c(\vec{x}) &= \frac{Q}{2 \pi}\frac{\delta(r)}{r^2}\delta(\cos{\theta}) -Q\delta(r-a)\delta\left(\theta - \frac{\pi}{2}\right)
+ \left( \delta(\phi) + \delta\left( \phi - \frac{\pi}{2} \right) \right)\\
+ \rho_d(\vec{x}) &= Q\delta(r-a)\left( \frac{\delta(\cos{\theta}-1)}{2\pi} + \delta(\cos{\theta})\left(\delta(\phi) + \delta\left( \frac{\pi}{2} \right) \right) \right)
+\end{alignat}
+
+
+\section{Carga próxima a uma esfera dielétrica}
+Vamos considerar uma esfera dielétrica, com uma carga pontual próxima a sua superfície. Este problema é parecido com o problema da carga próxima à esfera condutora,
+onde se resolve por método das imagens. A diferença é que aqui é como se a carga imagem fosse ``ofuscada'', com apenas uma fração da imagem associada a um espelho
+perfeito. Considere a carga pontual acima do eixo $z$, localizada no ponto $r = a$.
+
+Para isto, consideremos a equação de Laplace em coordenadas esféricas com simetria azimutal
+\begin{equation}
+ V(r,\theta) = \sum_{l = 0}^{\infty} \left( A_l r^l + \frac{B_l}{r^{l+1}} \right) P_l (\cos{\theta})\mathrm{.}
+\end{equation}
+Vamos considerar primeiramente a solução para o potencial dentro da esfera. Neste caso, as constantes $B_l$ devem ser todas nulas, pois o potencial deve ser finito
+na origem. Logo,
+\begin{equation}
+ V_{\mathrm{in}}(r,\theta) = \sum_{l = 0}^{\infty} A_l r^l P_l (\cos{\theta})\mathrm{.}
+\end{equation}
+Por outro lado, fora da esfera, teremos
+\begin{equation}
+ V_{\mathrm{out}}(r,\theta) = \frac{1}{4 \pi \epsilon_0} \frac{q}{|\vec{x} - a\hat{z}|} + V_0(r,\theta)\mathrm{,}
+\end{equation}
+onde o potencial de uma carga pontual se apresentará junto de um potencial causado pela presença da esfera dielétrica. Vamos dar ao potencial $V_0$ a forma de uma
+solução da equação de Laplace, visto que não temos outra fonte de carga.
+\begin{equation}
+ V_0(r,\theta) = \sum_{l = 0}^{\infty} \frac{B_l}{r^{l+1}} P_l (\cos{\theta})\mathrm{,}
+\end{equation}
+pois é necessário que o potencial desapareça quando nos afastemos suficientemente da esfera e da carga.
+
+Podemos expandir o potencial de uma carga pontual em função de dos polinômios de Legendre, de acordo uma expressão do
+\raisebox{\depth}{\rotatebox{10} {{\color{orange}\bfseries \uppercase{J a c k s o n}}}},
+que não lembro qual e necessito buscar o livro para olhar, perdendo o conforto do sofá. De qualquer forma,
+\begin{equation}
+ \frac{1}{|\vec{x} - a\hat{z}|} = \sum_{l = 0}^{\infty} \frac{r_{<}^l}{r_{>}^{l+1}} P_l(\cos{\theta})\mathrm{,}
+\end{equation}
+onde $r_>$ é o maior entre $r$ e $a$, e $r_<$ é o menor entre $r$ e $a$. Bom, nosso potencial geral será
+\begin{alignat}{1}
+ V_{\mathrm{out}}(r,\theta) &= \frac{q}{4 \pi \epsilon_0} \sum_{l = 0}^{\infty} \frac{r_{<}^l}{r_{>}^{l+1}} P_l(\cos{\theta}) +
+ \sum_{l = 0}^{\infty} \frac{B_l}{r^{l+1}} P_l (\cos{\theta}) \\
+ &= \frac{q}{4 \pi \epsilon_0} \left( \sum_{l = 0}^{\infty} \frac{r_{<}^l}{r_{>}^{l+1}} + \frac{B_l}{r^{l+1}} \right) P_l (\cos{\theta}) \mathrm{,}
+\end{alignat}
+incorporanto a constante eletrostática nos $B_l$.
+
+Vamos avaliar as condições de contorno. Como estas se dão na superfície, teremos que, obviamente, o $r_<$ será $r$, e $r_>$, consequentemente, será $a$.
+
+Vamos avaliar o campo elétrico tangente à superfície
+\begin{alignat}{2}
+ E_{\mathrm{in},\theta} &= \left. -\frac{1}{r}\frac{\partial V_{\mathrm{in}}}{\partial \theta} \right\rvert_{r = R} &=&
+ \sum_{l = 0}^{\infty} A_l R^{l-1} \frac{d P_l (\cos{\theta})}{d \theta} \sin{\theta}\\
+ E_{\mathrm{out},\theta} &= \left. -\frac{1}{r}\frac{\partial V_{\mathrm{out}}}{\partial \theta} \right\rvert_{r = R} &=& 
+ \frac{q}{4 \pi \epsilon_0} \left( \sum_{l = 0}^{\infty} \frac{R^{l-1}}{a^{l+1}} + \frac{B_l}{R^{l+2}} \right) \frac{dP_l (\cos{\theta})}{d\theta}\sin{\theta}
+\end{alignat}
+Pela continuidade do campo paralelo à superfície,
+\begin{alignat}{1}
+ E_{\mathrm{in},\theta} &= E_{\mathrm{out},\theta} \\
+ \sum_{l = 0}^{\infty} A_l R^{l-1} \frac{d P_l (\cos{\theta})}{d \theta} \sin{\theta} &=
+ \frac{q}{4 \pi \epsilon_0} \left( \sum_{l = 0}^{\infty} \frac{R^{l-1}}{a^{l+1}} + \frac{B_l}{R^{l+2}} \right) \frac{dP_l (\cos{\theta})}{d\theta}\sin{\theta}\\
+ A_l R^{l-1} &= \frac{q}{4 \pi \epsilon_0} \left( \frac{R^{l-1}}{a^{l+1}} + \frac{B_l}{R^{l+2}} \right) \\
+ A_l &= \frac{q}{4 \pi \epsilon_0} \left( \frac{1}{a^{l+1}} + \frac{B_l}{R^{2l+1}} \right)\mathrm{.}
+\end{alignat}
+Avaliando agora o deslocamento elétrico perpendicular à superfície, teremos
+\begin{alignat}{2}
+ D_{\mathrm{in},r} &= \left. -\epsilon \frac{\partial V_{in}}{\partial r} \right\rvert_{r = R} &=&
+ - \epsilon \sum_{l = 0}^{\infty} l A_l R^{l-1} P_l (\cos{\theta}) \\
+ D_{\mathrm{out},r} &= \left. -\epsilon_0 \frac{\partial V_{out}}{\partial r} \right\rvert_{r = R} &=&
+ -\frac{q}{4 \pi} \left( \sum_{l = 0}^{\infty} \frac{lR^{l-1}}{a^{l+1}} -(l+1) \frac{B_l}{R^{l+2}} \right) P_l (\cos{\theta})\mathrm{.}
+\end{alignat}
+
+Pela continuidade do deslocamento elétrico perpendicular à superfície, teremos
+\begin{alignat}{1}
+ D_{\mathrm{in},r} &= D_{\mathrm{out},r}\\
+ - \epsilon \sum_{l = 0}^{\infty} l A_l R^{l-1} P_l (\cos{\theta}) &=
+ -\frac{q}{4 \pi} \left( \sum_{l = 0}^{\infty} \frac{lR^{l-1}}{a^{l+1}} -(l+1) \frac{B_l}{R^{l+2}} \right) P_l (\cos{\theta}) \\
+ - \epsilon l A_l R^{l-1} &= -\frac{q}{4 \pi} \left( \frac{lR^{l-1}}{a^{l+1}} -(l+1) \frac{B_l}{R^{l+2}} \right) \\
+ A_l &= \frac{q}{4 \pi \epsilon} \left( \frac{1}{a^{l+1}} - \frac{(l+1)}{l} \frac{B_l}{R^{2l+1}} \right)\mathrm{.}
+\end{alignat}
+Já estamos com a faca e o queijo na mão, só resta resolver para $A_l$ e $B_l$:
+\begin{alignat}{1}
+ \frac{q}{4 \pi \epsilon_0} \left( \frac{1}{a^{l+1}} + \frac{B_l}{R^{2l+1}} \right) &=
+ \frac{q}{4 \pi \epsilon} \left( \frac{1}{a^{l+1}} - \frac{(l+1)}{l} \frac{B_l}{R^{2l+1}} \right)\\
+ \frac{1}{a^{l+1}} + \frac{B_l}{R^{2l+1}} &=
+ \frac{\epsilon_0}{\epsilon} \left( \frac{1}{a^{l+1}} - \frac{(l+1)}{l} \frac{B_l}{R^{2l+1}} \right)\\
+ \frac{B_l}{R^{2l+1}} + \frac{\epsilon_0}{\epsilon}\frac{(l+1)}{l} \frac{B_l}{R^{2l+1}}&=
+ \frac{\epsilon_0}{\epsilon} \left( \frac{1}{a^{l+1}} \right) - \frac{1}{a^{l+1}}\\
+ \frac{B_l}{R^{2l+1}} \left( 1 + \frac{\epsilon_0}{\epsilon}\frac{(l+1)}{l} \right) &=
+ \frac{1}{a^{l+1}}\left(\frac{\epsilon_0}{\epsilon} - 1\right)\\
+ B_l &= \frac{R^{2l+1}}{a^{l+1}}\frac{\left(\frac{\epsilon_0}{\epsilon} - 1\right)}{\left( 1 + \frac{\epsilon_0}{\epsilon}\frac{(l+1)}{l} \right)}\mathrm{.}
+\end{alignat}
+Substituindo para $A_l$, teremos que
+\begin{alignat}{1}
+ A_l &= \frac{q}{4 \pi \epsilon_0} \left( \frac{1}{a^{l+1}} + \frac{1}{R^{2l+1}}
+ \frac{R^{2l+1}}{a^{l+1}}\frac{\left(\frac{\epsilon_0}{\epsilon} - 1\right)}{\left( 1 + \frac{\epsilon_0}{\epsilon}\frac{(l+1)}{l} \right)} \right)\\
+ &= \frac{q}{4 \pi \epsilon_0} \frac{1}{a^{l+1}} \left( 1 + 
+ \frac{\left(\frac{\epsilon_0}{\epsilon} - 1\right)}{\left( 1 + \frac{\epsilon_0}{\epsilon}\frac{(l+1)}{l} \right)} \right)\\
+ &= \frac{q}{4 \pi \epsilon_0} \frac{1}{a^{l+1}} \left( 1 + 
+ \frac{l \left(\frac{\epsilon_0}{\epsilon} - 1\right)}{\left( l + \frac{\epsilon_0}{\epsilon}(l+1) \right)} \right)\\
+ &= \frac{q}{4 \pi \epsilon_0} \frac{1}{a^{l+1}} \left( \frac{\left( l + \frac{\epsilon_0}{\epsilon}(l+1) \right) + 
+ l \left(\frac{\epsilon_0}{\epsilon} - 1\right)}{\left( l + \frac{\epsilon_0}{\epsilon}(l+1) \right)} \right)\\
+ &= \frac{q}{4 \pi \epsilon_0} \frac{1}{a^{l+1}} \left( \frac{2\frac{\epsilon_0}{\epsilon}l+ \frac{\epsilon_0}{\epsilon}
+ }{\left( l + \frac{\epsilon_0}{\epsilon}(l+1) \right)} \right)\\
+ &= \frac{q}{4 \pi \epsilon} \frac{1}{a^{l+1}} \left( \frac{2l+ 1 }{\left( l + \frac{\epsilon_0}{\epsilon}(l+1) \right)} \right)\mathrm{.}\\
+\end{alignat}
+Desta forma, concluímos nossa expressão final para o potencial, onde temos que
+\begin{equation}
+ V_{\mathrm{in}}(r,\theta) = \frac{q}{4 \pi \epsilon} \frac{1}{a} \sum_{l = 0}^{\infty}
+ \left( \frac{2l+ 1 }{\left( l + \frac{\epsilon_0}{\epsilon}(l+1) \right)} \right) \left( \frac{r}{a} \right)^l P_l (\cos{\theta})\mathrm{,}
+\end{equation}
+e
+\begin{equation}
+ V_{\mathrm{out}}(r,\theta) = \frac{q}{4 \pi \epsilon_0} \left( \sum_{l = 0}^{\infty} \frac{r_{<}^l}{r_{>}^{l+1}} +
+ \frac{l \left(\frac{\epsilon_0}{\epsilon} - 1\right)}{\left( l + \frac{\epsilon_0}{\epsilon}(l+1) \right)}
+ \frac{R^{2l+1}}{\left( ar \right)^{l+1}} \right) P_l (\cos{\theta}) \mathrm{.}
+\end{equation}
+
+Caso coloquemos $\epsilon = \epsilon_0$, ou seja, assumindo a esfera como ``vácuo'', teremos
+\begin{equation}
+ V_{\mathrm{in}}(r,\theta) = \frac{q}{4 \pi \epsilon_0} \frac{1}{a} \sum_{l = 0}^{\infty}
+ \left( \frac{r}{a} \right)^l P_l (\cos{\theta}) = \frac{q}{4 \pi \epsilon_0} \sum_{l = 0}^{\infty} \frac{r^l}{a^{l+1}} P_l (\cos{\theta}) \mathrm{,}
+\end{equation}
+e
+\begin{equation}
+ V_{\mathrm{out}}(r,\theta) = \frac{q}{4 \pi \epsilon_0} \sum_{l = 0}^{\infty} \frac{r_{<}^l}{r_{>}^{l+1}} P_l (\cos{\theta}) \mathrm{.}
+\end{equation}
+Ora, mas isto é justamente o potencial de uma carga pontual no vácuo, posicionada no eixo $z$, em $z = a$, que confirma nosso resultado,
+\shadetext[left color=magenta, right color=purple, middle color=orange, shading angle=45]{\bfseries \textit{``with striking fashion''}}.
+\hfill $\blacksquare$
+\section{Cascas esféricas meio preenchidas com dielétrico (complicado e incompleto)}
+% \begin{tikzpicture}
+%     \begin{scope}
+%         \clip (0:2.47) arc (0:90:2.47) to[out=225,in=100,looseness=1.2] (-1.1,-1.1) to[out=-10,in=225,looseness=1.2] (0:2.47);
+%         \shade[ball color=blue!30!gray!60!black,shading angle=180] (0,0) circle (2.5);
+%     \end{scope}
+%     \shade[ball color=green!70!gray] (0,0) circle (2);
+%     \begin{scope}
+%         \clip (0:1.95) arc (0:90:1.95) to[out=225,in=100] (-0.7,-0.7) to[out=-10,in=225] (0:1.95);
+%         \shade[ball color=green!30!gray!60!black,shading angle=180] (0,0) circle (2);
+%     \end{scope}
+%     \begin{scope}
+%         \clip (0:2.45) arc (0:90:2.45) to[out=225,in=100,looseness=1.2] (-1.1,-1.1) to[out=-10,in=225,looseness=1.2]
+%         (0:2.45) -- (3,0) -- (3,-3) -- (-3,-3) -- (-3,3) -- (3,3) -- (3,0);
+%         \shade[ball color=blue!70!gray,opacity=0.90] (0,0) circle (2.5);
+%     \end{scope}
+% %     \draw[stealth-,red] (0,0) -- ++(70:3) node[right] {$r=\int\limits_{0}^{2\pi}\sin(x)\ dx$};
+%     \draw[stealth-,green!70!black] (-0.7,1) -- ++(135:2) node[above] {Esfera condutora};
+%     \draw[stealth-,blue!90] (225:2.2) -- ++(225:1) node[below] {Esfera condutora};
+% \end{tikzpicture}
+% \begin{tikzpicture}
+%  \draw (0,0) circle (1cm);
+%  \draw (0,0) circle (2cm);
+%  \draw (-2,0) -- (-1,0);
+%  \draw (2,0) -- (1,0);
+% \end{tikzpicture}
+Vamos considerar o dielétrico no hemisfério inferior, e o vácuo no superior, de maneira a preservar a simetria azimutal. A esfera interior tem carga $Q$, e a exterior
+tem sua carga igual a $-Q$.
+
+Entre as duas esferas, teremos o potencial descrito pela equação de Laplace ordinária, representada por
+\begin{equation}
+ V_{\mathrm{in}}(r,\theta) = \sum_{l=0}^{\infty} \left( A_l r^l + \frac{B_l}{r^{l+1}}\right) P_l(\cos{\theta})\mathrm{.}
+\end{equation}
+Fora da esfera, teremos a mesma equação, porém, com os coeficientes que acompanham $r^l$ serão todos nulos, pois o potencial deverá ir a zero à medida que nos
+afastemos das cargas. Ou seja,
+\begin{equation}
+ V_{\mathrm{out}}(r,\theta) = \sum_{l=0}^{\infty} \frac{C_l}{r^{l+1}} P_l(\cos{\theta})\mathrm{.}
+\end{equation}
+Vamos para as condições de contorno. Calculando o campo elétrico tangente à superfície, teremos
+\begin{alignat}{2}
+ E_{\mathrm{in},\theta} &= \left. - \frac{1}{r}\frac{\partial V_{\mathrm{in}}}{\partial \theta}\right\rvert_{r=b} &=&
+ \sum_{l=0}^{\infty} \left( A_l b^{l-1} + \frac{B_l}{b^{l+2}}\right) \frac{d P_l(\cos{\theta})}{d\theta}\sin{\theta} \\
+ E_{\mathrm{out},\theta} &= \left. - \frac{1}{r}\frac{\partial V_{\mathrm{out}}}{\partial \theta}\right\rvert_{r=b} &=&
+ \sum_{l=0}^{\infty} \frac{C_l}{b^{l+2}} \frac{d P_l(\cos{\theta})}{d\theta}\sin{\theta}\mathrm{.}
+\end{alignat}
+Aplicando a continuidade do campo tangencial:
+\begin{alignat}{1}
+ E_{\mathrm{in},\theta} &= E_{\mathrm{out},\theta}\\
+ \sum_{l=0}^{\infty} \left( A_l b^{l-1} + \frac{B_l}{b^{l+2}}\right) \frac{d P_l(\cos{\theta})}{d\theta}\sin{\theta} &=
+ \sum_{l=0}^{\infty} \frac{C_l}{b^{l+2}} \frac{d P_l(\cos{\theta})}{d\theta}\sin{\theta} \\
+ A_l b^{l-1} + \frac{B_l}{b^{l+2}} &= \frac{C_l}{b^{l+2}}\\
+ A_l b^{2l+1} + B_l &= C_l\mathrm{.}
+\end{alignat}
+O deslocamento elétrico perpendicular à superfície será:
+\begin{alignat}{2}
+ D_{\mathrm{in},r} &= \left. - \epsilon_0 \frac{\partial V_{\mathrm{in}}}{\partial r} \right\rvert_{r=b} &=&
+ -\epsilon_0 \sum_{l=0}^{\infty} \left( l A_l b^{l-1} - (l+1) \frac{B_l}{b^{l+2}}\right) P_l(\cos{\theta}), 0 < \theta < \frac{\pi}{2}\\
+ D_{\mathrm{in},r} &= \left. - \epsilon \frac{\partial V_{\mathrm{in}}}{\partial r} \right\rvert_{r=b} &=&
+ -\epsilon \sum_{l=0}^{\infty} \left( l A_l b^{l-1} - (l+1) \frac{B_l}{b^{l+2}}\right) P_l(\cos{\theta}), \frac{\pi}{2} < \theta < \pi\\
+ D_{\mathrm{out},r} &= \left. - \epsilon_0 \frac{\partial V_{\mathrm{in}}}{\partial r} \right\rvert_{r=b} &=&
+ \epsilon_0 \sum_{l=0}^{\infty} (l+1)\frac{C_l}{b^{l+2}} P_l(\cos{\theta})\mathrm{.}
+\end{alignat}
+Como temos uma carga distribuída uniformemente na superfície, $\sigma_f = Q\slash 4\pi b^2$.
+
+{\color{red}Isso tá ficando muito complicado, melhor deixar pra lá.}
+
+\section{Esfera dielétrica submissa a um campo uniforme}
+Vamos considerar uma esfera dielétrica, e um campo uniforme na direção $z$. Temos que, para pontos muito distantes de $r = R$,
+$\vec{E}(r\gg R) = E_0 \hat{z}$, e o potencial será $V(r\gg R) = - E_0 z = - E_0 r \cos{\theta}$. Assim,
+\begin{equation}
+ V_{\mathrm{out}}(r,\theta) = - E_0 r \cos{\theta} + \sum_{l = 0}^{\infty} \frac{B_l}{r^{l+1}} P_l(\cos{\theta})\mathrm{,}
+\end{equation}
+e
+\begin{equation}
+ V_{\mathrm{in}}(r,\theta) = \sum_{l = 0}^{\infty} A_l r^l P_l(\cos{\theta})\mathrm{.}
+\end{equation}
+
+O deslocamento elétrico perpendicular à superfície será
+\begin{alignat}{2}
+ D_{\mathrm{in},r} &= \left. - \epsilon \frac{\partial V_{\mathrm{in}}}{\partial r} \right\rvert_{r=b} &=&
+ -\epsilon \sum_{l=0}^{\infty} l A_l b^{l-1} P_l(\cos{\theta})\\
+ D_{\mathrm{out},r} &= \left. - \epsilon_0 \frac{\partial V_{\mathrm{in}}}{\partial r} \right\rvert_{r=b} &=&
+ \epsilon_0 \left( E_0 \cos{\theta} + \sum_{l=0}^{\infty} (l+1)\frac{B_l}{b^{l+2}} P_l(\cos{\theta}) \right)\mathrm{.}
+\end{alignat}
+
+Como não existem cargas livres no nosso problema, o deslocamento elétrico será contínuo:
+\begin{alignat}{1}
+ D_{\mathrm{in},r} &= D_{\mathrm{out},r} \\
+ -\epsilon \sum_{l=0}^{\infty} l A_l b^{l-1} P_l(\cos{\theta}) &= 
+ \epsilon_0 \left( E_0 \cos{\theta} + \sum_{l=0}^{\infty} (l+1)\frac{B_l}{b^{l+2}} P_l(\cos{\theta}) \right)\mathrm{,}\\
+\end{alignat}
+que nos leva a
+\begin{alignat}{1}
+ -\epsilon A_1 &= \epsilon_0 E_0 + 2 \epsilon_0\frac{B_1}{b^3}\mathrm{,}\\
+ -\epsilon l A_l b^{l-1} &= \epsilon_0(l+1)\frac{B_l}{b^{l+2}}\mathrm{.}
+\end{alignat}
+Precisamos agora encontrar uma outra relação entre os coeficientes para determiná-los.
+
+Vamos calcular as componentes tangenciais do campo elétrico
+\begin{alignat}{2}
+ E_{\mathrm{in},\theta} &= \left. - \frac{1}{r}\frac{\partial V_{\mathrm{in}}}{\partial \theta}\right\rvert_{r=b} &=&
+ - \sum_{l = 0}^{\infty} A_l b^{l-1} \frac{d P_l(\cos{\theta})}{d(\cos{\theta)}}\sin{\theta} \\
+ E_{\mathrm{out},\theta} &= \left. - \frac{1}{r}\frac{\partial V_{\mathrm{out}}}{\partial \theta}\right\rvert_{r=b} &=&
+ E_0 \sin{\theta} - \sum_{l = 0}^{\infty} \frac{B_l}{b^{l+2}} \frac{d P_l(\cos{\theta})}{d(\cos{\theta)}}\sin{\theta}\mathrm{.}
+\end{alignat}
+
+Pela continuidade da componente tangencial do campo elétrico,
+\begin{alignat}{1}
+ E_{\mathrm{in},\theta} &= E_{\mathrm{out},\theta} \\
+ \sum_{l = 0}^{\infty} A_l b^{l-1} \frac{d P_l(\cos{\theta})}{d(\cos{\theta)}}\sin{\theta} &=
+ E_0 \sin{\theta} + \sum_{l = 0}^{\infty} \frac{B_l}{b^{l+2}} \frac{d P_l(\cos{\theta})}{d(\cos{\theta)}}\sin{\theta}\mathrm{,}
+\end{alignat}
+nos levando a
+\begin{alignat}{1}
+ A_1 &= - E_0 + \frac{B_1}{b^{3}}\mathrm{,}\\
+ A_l b^{l-1} &= \frac{B_l}{b^{l+2}} \implies A_l = \frac{B_l}{b^{2+1}}\mathrm{.}
+\end{alignat}
+Juntando as condições para $B_l$ e $A_l$ gerais, temos que
+\begin{alignat}{1}
+ -\epsilon l \frac{B_l}{b^{2+1}} b^{l-1} &= \epsilon_0(l+1)\frac{B_l}{b^{l+2}}\\
+ B_l \left( -\epsilon l b^{l-1} - \epsilon_0(l+1) \right) &= 0, l \neq 1\mathrm{.}\\
+\end{alignat}
+Logo, $B_l$ deve ser zero para todo $l \neq 1$. Para $l = 1$:
+\begin{alignat}{1}
+ \epsilon \frac{B_1}{b^{3}} + 2 \epsilon_0 \frac{B_1}{b^3} &= \epsilon E_0 - \epsilon_0 E_0 \mathrm{,}\\
+ B_1 &= b^3 E_0 \frac{\epsilon - \epsilon_0}{\epsilon + 2\epsilon_0} \\
+ A_1 &= - E_0 + \frac{b^3 E_0 \frac{\epsilon - \epsilon_0}{\epsilon + 2\epsilon_0}}{b^{3}}\\
+ &= - E_0 + E_0 \frac{\epsilon - \epsilon_0}{\epsilon + 2\epsilon_0}\\
+ &= E_0 \left( \frac{\epsilon - \epsilon_0 - \epsilon - 2\epsilon_0}{\epsilon + 2\epsilon_0} \right)\\
+ &= E_0 \left( \frac{-3\epsilon_0}{\epsilon + 2\epsilon_0} \right)\mathrm{.}
+\end{alignat}
+
+O potencial dentro da esfera será
+\begin{equation}
+ V_{\mathrm{in}}(r,\theta) = - E_0 \left( \frac{3\epsilon_0}{\epsilon + 2\epsilon_0} \right) r\cos{\theta} =
+ - E_0 \left( \frac{3\epsilon_0}{\epsilon + 2\epsilon_0} \right) z\mathrm{,}
+\end{equation}
+e o campo será
+\begin{equation}
+ E_{\mathrm{in}} = E_0 \left( \frac{3\epsilon_0}{\epsilon + 2\epsilon_0} \right)\mathrm{.}
+\end{equation}
+
+Teremos então um campo uniforme dentro da esfera.
+
+\section{Esfera dielétrica com polarização uniforme}
+Vamos considerar agora uma esfera dielétrica, apresentando uma polarização uniforme. Por questões de preservação da simetria azimutal, consideremos a polarização
+paralela ao eixo $z$, ou seja, $\vec{P} = P_0 \hat{z}$.
+
+Comecemos escrevendo as densidades volumétrica e superficial de cargas ligadas:
+\begin{alignat}{1}
+ \rho_b &= -\nabla \cdot \vec{P} = 0\mathrm{,}\\
+ \sigma_b &= \vec{P}\cdot \hat{n} = P \cos{\theta}\mathrm{.}
+\end{alignat}
+Ora, o que nos resta agora é encontrar o potencial produzido por uma densidade superficial de cargas análoga, numa esfera de raio $R$.
+
+A solução da equação de Laplace nos dá
+\begin{equation}
+ V_{\mathrm{in}} = \sum_{}
+\end{equation}
+
+\begin{equation}
+ \frac{1}{4 \pi \epsilon_0} \int \frac{\sigma_b}{\mathcal{r}} da^{\prime}
+\end{equation}
+
+
+\section{Esfera dielétrica com carga pontual na origem}
+
+\section{Esfera dielétrica com dipolo simples na origem}
+
+\end{document}

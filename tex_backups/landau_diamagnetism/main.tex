@@ -1,0 +1,224 @@
+\documentclass{article}
+
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
+
+% amsmath para usar alignat
+\usepackage{amsmath}
+\usepackage[portuguese]{babel}
+% inputenc para incluir acentos
+\usepackage[utf8x]{inputenc}
+% hyperref para incluir hyperlinks
+\usepackage{hyperref}
+
+\newcommand{\Tr}{\mathrm{Tr}}
+\newcommand{\curl}{\mathrm{\nabla \times}}
+
+% \title{Diamagnetismo de Landau}
+
+\begin{document}
+
+\begin{center}
+  \begin{minipage}{8cm}
+    \Large\textbf{Diamagnetismo de Landau}\\
+    \large\textit{Pedro}
+  \end{minipage}
+\end{center}
+\vspace{1cm}
+
+\section{Derivação}
+A seguinte derivação foi inspirada nas notas de aula do professor \href{http://young.physics.ucsc.edu/}{Peter Young},
+da UCSC, obtidas em \url{http://physics.ucsc.edu/~peter/231/magnetic_field/node5.html}, acessadas em 6/11/2016, e no
+livro \textit{Quantum theory of solids}, de R. E. Peierls, Clendon Press, Oxford, 2001. Ambas as discussões são
+complementares em nível de aprofundamento e notação.
+
+A função de grande partição é definida como:
+\begin{equation}\label{eq:grandpart}
+ \mathcal{Z} = \Tr(\exp{[\beta (\mu N - \mathcal{H})]})\text{,}
+\end{equation}
+onde conseguimos obter o grande potencial da seguinte forma:
+\begin{equation}\label{eq:grandpot}
+ \Phi = -k T \ln{\mathcal{Z}}\text{.}
+\end{equation}
+No ensemble grande canônico, podemos recuperar a termodinâmica através da seguinte relação:
+\begin{equation}\label{eq:dphidmu}
+ N = - \frac{\partial \Phi}{\partial \mu}\text{,}
+\end{equation}
+ou podemos também utilizar o fato de que o grande potencial está relacionado com a energia livre de Helmholtz
+($F = U - TS$) da seguinte forma: 
+\begin{equation}\label{eq:transfleghelm}
+ F = \Phi + \mu N\text{.}
+\end{equation}
+Derivando em relação a $\mu$:
+\begin{alignat}{2}
+ \frac{\partial F}{\partial \mu} &= \frac{\partial}{\partial \mu} (\Phi + \mu N) \\
+ &= \frac{\partial \Phi}{\partial \mu} + \frac{\partial (\mu N)}{\partial \mu} \\
+ &= \underbrace{-N}_{\text{vide \eqref{eq:dphidmu}.}} + N\frac{\partial \mu}{\partial \mu} \\
+ &= -N + N\\
+ &= 0\text{.}
+\end{alignat}
+A magnetização, por sua vez, pode ser determinada por:
+\begin{equation}
+ M = - \left( \frac{\partial F}{\partial H} \right)_{N}\text{,}
+\end{equation}
+onde $H$ é o campo magnético responsável pela magnetização do sistema. A susceptibilidade magnética é obtida segundo a
+derivada da magnetização em relação ao campo, por definição. Logo,
+\begin{equation}\label{eq:suscept}
+ \chi = \frac{\partial M}{\partial H} = - \left( \frac{\partial^2 F}{\partial H^2} \right)_{N}\text{.}
+\end{equation}
+Para elétrons livres, teremos que o hamiltoniano será:
+\begin{equation}
+ \mathcal{H} =
+     \begin{cases}
+       0\text{,}\\
+       \epsilon_k\text{.}\ 
+     \end{cases}
+\end{equation}
+O grande potencial \eqref{eq:grandpot}, por sua vez, pode ser expresso como um somatório dos grandes potenciais individuais
+para cada elétron:
+\begin{equation}
+ \Phi = -2kT \sum_{i}\ln{\left[1+e^{\beta(\mu-\epsilon_k)}\right]}\text{,}
+\end{equation}
+onde o fator de $2$ surge por temos duas possibilidades de spin. Fazendo a analogia para o contínuo, através da densidade
+de estados, $g(\epsilon)$, teremos
+\begin{equation}\label{eq:phiintegral}
+ \Phi = -kT \int_{0}^{\infty}g(\epsilon)\ln{\left[1+e^{\beta(\mu-\epsilon)}\right]} d\epsilon\text{.}
+\end{equation}
+Aqui, o fator $2$ foi absorvido em $g(\epsilon)$, que, por sua vez, será constante e terá um valor de $A\cdot m\slash(\pi \hbar^2)$.
+
+Vamos aplicar um campo magnético na direção $z$, onde o potencial vetor será da forma
+\begin{equation}
+ \vec{A} = (Hx) \hat{y}\text{,}
+\end{equation}
+de maneira a garantir que $\curl \vec{A} = \vec{H} = H\hat{z}$. A energia do elétron no campo magnético será
+\begin{equation}
+ E(\vec{p},\vec{r}) = \frac{1}{2m} \left( \vec{p} - \frac{e}{c}\vec{A}\right) ^{2} + V(\vec{r})\text{.}
+\end{equation}
+Podemos substituir a variável de integração $\vec{p}$ por $\vec{\Pi}$, definido da seguinte forma:
+\begin{equation}
+ \vec{\Pi} = \vec{p} - \frac{e}{c}\vec{A}\text{,}
+\end{equation}
+de maneira que nossa equação de Schrödinger se apresentará como a seguir:
+\begin{equation}
+ \hat{\mathcal{H}} \psi(\vec{r},t) = \hat{E}\psi(\vec{r},t)\text{.}
+\end{equation}
+Separando a dependência espacial:
+\begin{alignat}{1}
+ \left( \frac{\vec{p}\ ^{2}}{2m} + V(\vec{r}) \right) \psi(\vec{r}) &= E\psi(\vec{r}) \\
+ -\frac{\hbar^2}{2m}\left( \frac{\partial^2}{\partial x^2} + \left( \frac{\partial}{\partial y} - \frac{i e H x}{\hbar c} \right)^{2}
+  + \frac{\partial^2}{\partial z^2}\right) \psi(\vec{r}) &= E\psi(\vec{r}) \\
+ \frac{\partial^2\psi(\vec{r})}{\partial x^2} + \left( \frac{\partial}{\partial y} - \frac{i e H x}{\hbar c} \right)^{2}\psi(\vec{r})
+  + \frac{\partial^2 \psi(\vec{r})}{\partial z^2} &= -\frac{2 m E}{\hbar^{2}}\psi(\vec{r})
+\end{alignat}
+Utilizando a separação de variáveis, nossa solução será da forma:
+\begin{equation}
+ \psi(\vec{r}) = e^{i(k_y y + k_z z)} u(x) \text{.}
+\end{equation}
+% 
+% \begin{equation}
+%  \frac{\partial^2\psi(\vec{r})}{\partial x^2} + \frac{\partial^2 \psi(\vec{r})}{\partial y^2} -
+%  2\left(\frac{i e H x}{\hbar c}\right)\frac{\partial \psi(\vec{r})}{\partial y} + \left(\frac{i e H x}{\hbar c}\right)^{2}\psi(\vec{r})
+%   + \frac{\partial^2 \psi(\vec{r})}{\partial z^2} = -\frac{2 m E}{\hbar^{2}}\psi(\vec{r})
+% \end{equation}
+% 
+% 
+% \begin{equation}
+%  \begin{cases}
+%   
+%  \end{cases}
+% \end{equation}
+% 
+A equação para $u(x)$ se dará como
+\begin{equation}\label{eq:ux}
+ \frac{d^2 u}{dx^2} + \left[\frac{2 m E_1}{\hbar^2} - \left( k_y - \frac{e H}{\hbar c} x \right)^2 \right]u = 0\text{,}
+\end{equation}
+com
+\begin{equation}\label{eq:energiatot}
+ E_1 = E - \frac{\hbar^2}{2m}k_z ^2\text{.}
+\end{equation}
+Podemos identificar \eqref{eq:ux} como uma equação de oscilador harmônico, com frequência
+$e H \slash m c$ e centro $x_0 = (\hbar c \slash e H) k_y$. Os autovalores de energia serão então
+\begin{equation}
+ E_{1n} = (2n + 1) \hbar \frac{eH}{2mc} = (2n + 1)\mu_B H\text{,}
+\end{equation}
+onde $\mu_B = \hbar e \slash 2 m c$ é o magneton de Bohr. A energia total, segundo \eqref{eq:energiatot}, será entao:
+\begin{equation}\label{eq:Edekz}
+ E = (2n + 1)\mu_B H + \frac{\hbar^2}{2m}k_z ^2\text{,}
+\end{equation}
+onde teremos $L_1 L_2(e H \slash 2 \pi \hbar c)$ possíveis níveis de energia, considerando que as dimensões do nosso
+material sejam $L_1$, $L_2$ e $L_3$, em $x$, $y$ e $z$, respectivamente.
+Sabendo a quantização da energia, podemos calcular o número de estados do nosso sistema, que corresponderá à
+somatória dos possíveis valores de $k_z$:
+\begin{equation}\label{eq:numest}
+ \Omega(E) = 2\left(\frac{L_3}{2\pi} \right)
+ \left( \frac{L_1 L_2 e H}{2 \pi \hbar c} \right) \sum_{n} k_z\text{,}
+\end{equation}
+onde o primeiro parêntesis corresponde aos possíveis valores de $k_y$, o segundo parêntesis ao número de estados
+possíveis de energia e o fator $2$ às duas possibilidades de spin. Remanejando $k_z$ em \eqref{eq:Edekz}:
+\begin{equation}
+ k_z = \frac{\sqrt{2m}}{\hbar}\left[ E - (2n + 1)\mu_B H \right]^{1 \slash 2}\text{,}
+\end{equation}
+podemos obter explicitamente $\Omega(E)$ em \eqref{eq:numest}:
+\begin{equation}
+ \Omega(E) = \frac{2(2m)^{1 \slash 2}L_1 L_2 L_3 e H}{(2 \pi \hbar)^2 c} \sum_{n}
+ \left[ E - (2n + 1)\mu_B H \right]^{1 \slash 2}\text{.}
+\end{equation}
+Fazendo $E \to \epsilon$, $g(\epsilon) = d\Omega \slash d\epsilon$ e substituindo em \eqref{eq:phiintegral},
+podemos identificar a função de Fermi, $f(E)$, de tal forma que:
+\begin{equation}
+ \Phi = -2 \int_{0}^{\infty}g(\epsilon)f(\epsilon) d\epsilon\text{.}
+\end{equation}
+Nossa integral final será
+\begin{equation}
+ \Phi = - A \int_{-\infty}^{+\infty} \phi(\epsilon) \frac{d}{d\epsilon}\left(
+ \frac{1}{1+e^{(\epsilon - \epsilon_0)\slash\theta}}\right) d\epsilon \text{,}
+\end{equation}
+com
+\begin{equation}
+ \phi(\epsilon) = \sum_{n} (\epsilon - n - 1\slash 2)^{2 \slash 3}\text{,}
+\end{equation}
+sendo a soma limitada para todos os valores de $n$ tais quais a soma entre parêntesis permanecer positiva, e
+\begin{equation}\label{eq:definicoes}
+ \begin{cases}
+  \epsilon_0 = \frac{\mu}{2\mu_B H}\text{,}\\
+  \theta = \frac{kT}{2\mu_B H}\text{,}\\
+  A = \frac{16 m^{2\slash 3}(\mu_B H)^{2 \slash 3} L_1 L_2 L_3}{3 \pi^2 \hbar^{3}}\text{.}\
+ \end{cases}
+\end{equation}
+Aplicando a fórmula da soma de Poisson, teremos que
+\begin{equation}
+ \phi(\epsilon) = \sum_{l = -\infty}^{\infty} (-1)^{l} \int_{0}^{\epsilon} (\epsilon - x)^{2 \slash 3}e^{2i\pi l x} dx\text{.}
+\end{equation}
+Para $l \neq 0$, no domínio $kT \gg 2 \mu_B H$, obtemos
+\begin{equation}
+ \Phi = A \int_{0}^{\epsilon_0}\left( \frac{2}{5}\epsilon^{2\slash3} -
+ \frac{\sqrt{\epsilon}}{16}\right)\frac{d}{d\epsilon}
+ \left( \frac{1}{1+e^{(\epsilon - \epsilon_0)\slash\theta}}\right)d\epsilon \text{.}
+\end{equation}
+Aplicando em \eqref{eq:transfleghelm} para obtermos a energia livre de Helmholtz, teremos
+\begin{equation}
+ F = N\mu - \frac{2}{5}A\epsilon_{0}^{5\slash3} + \frac{A}{16}\epsilon_{0}^{1\slash2}\text{.}
+\end{equation}
+Relembrando as definições \eqref{eq:definicoes}, vemos que somente o último termo depende de $H$, então ele é quem rege
+a presença do campo na energia livre. Para este termo, temos:
+\begin{equation}
+ F_{1} = \frac{m^{2 \slash 3 (\mu_B H)^2 L_1 L_2 L_3 \sqrt{\mu}}}{3 \pi^2 \hbar^3 \sqrt{2}}\text{.}
+\end{equation}
+De acordo com \eqref{eq:suscept}, a susceptibilidade magnética será
+\begin{equation}
+ \chi = - \frac{\partial^2 F}{\partial H^2} = - \frac{e^2}{12 \pi^2 \hbar c^2}
+ \left( \frac{2 \mu}{m}\right)^{1\slash 2}\text{.}
+\end{equation}
+Em termos do número de onda $k_0$ dos elétrons na dimensão de fronteira, onde $\mu = (\hbar k_0)^2 \slash 2m$, obtemos
+\begin{equation}
+ \chi = -\frac{e^2 k_0}{12 \pi^2 m c^2}\text{,}
+\end{equation}
+que é a famosa expressão obtida por Landau, para a susceptibilidade por unidade de volume de elétrons livres em $3$
+dimensões.
+
+\end{document}
