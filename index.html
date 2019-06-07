@@ -8,14 +8,25 @@
 <style>
 .parallax1 {
     /* The image used */
-    background-image: url("https://pedrobdemelo.github.io/personalpage/images/IMG_2516.JPG");
+    /*background-image: url("https://pedrobdemelo.github.io/personalpage/images/IMG_2516.JPG");*/
     /* Set a specific height */
     height: 400px;
     /* Create the parallax scrolling effect */
     background-attachment: fixed;
-    background-position: center;
+/*    background-position: center;*/
     background-repeat: no-repeat;
-    background-size: cover;
+/*    background-size: cover;*/
+
+/* Slideshow for first image and Ken Burns effect*/
+   -webkit-animation: kenburns 15s infinite;
+   -moz-animation: kenburns 15s infinite;
+   animation: kenburns 15s infinite;
+
+   animation-timing-function: ease-in-out;
+   -webkit-animation-timing-function: ease-in-out;
+   -moz-animation-timing-function: ease-in-out;
+/* End of slideshow and Ken Burns effect*/
+
 }
 .parallax2 {
     /* The image used */
@@ -52,7 +63,7 @@
 }
 .parallax5 {
     /* The image used */
-    background-image: url("https://pedrobdemelo.github.io/personalpage/images/8CB_second_render.png");
+    background-image: url("https://pedrobdemelo.github.io/personalpage/images/8CB_output.png0001.png");
     /* Set a specific height */
     height: 800px;
     /* Create the parallax scrolling effect */
@@ -74,6 +85,37 @@
 /* This must be the style of the last parallax background in order to have a working footer */
     position: relative;
 }
+
+/* Keyframes for Ken Burns effect in first parallax*/
+@-webkit-keyframes kenburns {
+    0%   { background-position: 50% 50%;}
+    50%  { background-position: 60% 65%;}
+    100% { background-position: 50% 50%;}
+}
+
+@-moz-keyframes kenburns {
+    0%   { background-position: 50% 50%;}
+    50%  { background-position: 60% 65%;}
+    100% { background-position: 50% 50%;}
+}
+
+@keyframes kenburns {
+    0%   { background-position: 50% 50%;
+           background-image: url("https://pedrobdemelo.github.io/personalpage/images/IMG_2516.JPG");
+           background-size: cover;
+         }
+    50%  { background-position: 60% 65%;
+           background-image: url("https://pedrobdemelo.github.io/personalpage/images/IMG_2516.JPG");
+           background-size: cover;
+         }
+    100% { background-position: 50% 50%;
+           background-image: url("https://pedrobdemelo.github.io/personalpage/images/IMG_2516.JPG");
+           background-size: cover;
+         }
+}
+
+/* End of keyframes*/
+
 </style>
 
 <!-- Old -->
