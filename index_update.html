@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+<title>pedrobdemelo - GitHub</title>
+<!-- Parallax -->
+<style>
+.parallax1 {
+    /* The image used */
+    /*background-image: url("https://pedrobdemelo.github.io/personalpage/images/IMG_2516.JPG");*/
+    /* Set a specific height */
+    height: 400px;
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+/*    background-position: center;*/
+    background-repeat: no-repeat;
+/*    background-size: cover;*/
+
+/* Slideshow for first image and Ken Burns effect*/
+   -webkit-animation: kenburns 15s infinite;
+   -moz-animation: kenburns 15s infinite;
+   animation: kenburns 15s infinite;
+
+   animation-timing-function: ease-in-out;
+   -webkit-animation-timing-function: ease-in-out;
+   -moz-animation-timing-function: ease-in-out;
+/* End of slideshow and Ken Burns effect*/
+
+}
+.parallax2 {
+    /* The image used */
+    background-image: url("https://pedrobdemelo.github.io/personalpage/images/IMG_2521.JPG");
+    /* Set a specific height */
+    height: 1000px;
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#parallax3 {
+    /* The image used */
+    background-image: url("https://pedrobdemelo.github.io/personalpage/images/chiral_dopant1(modified).png");
+    /* Set a specific height */
+    height: 1000px;
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.parallax4 {
+    /* The image used */
+    background-image: url("https://pedrobdemelo.github.io/personalpage/images/background_transporte2.jpg");
+    /* Set a specific height */
+    height: 700px;
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.parallax5 {
+    /* The image used */
+    background-image: url("https://pedrobdemelo.github.io/personalpage/images/8CB_output.png0001.png");
+    /* Set a specific height */
+    height: 800px;
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.parallax6 {
+    /* The image used */
+    background-image: url("https://pedrobdemelo.github.io/personalpage/images/margarida.jpg");
+    /* Set a specific height */
+    height: 600px;
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+/* This must be the style of the last parallax background in order to have a working footer */
+    position: relative;
+}
+
+/* Keyframes for Ken Burns effect in first parallax*/
+@-webkit-keyframes kenburns {
+    0%   { background-position: 50% 50%;}
+    50%  { background-position: 60% 65%;}
+    100% { background-position: 50% 50%;}
+}
+
+@-moz-keyframes kenburns {
+    0%   { background-position: 50% 50%;}
+    50%  { background-position: 60% 65%;}
+    100% { background-position: 50% 50%;}
+}
+
+@keyframes kenburns {
+    0%   { background-position: 50% 50%;
+           background-image: url("https://pedrobdemelo.github.io/personalpage/images/IMG_2516.JPG");
+           background-size: cover;
+         }
+    50%  { background-position: 60% 65%;
+           background-image: url("https://pedrobdemelo.github.io/personalpage/images/IMG_2516.JPG");
+           background-size: cover;
+         }
+    100% { background-position: 50% 50%;
+           background-image: url("https://pedrobdemelo.github.io/personalpage/images/IMG_2516.JPG");
+           background-size: cover;
+         }
+}
+
+/* End of keyframes*/
+
+</style>
+
+<!-- Old -->
+<style>
+@import url('https://fonts.googleapis.com/css?family=Roboto:mediumitalic');
+@import url('https://fonts.googleapis.com/css?family=Roboto:thin');
+/*
+   Opcoes Roboto:
+    Thin
+    Thin Italic
+    Light
+    Light Italic
+    Regular
+    Regular Italic
+    Medium
+    Medium Italic
+    Bold
+    Bold Italic
+    Black
+    Black Italic
+*/
+a.button {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    text-decoration: none;
+    color: initial;
+}
+.blankspace {
+   width: 100%; /* for IE 6 */
+   max-width: 50px;
+   float:left;
+}
+/* Text above image */
+.image { 
+   position: relative; 
+   width: 100%; /* for IE 6 */
+   max-width: 400px;
+   float:left;
+   z-index:-1;
+}
+h2 { 
+   position: absolute; 
+   top: 200px; 
+   left: 0; 
+   width: 100%; 
+}
+h2 span { 
+   color: white; 
+   font: bold 24px/45px Helvetica, Sans-Serif; 
+   letter-spacing: -1px;  
+   background: rgb(0, 0, 0); /* fallback color */
+   background: rgba(0, 0, 0, 0.7);
+   padding: 10px; 
+}
+h2 span.spacer {
+   padding:0 5px;
+}
+div.roboto{
+   font-family: 'Roboto', sans-serif;
+   font-size: 56px;
+}
+img.transparent {
+   opacity: 1;
+   -webkit-transition: opacity 1s;
+   -moz-transition: opacity 1s;
+   transition: opacity 1s;
+}
+img.transparent:hover {
+   opacity: 0.5;
+}
+</style>
+<!-- Parte do header: -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script> 
+$(function(){
+//  $("#header").load("header_footer_etc/header.html");
+  $("#header").load("https://pedrobdemelo.github.io/party.dinosaur/header_footer_etc/header.html");
+  $("#footer").load("header_footer_etc/footer.html");
+});
+</script>
+
+<style>
+div.topheader{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+.pushdown{margin-bottom: 49px;}
+/* Remove the ugly dotted lines around links from Firefox */
+:focus {outline:none;}
+::-moz-focus-inner {border:0;}
+</style>
+
+<style>
+div.myfooter{
+   font-family: 'Roboto', sans-serif;
+/*   font-size: 56px;*/
+   background-color: rgba(235, 235, 235, 0.9);
+/*Para footer:*/
+   position: absolute;
+   bottom: 0;
+   padding: 10px 0px;
+   width: 100%;
+   position: absolute;
+}
+</style>
+
+<script>
+function toggleawards() {
+    var x = document.getElementById("awards");
+    var background = document.getElementById("parallax3");
+    var my_height = x.clientHeight;
+    var std_height = background.clientHeight;
+    if (x.style.display === "block") {
+        x.style.display = "none";
+        background.style.height = std_height + "px";
+    } else {
+        x.style.display = "block";
+        background.style.height = std_height + my_height + "px";
+    }
+}
+function toggleevents() {
+    var x = document.getElementById("presevents");
+    var background = document.getElementById("parallax3");
+    var my_height = x.clientHeight;
+    var std_height = background.clientHeight;
+    if (x.style.display === "block") {
+        x.style.display = "none";
+        background.style.height = std_height + "px";
+    } else {
+        x.style.display = "block";
+        background.style.height = std_height + my_height + "px";
+    }
+}
+</script>
+
+<style>
+#awards {
+    display: none;
+    font-family: 'Roboto',sans-serif;
+    font-size:18px;
+    margin-left:2cm;
+}
+#presevents {
+    display: none;
+    font-family: 'Roboto',sans-serif;
+    font-size:18px;
+    margin-left:2cm;
+}
+.PDF_icons{
+    display: inline-block;
+    *display: inline; /* For IE7 */
+    zoom: 1; /* Trigger hasLayout */
+    width: 10%;
+    text-align: center;
+    padding:10px;
+    vertical-align:top;
+}
+.PDF_icons:hover{
+/*
+    background-color:rgba(255, 0, 0, 0.2);*/
+    background:linear-gradient(to top right, rgba(255, 0, 0, 0.6), rgba(255, 0, 0, 0.2), rgba(255, 0, 0, 0.1),rgba(255, 0, 0, 0));
+    border-color:rgba(255, 0, 0, 0.5);
+/*
+    border-style: solid;
+    border-width: 1px;
+*/
+    border-radius: 5px;
+/*
+    box-shadow: -2px 5px 0 0 rgba(255, 0, 0, 0.2);
+*/
+}
+</style>
+
+<script>
+function open_PDF(PDF_number) {
+   var pdf_names = [
+      "https://pedrobdemelo.github.io/personalpage/PDFs/propriedades_delta.pdf",
+      "https://pedrobdemelo.github.io/personalpage/PDFs/regra_de_lhopital.pdf",
+      "https://pedrobdemelo.github.io/personalpage/PDFs/fermi-2D.pdf",
+      "https://pedrobdemelo.github.io/personalpage/PDFs/sum_of_l+spin_1.pdf",
+      "https://pedrobdemelo.github.io/personalpage/PDFs/landau_diamagnetism.pdf",
+      "https://pedrobdemelo.github.io/personalpage/PDFs/jackson1.pdf",
+      "https://pedrobdemelo.github.io/personalpage/PDFs/jackson2.pdf",
+      "https://pedrobdemelo.github.io/personalpage/PDFs/topological_defects.pdf"
+   ];
+   window.open(pdf_names[PDF_number]);
+}
+</script>
+
+<style>
+.gallery_frame {
+   display: -moz-inline-stack;
+   display: inline-block;
+   zoom: 1;
+   *display: inline;
+   overflow:hidden;
+}
+.gallery_item {
+   width:400px;
+   height:225px;
+   -webkit-transition: all 0.5s ease-in-out;
+   -moz-transition: all 0.5s ease-in-out;
+   -ms-transition: all 0.5s ease-in-out;
+   -o-transition: all 0.5s ease-in-out;
+   transition: all 0.5s ease-in-out;
+}
+.gallery_item:hover {
+   transform: scale(1.3);
+   filter: alpha(opacity=80);
+   opacity: 0.8;
+}
+</style>
+
+<script>
+var index = 0;
+var file_name = [
+   "https://pedrobdemelo.github.io/personalpage/images/8CB_second_render.png",
+   "https://pedrobdemelo.github.io/personalpage/images/chiral_dopant1(modified).png",
+   "https://pedrobdemelo.github.io/personalpage/images/nanotube.png"
+];
+var min_ind = 0;
+var max_ind = file_name.length-1;
+function openModal(file_index) {
+   var file_index;
+   document.getElementById('myModal').style.display = "block";
+   index = file_index
+   changeLBUrl(index);
+}
+
+function closeModal() {
+  document.getElementById('myModal').style.display = "none";
+}
+
+//index eh global
+function increaseIndex() {
+   index = index + 1;
+   if (index > max_ind)
+   {
+      index = min_ind;
+      changeLBUrl(index);
+   } else
+   {
+      changeLBUrl(index);
+   }
+}
+
+function decreaseIndex() {
+   index = index - 1;
+   if (index < min_ind)
+   {
+      index = max_ind;
+      changeLBUrl(index);
+   } else
+   {
+      changeLBUrl(index);
+   }
+}
+
+function openVideo(video_index) {
+   var video_index;
+   var file_name = [
+      "https://pedrobdemelo.github.io/personalpage/videos/trefoil.mp4",
+      "https://pedrobdemelo.github.io/personalpage/videos/5,2knot_anim.mp4",
+      "https://pedrobdemelo.github.io/personalpage/videos/5,3knot_anim.mp4",
+   ];
+   document.getElementById('lbvideo').style.display = "block";
+   document.getElementById('lbimage').style.background = "none";
+}
+
+function changeLBUrl(file_index) {
+   document.getElementById('lbimage').style.background = "url(\"" + file_name[file_index] + "\") no-repeat";
+   document.getElementById('lbimage').style.backgroundSize = "contain";
+   document.getElementById('lbimage').style.backgroundPosition = "center";
+   document.getElementById('lbvideo').style.display = "none";
+}
+</script>
+
+<style>
+.modal{
+   background-color: rgba(235, 235, 235, 0.9);
+   position:fixed;
+   top:0;
+   width:100%;
+   display: none;
+   height: 100%;
+   text-align:center;
+  /* background-color:gray;*/
+   z-index:3;
+}
+/*.lightboxleft{
+   float:left;
+   position:relative;
+   height:70%;
+   background-color: none;
+   width:10%;
+   background-size: 70%;
+   z-index:3;
+}*/
+#lightboxmiddle{
+   /*float:left;*/
+   display: -moz-box;
+   position:relative;
+   height:60%;
+   background:url("https://pedrobdemelo.github.io/personalpage/images/8CB_second_render.png") no-repeat;
+/*   background-color:blue;*/
+   background-size: 100%;
+   z-index:3;
+}
+/*
+.lightboxright{
+   float:right;
+   position:relative;
+   height:70%;
+   background-color: none;
+   width:10%;
+   background-size: 70%;
+   z-index:3;
+}
+*/
+#lightboximage{
+   float:center;
+   width:100%;
+   z-index:3;
+}
+.lightboxtop{
+/*   position:relative;*/
+   width:100%;
+/*   top:0;*/
+   height:10%;
+   background-color: none;
+/*   background:url("https://pedrobdemelo.github.io/personalpage/images/8CB_second_render.png") no-repeat;
+   background-size: 70%;*/
+   z-index:3;
+}
+.previousimage{
+   float:left;
+   height:100%;
+   width:50%;
+   background-color:none;
+/*
+   -webkit-transition: all 0.5s ease-in-out;
+   -moz-transition: all 0.5s ease-in-out;
+   -ms-transition: all 0.5s ease-in-out;
+   -o-transition: all 0.5s ease-in-out;
+   transition: all 0.5s ease-in-out;
+*/
+   z-index: 4;
+}
+.nextimage{
+   float:right;
+   height:100%;
+   width:50%;
+   background-color:none;
+   z-index: 4;
+/*
+   -webkit-transition: all 0.5s ease-in-out;
+   -moz-transition: all 0.5s ease-in-out;
+   -ms-transition: all 0.5s ease-in-out;
+   -o-transition: all 0.5s ease-in-out;
+   transition: all 0.5s ease-in-out;
+*/
+}
+.previousimage:hover{
+   background:linear-gradient(to right, rgba(255, 255, 255, 0.6),rgba(255, 0, 0, 0));
+}
+.nextimage:hover{
+/*   background-color: rgba(255,255,0,0.1);*/
+   background:linear-gradient(to left, rgba(255, 255, 255, 0.6),rgba(255, 0, 0, 0));
+}
+.lightboxtop:hover{
+   background:linear-gradient(to bottom, rgba(255, 0, 0, 0.4),rgba(255, 0, 0, 0));
+}
+.lightboxminiature{
+   margin-top:3%;
+   width:10%;
+}
+.miniatures
+{
+   position: relative;
+   bottom: 0
+   text-align:center;
+}
+#lbimage
+{
+/*   background-color:blue;*/
+   background-image: url("https://pedrobdemelo.github.io/personalpage/images/8CB_second_render.png");
+   background-repeat: no-repeat;
+   background-position: center;
+   background-size: 70%;
+   margin: 0;
+   padding: 0;
+   width:auto;
+   height:70%;
+}
+#lbvideo
+{
+   display:none;
+   background-color:none;
+   vertical-align:center;
+   margin: 0;
+   padding: 0;
+   width:auto;
+   height:70%;
+}
+.videobg
+{
+}
+</style>
+</head>
+
+<body>
+
+   <div class="parallax1">
+      <div style="background-color: rgba(235, 235, 235, 0.9);height:70px;">
+         <span style="line-height:70px;width:100%;height:70px;margin-left:0.7cm;text-align:left;font-family:'Roboto',sans-serif;font-size: 36px;">My GitHub</span>
+         <span style="padding-top:7px;height:63px;margin-right:1cm;text-align:left;float:right;font-family:'Roboto',sans-serif;font-size: 24px;">
+               pedrobdemelo.github.io<br>pedrobdemelo@gmail.com</span>
+      </div>
+      <div id="firefox_warning" style="background-color: rgba(20, 20, 20, 0.9);margin-top:140px;position:absolute;width:300px;left:50%;margin-left:-150px;">
+      </div>
+<!--
+         <center style="color:rgba(235, 235, 235, 0.9);font-family:'Roboto',sans-serif;font-size:24px;"><b>Mozilla Firefox will only play videos in low-quality for the moment</b></center>
+      </div>
+      <script>
+         var FIREFOX = /Firefox/i.test(navigator.userAgent);
+         if (!FIREFOX) {
+            document.getElementById("firefox_warning").style.display="none";
+         }
+      </script>
+-->
+   </div>
+
+   <div id="parallax3">
+      <div style="background-color: rgba(230, 230, 230, 0.9);">
+         <div class="roboto"><center>Research</center></div>
+         <div style="font-family: 'Roboto', sans-serif;font-size:18px;margin-left:2cm;">
+            <div style="margin-bottom: 1cm;margin-top: 1cm;">&#9702 
+               <a href="https://aip.scitation.org/doi/10.1063/1.5040356" style="text-decoration:none">Electrically-controlled Faraday rotation and wavelength mismatch phenomena in a magnetophotonic structure containing nematic layers.</a>
+               <br>E. J. Oliveira, <b>P. B. de Melo</b>, R. R. da Silva, F. M. Zanetti, and I. N. de Oliveira
+               <br>Journal of Applied Physics, v. <b>124</b>, p. 113103, 2018 | DOI: <a href="https://doi.org/10.1063/1.5040356" style="text-decoration:none">https://doi.org/10.1063/1.5040356</a>;</div>
+            <div style="margin-bottom: 1cm;margin-top: 1cm;">&#9702 
+               <a href="https://journals.aps.org/pre/abstract/10.1103/PhysRevE.96.062703" style="text-decoration:none">Temperature dependence of the nonlinear optical response of smectic liquid crystals containing gold nanorods.</a>
+               <br>R. S. Silva, <b>P. B. de Melo</b>, L. Omena, A. M. Nunes, M. G. A. da Silva, M. R. Meneghetti, and I. N. de Oliveira
+               <br>Physical Review E, v. <b>96</b>, p. 062703, 2017 | DOI: <a href="https://doi.org/10.1103/PhysRevE.96.062703" style="text-decoration:none">https://doi.org/10.1103/PhysRevE.96.062703</a>;</div>
+            <div style="margin-bottom: 1cm;">&#9702 <a href="https://journals.aps.org/pre/abstract/10.1103/PhysRevE.92.042504" style="text-decoration:none">Thermo-optical properties and nonlinear optical response of smectic liquid crystals containing gold nanoparticles.</a>
+               <br><b>P. B. de Melo</b>, A. M. Nunes, L. Omena, S. M. S. do Nascimento, M. G. A. da Silva, M. R. Meneghetti, and I. N. de Oliveira
+               <br>Physical Review E, v. <b>92</b>, p. 042504, 2015 | DOI: <a href="https://doi.org/10.1103/PhysRevE.92.042504" style="text-decoration:none">https://doi.org/10.1103/PhysRevE.92.042504</a>;</div>
+            <div style="margin-bottom: 1cm;">&#9702 <a href="https://journals.aps.org/pre/abstract/10.1103/PhysRevE.89.052511" style="text-decoration:none">Effects of fullerene addition on the thermo-optical properties of smectic liquid crystals at the vicinity of the nematic-smectic-A phase transition.</a>
+            <br>Lidiane Omena, <b>Pedro B. de Melo</b>, Maria S. S. Pereira, and Italo N. de Oliveira
+            <br>Physical Review E, v. <b>89</b>, p. 052511, 2014 | DOI: <a href="https://doi.org/10.1103/PhysRevE.89.052511" style="text-decoration:none">https://doi.org/10.1103/PhysRevE.89.052511</a>.</div>
+
+            <div style="font-family: 'Roboto', sans-serif;font-size:38px;"><center>Nominations and awards</center></div>
+            <center><button onclick="toggleawards()" style="background-color:none;border:none;padding:15px 32px;text-align: center; text-decoration: none;display:inline-block;cursor:pointer;">Show/hide</button></center>
+            <div id="awards">
+               <div>&#9702 2017 Academic Excellence;</div>
+               <div>&#9702 2017 CNPq Highlight of the year prize (nominated);</div>
+               <div>&#9702 2015 Academic Excellence;</div>
+               <div>&#9702 2015 CNPq Highlight of the year prize (nominated);</div>
+               <div>&#9702 2014 Academic Excellence;</div>
+               <div>&#9702 2014 CNPq Highlight of the year prize (nominated);</div>
+            </div>
+            <div style="height:20px;"></div>
+            <div style="font-family: 'Roboto', sans-serif;font-size:38px;"><center>Presentations on events</center></div>
+            <center><button onclick="toggleevents()" style="background-color:none;border:none;padding:15px 32px;text-align: center; text-decoration: none;display:inline-block;cursor:pointer;">Show/hide</button></center>
+            <div id="presevents">
+               <div>&#9702 Optics of Liquid Crystals 2017;</div>
+               <div>&#9702 Autumn Meeting of The Brazilian Physical Society 2019;</div>
+            </div>
+            <div style="height:20px;"></div>
+         </div>
+      </div>
+   </div>
+
+   <div class="parallax2" style="height:300px;">
+      <div style="background-color: rgba(230, 230, 230, 0.9);">
+         <div class="roboto"><center>Gallery</center></div>
+         <center style="font-family: 'Roboto', sans-serif;">Shut down for loading time issues. Page can still be seen here.</center>
+<!--
+         <div id="myModal" class="modal">
+            <div onclick="closeModal();" class="lightboxtop"></div>
+            <div id="lbimage">
+               <span class="previousimage" onclick="decreaseIndex();"></span>
+               <span class="nextimage" onclick="increaseIndex();"></span>
+            </div>
+            <div id="lbvideo">
+               <video style="height:100%;"autoplay muted loop>
+                  <source class="videobg" type="video/webm">
+               </video>
+            </div>
+            <div class="miniatures">
+               <image src="https://pedrobdemelo.github.io/personalpage/images/8CB_second_render.png" onclick="changeLBUrl(0);" class="lightboxminiature">
+               <image src="https://pedrobdemelo.github.io/personalpage/images/chiral_dopant1(modified).png" onclick="changeLBUrl(1);" class="lightboxminiature">
+               <image src="https://pedrobdemelo.github.io/personalpage/images/nanotube.png" onclick="changeLBUrl(2);" class="lightboxminiature">
+               <video class="lightboxminiature" onclick="openVideo();" autoplay muted loop>
+                  <source src="https://pedrobdemelo.github.io/personalpage/videos/trefoil.mp4" type="video/mp4">
+                  <source src="https://pedrobdemelo.github.io/personalpage/videos/trefoil.webm" type="video/webm">
+                  <source src="https://pedrobdemelo.github.io/personalpage/videos/trefoil.ogg" type="video/ogg">
+               </video>
+               <video class="lightboxminiature" onclick="openVideo();" autoplay muted loop>
+                  <source src="https://pedrobdemelo.github.io/personalpage/videos/5,2knot_anim.mp4" type="video/mp4">
+                  <source src="https://pedrobdemelo.github.io/personalpage/videos/5,2knot_anim.webm" type="video/webm">
+                  <source src="https://pedrobdemelo.github.io/personalpage/videos/5,2knot_anim.ogg" type="video/ogg">
+               </video>
+               <video class="lightboxminiature" onclick="openVideo();" autoplay muted loop>
+                  <source src="https://pedrobdemelo.github.io/personalpage/videos/5,3knot_anim.mp4" type="video/mp4">
+                  <source src="https://pedrobdemelo.github.io/personalpage/videos/5,3knot_anim.webm" type="video/webm">
+                  <source src="https://pedrobdemelo.github.io/personalpage/videos/5,3knot_anim.ogg" type="video/ogg">
+               </video>
+            </div>
+         </div>
+         <div style="text-align:center;">
+            <span class="gallery_frame">
+               <img src="https://pedrobdemelo.github.io/personalpage/images/8CB_second_render.png" class="gallery_item" onclick="openModal(0);" alt="Rendered 8CB molecule. UFF + Steepest descents. Atoms scale = 0.5, bond radius scale = 0.5.">
+            </span>
+            <span class="gallery_frame">
+               <img src="https://pedrobdemelo.github.io/personalpage/images/chiral_dopant1(modified).png" class="gallery_item" onclick="openModal(1);" alt="">
+            </span>
+            <span class="gallery_frame">
+               <img src="https://pedrobdemelo.github.io/personalpage/images/nanotube.png" class="gallery_item" onclick="openModal(2);" alt="">
+            </span>
+            <span class="gallery_frame">
+               <video class="gallery_item" onclick="openModal();" autoplay muted loop>
+                  <source src="https://pedrobdemelo.github.io/personalpage/videos/trefoil.mp4" type="video/mp4">
+                  <source src="https://pedrobdemelo.github.io/personalpage/videos/trefoil.webm" type="video/webm">
+                  <source src="https://pedrobdemelo.github.io/personalpage/videos/trefoil.ogg" type="video/ogg">
+               </video>
+            </span>
+            <span class="gallery_frame">
+               <video class="gallery_item" onclick="openModal();" autoplay muted loop>
+                  <source src="https://pedrobdemelo.github.io/personalpage/videos/5,2knot_anim.mp4" type="video/mp4">
+                  <source src="https://pedrobdemelo.github.io/personalpage/videos/5,2knot_anim.webm" type="video/webm">
+                  <source src="https://pedrobdemelo.github.io/personalpage/videos/5,2knot_anim.ogg" type="video/ogg">
+               </video>
+            </span>
+            <span class="gallery_frame">
+               <video class="gallery_item" onclick="openModal();" autoplay muted loop>
+                  <source src="https://pedrobdemelo.github.io/personalpage/videos/5,3knot_anim.mp4" type="video/mp4">
+                  <source src="https://pedrobdemelo.github.io/personalpage/videos/5,3knot_anim.webm" type="video/webm">
+                  <source src="https://pedrobdemelo.github.io/personalpage/videos/5,3knot_anim.ogg" type="video/ogg">
+               </video>
+            </span>
+         </div>
+         <div style="height:20px;"></div>-->
+      </div>
+   </div>
+
+   <div class="parallax5">
+      <div style="background-color: rgba(230, 230, 230, 0.9);">
+         <div class="roboto">
+            <center>PDFs</center>
+            <center style="font-size:22px;text-align:center;">(mainly in portuguese)</center>
+            <center style="font-size:12px;">(Don't take these too seriously)</center>
+            <center>
+               <div class="PDF_icons">
+                  <img src="images/PDF_icon.png" style="margin:0 auto;" alt="" width="100%" onclick="open_PDF(0)">
+                  <center style="font-size:22px;text-align:center;"><b>Dirac delta properties</b></center>
+               </div>
+               <div class="PDF_icons">
+                  <img src="images/PDF_icon.png" style="margin:0 auto;" alt="" width="100%" onclick="open_PDF(1)">
+                  <center style="font-size:22px;text-align:center;"><b>L'Hospital rule</b></center>
+               </div>
+               <div class="PDF_icons">
+                  <img src="images/PDF_icon.png" style="margin:0 auto;" alt="" width="100%" onclick="open_PDF(2)">
+                  <center style="font-size:22px;text-align:center;"><b>2D Fermi energy</b></center>
+               </div>
+               <div class="PDF_icons">
+                  <img src="images/PDF_icon.png" style="margin:0 auto;" alt="" width="100%" onclick="open_PDF(3)">
+                  <center style="font-size:22px;text-align:center;"><b>Sum of L=l + S=1</b></center>
+               </div>
+<br>
+               <div class="PDF_icons">
+                  <img src="images/PDF_icon.png" style="margin:0 auto;" alt="" width="100%" onclick="open_PDF(4)">
+                  <center style="font-size:22px;text-align:center;"><b>Landau diamagnetism</b></center>
+               </div>
+<!--
+               <div class="PDF_icons">
+                  <img src="images/PDF_icon.png" style="margin:0 auto;" alt="" width="100%" onclick="open_PDF(5)">
+                  <center style="font-size:22px;text-align:center;"><b>Some Jackson problems (nsfw)</b></center>
+               </div>
+               <div class="PDF_icons">
+                  <img src="images/PDF_icon.png" style="margin:0 auto;" alt="" width="100%" onclick="open_PDF(6)">
+                  <center style="font-size:22px;text-align:center;"><b>More Jackson problems (nsfw)</b></center>
+               </div>
+-->
+               <div class="PDF_icons">
+                  <img src="images/PDF_icon.png" style="margin:0 auto;" alt="" width="100%" onclick="open_PDF(7)">
+                  <center style="font-size:22px;text-align:center;"><b>Topological defects (english)</b></center>
+               </div>
+            </center>
+            <div style="height:20px;"></div>
+         </div>
+      </div>
+   </div>
+
+   <div class="parallax6">
+      <div style="background-color: rgba(230, 230, 230, 0.9);text-align:center;">
+         <div class="roboto"><center>Off-work (coming soon)</center></div>
+         <!--<div style="height:1000px;font-family:'Roboto',sans-serif;font-size:24px;">
+            <center>Literature</center>
+            <center>Music</center>
+            <center>TV Shows and Movies</center>
+            <center>Photography</center>
+            <center>Electronics</center>
+         </div>-->
+      </div>
+
+      <div class="myfooter">
+         <center style="font-size:26px;">Don't hesitate to leave me a message. Contact at pedrobdemelo@gmail.com.</center>
+         <div style="text-align:right;font-size:22px;padding: 0px 20px;">
+            <p>2019.</p>
+         </div>
+      </div>
+   </div>
+
+<!--
+   <div class="roboto"><center>Interactive schemes</center></div>
+      <br>
+      <div class="image">
+         <a href="https://pedrobdemelo.github.io/party.dinosaur/zscan/steady/plot_func_alone.htm">
+         <img class="transparent" src="https://pedrobdemelo.github.io/party.dinosaur/IMG_2516.JPG" width="400px" alt=""></a>
+         <h2><span class='spacer'>Z-scan steady state regime</span></h2>
+      </div>
+      <div class="blankspace">
+         <p></p>
+      </div>
+      <div class="image">
+         <a href="https://pedrobdemelo.github.io/party.dinosaur/zscan/transient/plot_func_alone.htm">
+         <img class="transparent" src="https://pedrobdemelo.github.io/party.dinosaur/IMG_2521.JPG" width="400px" alt=""></a>
+         <h2><span class='spacer'>Z-scan transient intensities</span></h2>
+      </div>
+   </div>
+-->
+
+</body>
+
+</html>
